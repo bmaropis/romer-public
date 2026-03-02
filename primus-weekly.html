@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rev.io — Primus Weekly Summary | Feb 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f6f9; color: #1a1a2e; font-size: 13.5px; line-height: 1.5; }
+  .page { max-width: 960px; margin: 0 auto; padding: 24px 20px 40px; }
+
+  /* Header */
+  .header { background: #0f1b35; color: #fff; border-radius: 10px; padding: 22px 28px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+  .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+  .header-left p { color: #8fa8d0; font-size: 12px; margin-top: 3px; }
+  .header-right { text-align: right; font-size: 12px; color: #8fa8d0; }
+  .header-right strong { color: #fff; display: block; font-size: 13px; }
+
+  /* Section */
+  .section { background: #fff; border-radius: 8px; border: 1px solid #e2e8f0; padding: 16px 20px; margin-bottom: 14px; }
+  .section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #6b7280; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .section-title span { font-size: 14px; }
+
+  /* Scorecard table */
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th { background: #f8fafc; color: #374151; font-weight: 600; padding: 7px 10px; text-align: left; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
+  td { padding: 7px 10px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafbfc; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; }
+  .bold { font-weight: 600; }
+
+  /* Status badges */
+  .g { background: #dcfce7; color: #166534; padding: 2px 7px; border-radius: 10px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .y { background: #fef9c3; color: #854d0e; padding: 2px 7px; border-radius: 10px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .r { background: #fee2e2; color: #991b1b; padding: 2px 7px; border-radius: 10px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+
+  /* Dept grid */
+  .dept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width: 640px) { .dept-grid { grid-template-columns: 1fr; } }
+  .dept-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 16px; }
+  .dept-name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: #4b5563; margin-bottom: 8px; }
+  .dept-kpis { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+  .kpi { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 5px 9px; text-align: center; min-width: 80px; }
+  .kpi-val { font-size: 15px; font-weight: 700; color: #0f1b35; }
+  .kpi-lbl { font-size: 10px; color: #9ca3af; margin-top: 1px; }
+  ul.bullets { padding-left: 14px; color: #374151; }
+  ul.bullets li { margin-bottom: 3px; font-size: 12.5px; }
+  .flag { background: #fff7ed; border-left: 3px solid #f97316; padding: 5px 9px; border-radius: 0 4px 4px 0; font-size: 12px; color: #7c2d12; margin-top: 8px; }
+  .flag.red { background: #fef2f2; border-color: #ef4444; color: #7f1d1d; }
+  .flag.green { background: #f0fdf4; border-color: #22c55e; color: #14532d; }
+
+  /* Critical items */
+  .critical-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
+  .critical-item:last-child { border-bottom: none; }
+  .ci-num { background: #0f1b35; color: #fff; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .ci-body strong { display: block; font-size: 13px; color: #111; margin-bottom: 2px; }
+  .ci-body p { color: #4b5563; font-size: 12.5px; }
+
+  /* Actions */
+  .action-row { display: grid; grid-template-columns: 120px 1fr 90px; gap: 8px; padding: 6px 0; border-bottom: 1px solid #f1f5f9; font-size: 12.5px; }
+  .action-row:last-child { border-bottom: none; }
+  .owner-tag { background: #eff6ff; color: #1d4ed8; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 600; display: inline-block; }
+  .due-tag { color: #6b7280; font-size: 11.5px; }
+
+  /* Footer */
+  .footer { text-align: center; font-size: 11px; color: #9ca3af; margin-top: 20px; }
+  .footer a { color: #6b7280; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Rev.io — Weekly Performance Summary</h1>
+      <p>Period: February 2026 Results &nbsp;|&nbsp; March 2026 Forecast</p>
+    </div>
+    <div class="header-right">
+      <strong>Prepared For</strong>
+      Ron Hess, Growth Equity Partner<br>Primus Capital Partners<br>
+      <span style="margin-top:4px; display:block; color:#4a7cc7;">Updated: March 3, 2026</span>
+    </div>
+  </div>
+
+  <!-- MONTH AT A GLANCE SCORECARD -->
+  <div class="section">
+    <div class="section-title"><span>📊</span> February 2026 — Month-at-a-Glance Scorecard</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Department</th>
+          <th>Metric</th>
+          <th class="num">Target (MRR)</th>
+          <th class="num">Actual (MRR)</th>
+          <th class="num">% to Target</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bold" rowspan="4">Marketing</td>
+          <td>Total New MRR Booked</td>
+          <td class="num">$14,200</td>
+          <td class="num">$6,400</td>
+          <td class="num">45%</td>
+          <td><span class="r">🔴 MISS</span></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;↳ Billing</td>
+          <td class="num">$1,600</td>
+          <td class="num">$350</td>
+          <td class="num">22%</td>
+          <td><span class="r">🔴 MISS</span></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;↳ PSA</td>
+          <td class="num">$12,600</td>
+          <td class="num">$5,700</td>
+          <td class="num">45%</td>
+          <td><span class="r">🔴 MISS</span></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;↳ CyberProtect</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td><span class="y">🟡 NEW</span></td>
+        </tr>
+        <tr style="background:#f8fafc;">
+          <td class="bold" rowspan="4">Sales</td>
+          <td>Total New MRR Booked</td>
+          <td class="num">$33,000</td>
+          <td class="num">$14,000</td>
+          <td class="num">42%</td>
+          <td><span class="r">🔴 MISS</span></td>
+        </tr>
+        <tr style="background:#f8fafc;">
+          <td>&nbsp;&nbsp;↳ Billing</td>
+          <td class="num">$3,000</td>
+          <td class="num">$2,500</td>
+          <td class="num">83%</td>
+          <td><span class="y">🟡 NEAR</span></td>
+        </tr>
+        <tr style="background:#f8fafc;">
+          <td>&nbsp;&nbsp;↳ PSA</td>
+          <td class="num">$21,000</td>
+          <td class="num">$10,000</td>
+          <td class="num">48%</td>
+          <td><span class="r">🔴 MISS</span></td>
+        </tr>
+        <tr style="background:#f8fafc;">
+          <td>&nbsp;&nbsp;↳ Payments</td>
+          <td class="num">—</td>
+          <td class="num">~$3,000 (Q1)</td>
+          <td class="num">11% (Q1)</td>
+          <td><span class="r">🔴 MISS</span></td>
+        </tr>
+        <tr>
+          <td class="bold">Onboarding / PSA</td>
+          <td>Projects Launched</td>
+          <td class="num">16</td>
+          <td class="num">6</td>
+          <td class="num">38%</td>
+          <td><span class="r">🔴 MISS</span></td>
+        </tr>
+        <tr style="background:#f8fafc;">
+          <td class="bold">Product / Engineering</td>
+          <td>Apollo 2 Items Delivered</td>
+          <td class="num">—</td>
+          <td class="num">51% complete</td>
+          <td class="num">On Pace</td>
+          <td><span class="g">🟢 ON TRACK</span></td>
+        </tr>
+        <tr>
+          <td class="bold">Finance</td>
+          <td>Cash Position</td>
+          <td class="num">Target</td>
+          <td class="num">+$400K vs target</td>
+          <td class="num">&gt;100%</td>
+          <td><span class="g">🟢 BEAT</span></td>
+        </tr>
+        <tr style="background:#f8fafc;">
+          <td class="bold">Churn</td>
+          <td>Churn MRR</td>
+          <td class="num">$11,088</td>
+          <td class="num">$11,088</td>
+          <td class="num">100%</td>
+          <td><span class="g">🟢 AS EXPECTED</span></td>
+        </tr>
+        <tr>
+          <td class="bold">Close Rate</td>
+          <td>Blended Win Rate</td>
+          <td class="num">19% (model)</td>
+          <td class="num">12%</td>
+          <td class="num">63%</td>
+          <td><span class="r">🔴 MISS</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DEPARTMENT DEEP DIVES -->
+  <div class="section">
+    <div class="section-title"><span>📋</span> February Results — By Department</div>
+    <div class="dept-grid">
+
+      <!-- Marketing -->
+      <div class="dept-card">
+        <div class="dept-name">📢 Marketing</div>
+        <div class="dept-kpis">
+          <div class="kpi"><div class="kpi-val">$6.4K</div><div class="kpi-lbl">MRR Booked</div></div>
+          <div class="kpi"><div class="kpi-val">12%</div><div class="kpi-lbl">Close Rate</div></div>
+          <div class="kpi"><div class="kpi-val">$35.5K</div><div class="kpi-lbl">Mar Pipeline</div></div>
+        </div>
+        <ul class="bullets">
+          <li>PSA ($5.7K) was <strong>above the Sep–Dec 2025 avg of $4.4K</strong> — sequential improvement.</li>
+          <li>Close rate trending up (Jan: 10% → Feb: 12%) but still well below 17% historic avg and 19% model.</li>
+          <li>Facebook lead gen <strong>being replaced with LinkedIn</strong> this month; top-of-funnel leads will dip but MRR impact expected minimal (Facebook pipeline was not converting).</li>
+          <li>Losses concentrated in engagement, not pricing or competition.</li>
+        </ul>
+        <div class="flag red">🔴 Close rate gap is the primary lever — 19% model requires near-30% improvement from Feb actuals.</div>
+      </div>
+
+      <!-- Sales -->
+      <div class="dept-card">
+        <div class="dept-name">💼 Sales</div>
+        <div class="dept-kpis">
+          <div class="kpi"><div class="kpi-val">$14K</div><div class="kpi-lbl">MRR Booked</div></div>
+          <div class="kpi"><div class="kpi-val">$35K</div><div class="kpi-lbl">Q1 To Date</div></div>
+          <div class="kpi"><div class="kpi-val">5/20</div><div class="kpi-lbl">Payments Apps</div></div>
+        </div>
+        <ul class="bullets">
+          <li>Q1 at $35K of $99K target (35%) entering the final month — requires 100%+ month in March to hit quarterly.</li>
+          <li>Billing at $16K of $20K Q1 target (80%) — <strong>strongest product line</strong>, boosted by Global Data Systems.</li>
+          <li>Payments severely lagging: $3K of $27K Q1 target; constipated PSA pipeline is the root cause (half of Payments TAM is A/P product).</li>
+          <li>2 new Commerce Hub vendor partners added.</li>
+          <li>Outreach automation being deployed to re-engage stalled pipeline.</li>
+        </ul>
+        <div class="flag red">🔴 Payments pipeline: only 5 of 20 target apps signed through Q1.</div>
+      </div>
+
+      <!-- Onboarding / PSA -->
+      <div class="dept-card">
+        <div class="dept-name">🚀 Onboarding / PSA</div>
+        <div class="dept-kpis">
+          <div class="kpi"><div class="kpi-val">6</div><div class="kpi-lbl">Feb Launched</div></div>
+          <div class="kpi"><div class="kpi-val">8</div><div class="kpi-lbl">Total Live</div></div>
+          <div class="kpi"><div class="kpi-val">15</div><div class="kpi-lbl">Mar Forecast</div></div>
+        </div>
+        <ul class="bullets">
+          <li>6 projects launched vs. 16 forecast — <strong>38% attainment</strong>; cumulative 8 of a much larger cohort live.</li>
+          <li>Platform stability issues actively delaying go-lives — clients citing lack of confidence in production readiness.</li>
+          <li>March plan: 15 launches (bringing total to 23); requires auto-configuration + proactive feature demo outreach to "on hold" accounts.</li>
+          <li>Strategy: show configured features inside client instances to pull forward launches and begin billing.</li>
+        </ul>
+        <div class="flag red">🔴 Stability is the primary blocker — engineering Playwright testing (now live) directly addresses this.</div>
+      </div>
+
+      <!-- Product / Engineering -->
+      <div class="dept-card">
+        <div class="dept-name">⚙️ Product / Engineering</div>
+        <div class="dept-kpis">
+          <div class="kpi"><div class="kpi-val">51%</div><div class="kpi-lbl">Apollo 2 Done</div></div>
+          <div class="kpi"><div class="kpi-val">Apr 1</div><div class="kpi-lbl">Release Date</div></div>
+          <div class="kpi"><div class="kpi-val">3</div><div class="kpi-lbl">Teams Off Track</div></div>
+        </div>
+        <ul class="bullets">
+          <li>Apollo 2: 51% complete (delivered + in progress); on pace for April 1 launch. 15 of 22 Feb items delivered, 15 new items added.</li>
+          <li><strong>Playwright end-to-end testing now live</strong> — automated gate before every production release; fewer bugs, enables AI-assisted coding pipeline.</li>
+          <li>3 teams off track (Enterprise team at 7% — contractor onboarded today); directors empowered to roll up sleeves.</li>
+          <li>Product Dev and Engineering merging into one department.</li>
+          <li>Missed: daily code releases (recommitted March) and AI code testing measurement (metric being built).</li>
+        </ul>
+        <div class="flag green">🟢 Playwright is a structural quality unlock — directly reduces onboarding instability risk.</div>
+      </div>
+
+      <!-- Finance -->
+      <div class="dept-card">
+        <div class="dept-name">💰 Finance</div>
+        <div class="dept-kpis">
+          <div class="kpi"><div class="kpi-val">+$400K</div><div class="kpi-lbl">Cash vs Target</div></div>
+          <div class="kpi"><div class="kpi-val">Mar EOQ</div><div class="kpi-lbl">SPF UAT</div></div>
+        </div>
+        <ul class="bullets">
+          <li>Cash exceeds target by ~$400K — strong position entering Q2.</li>
+          <li>Switching from Itemize → <strong>Bill.com</strong>; T&E from Expensify → <strong>SBB</strong>.</li>
+          <li>SPF implementation: UAT in ~3 weeks, finalized by March 31.</li>
+          <li>SureTax/Seratax: product roadmap issues surfacing; sales + onboarding pushing back on new customer onboarding to platform.</li>
+          <li>Hosting run rate <strong>higher than expected</strong> — being factored into 2026 budget revision.</li>
+          <li>2026 budget reallocation underway: redirecting savings into dedicated AI budget.</li>
+          <li>KPI dashboard (MRR/employee, headcount costs, AI spend trends) targeted for March review.</li>
+        </ul>
+        <div class="flag">⚠️ Seratax and hosting costs are two budget line items requiring follow-through in March.</div>
+      </div>
+
+      <!-- Churn / Customer Success -->
+      <div class="dept-card">
+        <div class="dept-name">📉 Churn / Customer Success</div>
+        <div class="dept-kpis">
+          <div class="kpi"><div class="kpi-val">$11,088</div><div class="kpi-lbl">Feb Churn MRR</div></div>
+          <div class="kpi"><div class="kpi-val">$8,000</div><div class="kpi-lbl">Mar Forecast</div></div>
+        </div>
+        <ul class="bullets">
+          <li>Churn landed exactly on forecast — <strong>execution in line with plan</strong>.</li>
+          <li>Wirestar: billing declining consistently; status (shutdown vs. reduction) to be confirmed.</li>
+          <li>Support volume remains very high — Zendesk at 13,500+ tickets; API limit hit at 10,000 records, only reaching back to October.</li>
+          <li>Opportunity: AI front-end to deflect 70%+ of tactical tickets before they enter the queue.</li>
+        </ul>
+        <div class="flag green">🟢 Churn is controlled. Support automation is the major CX and cost opportunity.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MARCH FORECAST -->
+  <div class="section">
+    <div class="section-title"><span>📈</span> March 2026 Forecast — At a Glance</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Product / Area</th>
+          <th class="num">March Target</th>
+          <th class="num">Current Forecast</th>
+          <th class="num">Pipeline at Play</th>
+          <th class="num">% Forecast vs Target</th>
+          <th>Key Risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bold">Total (Marketing)</td>
+          <td class="num">$24,400</td>
+          <td class="num">$6,400</td>
+          <td class="num">$35,500</td>
+          <td class="num">26%</td>
+          <td><span class="r">🔴</span> Requires conversion from $35.5K pool</td>
+        </tr>
+        <tr style="background:#f8fafc;">
+          <td>&nbsp;&nbsp;↳ Billing</td>
+          <td class="num">$7,100</td>
+          <td class="num">$2,500</td>
+          <td class="num">$5,000</td>
+          <td class="num">35%</td>
+          <td><span class="r">🔴</span></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;↳ PSA</td>
+          <td class="num">$15,000</td>
+          <td class="num">$3,300</td>
+          <td class="num">$19,300</td>
+          <td class="num">22%</td>
+          <td><span class="r">🔴</span> Apollo 2 features as proof points critical</td>
+        </tr>
+        <tr style="background:#f8fafc;">
+          <td>&nbsp;&nbsp;↳ CyberProtect</td>
+          <td class="num">$2,300</td>
+          <td class="num">$500</td>
+          <td class="num">—</td>
+          <td class="num">22%</td>
+          <td><span class="y">🟡</span> First month with targets — ramp expected</td>
+        </tr>
+        <tr>
+          <td class="bold">Q1 Close (Total)</td>
+          <td class="num">$99,000</td>
+          <td class="num">~$49,000</td>
+          <td class="num">—</td>
+          <td class="num">50%</td>
+          <td><span class="r">🔴</span> Requires 100%+ March to hit Q1</td>
+        </tr>
+        <tr style="background:#f8fafc;">
+          <td class="bold">Onboarding Launches</td>
+          <td class="num">—</td>
+          <td class="num">15 projects</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td><span class="y">🟡</span> Stability + proactive outreach required</td>
+        </tr>
+        <tr>
+          <td class="bold">Churn</td>
+          <td class="num">$8,000</td>
+          <td class="num">$8,000</td>
+          <td class="num">—</td>
+          <td class="num">100%</td>
+          <td><span class="g">🟢</span> In line</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CRITICAL ITEMS FOR BOARD ATTENTION -->
+  <div class="section">
+    <div class="section-title"><span>⚠️</span> Critical Items for Board Attention</div>
+
+    <div class="critical-item">
+      <div class="ci-num">1</div>
+      <div class="ci-body">
+        <strong>Bookings Miss — Consecutive Months Significantly Below Target</strong>
+        <p>February closed at 42–45% of MRR target across Marketing and Sales. Q1 is at $35K of $99K (35%) entering the final month, requiring a 100%+ March to close the gap. PSA is the largest shortfall; the close rate (12%) remains 7 points below the 19% model.</p>
+      </div>
+    </div>
+
+    <div class="critical-item">
+      <div class="ci-num">2</div>
+      <div class="ci-body">
+        <strong>Onboarding Pipeline Not Converting to Revenue</strong>
+        <p>Only 6 of 16 forecasted PSA projects launched in February (38%). 8 clients are live total; stability concerns are actively causing delays. March requires 15 launches to reach 23 cumulative — a step-change from current pace that depends on platform stability improvements now being addressed.</p>
+      </div>
+    </div>
+
+    <div class="critical-item">
+      <div class="ci-num">3</div>
+      <div class="ci-body">
+        <strong>Apollo 2 on Track — April 1 Release a Key Inflection Point</strong>
+        <p>51% of Apollo 2 items are delivered or in progress; release remains on pace for April 1. Three engineering teams are off track but being actively managed. This release is the primary catalyst expected to unblock PSA onboarding and re-engage stalled pipeline deals.</p>
+      </div>
+    </div>
+
+    <div class="critical-item">
+      <div class="ci-num">4</div>
+      <div class="ci-body">
+        <strong>Payments Adoption Severely Lagging</strong>
+        <p>Q1 Payments: $3K booked of $27K target (11%). Root cause is the constipated PSA pipeline — the A/P module drives half of Payments TAM. This will not resolve independently; PSA onboarding velocity is the gating factor.</p>
+      </div>
+    </div>
+
+    <div class="critical-item">
+      <div class="ci-num">5</div>
+      <div class="ci-body">
+        <strong>AI Transformation Underway — Infrastructure Investments Being Made</strong>
+        <p>Company-wide agentic workflow deployment is in progress across all departments. Autonomous coding capability (Josh/Engineering) is being built as a production-grade SDLC multiplier, not a departmental experiment. Budget is being formally reallocated to fund AI spend, with a KPI dashboard to track ROI (MRR/employee, headcount vs. AI cost trends) for March review.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STRATEGIC CONTEXT -->
+  <div class="section">
+    <div class="section-title"><span>🔄</span> Strategic Context</div>
+    <ul class="bullets" style="padding-left:16px;">
+      <li><strong>Apollo 2 (April 1):</strong> Release includes Revii AI, Mobile, Sales Opportunities, and Automated Onboarding — directly addresses the two largest pipeline friction points (PSA close rate + onboarding speed).</li>
+      <li><strong>Platform Quality Gate:</strong> Playwright end-to-end automated testing is now mandatory before any production release. This is the structural fix to the stability issues blocking onboarding and eroding buyer confidence.</li>
+      <li><strong>Close Rate Recovery Plan:</strong> LinkedIn replacing Facebook for demand gen; lost-reason data being made more granular (engagement root cause, not pricing); AI-assisted outreach to stalled pipeline being deployed in March.</li>
+      <li><strong>AI as Core Infrastructure:</strong> Agentic workflows are being deployed across departments. The primary goal for March is proving an end-to-end AI-assisted software development lifecycle — a capability that, when productized, becomes a defensible differentiator for Rev.io's platform.</li>
+      <li><strong>Tax Compliance Automation:</strong> Identified opportunity to displace external compliance/tax partners entirely using AI applied to public rule sets — reducing cost and enabling a cross-sell into the MSP market.</li>
+    </ul>
+  </div>
+
+  <!-- KEY DECISIONS & ACTIONS -->
+  <div class="section">
+    <div class="section-title"><span>✅</span> Key Decisions &amp; Action Items</div>
+    <div class="action-row" style="font-weight:600; font-size:11.5px; color:#6b7280; padding-bottom:6px;">
+      <div>Owner</div><div>Action</div><div>Due</div>
+    </div>
+    <div class="action-row">
+      <div><span class="owner-tag">Marketing / Billy</span></div>
+      <div>Migrate demand gen from Facebook to LinkedIn; run final Clay audience experiment on Facebook; monitor MRR impact</div>
+      <div class="due-tag">March</div>
+    </div>
+    <div class="action-row">
+      <div><span class="owner-tag">Sales / Evan</span></div>
+      <div>Re-engage CyberProtect pipeline (15 leads from Jan with 1% close rate); drive 100%+ March to hit Q1 target</div>
+      <div class="due-tag">Mar 31</div>
+    </div>
+    <div class="action-row">
+      <div><span class="owner-tag">Onboarding</span></div>
+      <div>Deploy auto-configuration + feature-demo-in-instance outreach to pull forward 15 "on hold" launches and begin billing</div>
+      <div class="due-tag">March</div>
+    </div>
+    <div class="action-row">
+      <div><span class="owner-tag">Engineering / Matt</span></div>
+      <div>Get Enterprise team (7% complete) moving with new contractor; ensure all Apollo 2 items complete by April 1</div>
+      <div class="due-tag">Apr 1</div>
+    </div>
+    <div class="action-row">
+      <div><span class="owner-tag">Engineering / Matt</span></div>
+      <div>Stand up daily code release process now that Playwright is live; establish AI code-testing measurement dashboard</div>
+      <div class="due-tag">March</div>
+    </div>
+    <div class="action-row">
+      <div><span class="owner-tag">Finance / Patrick</span></div>
+      <div>Resolve Seratax roadmap issues with Usman; finalize SPF UAT; deliver 2026 budget reallocation for AI spend</div>
+      <div class="due-tag">Mar 31</div>
+    </div>
+    <div class="action-row">
+      <div><span class="owner-tag">Finance / Patrick</span></div>
+      <div>Build KPI dashboard: MRR/employee, headcount trends, AI cost trends — ready for March review meeting</div>
+      <div class="due-tag">March</div>
+    </div>
+    <div class="action-row">
+      <div><span class="owner-tag">AI / Josh</span></div>
+      <div>Deliver autonomous coding process for integrations (demo-grade) and architecture for Revy job-saving system</div>
+      <div class="due-tag">March</div>
+    </div>
+    <div class="action-row">
+      <div><span class="owner-tag">All Depts</span></div>
+      <div>Incentive plans due March 13 — incorporate AI-outcome-based metrics where appropriate</div>
+      <div class="due-tag">Mar 13</div>
+    </div>
+    <div class="action-row">
+      <div><span class="owner-tag">All Leaders</span></div>
+      <div>Migrate department dashboards and forecasts from spreadsheets into Notion (training in progress this week)</div>
+      <div class="due-tag">This week</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Rev.io &nbsp;·&nbsp; Prepared by Romer (AI) &nbsp;·&nbsp; For Primus Capital Partners — Ron Hess &nbsp;·&nbsp; Confidential<br>
+    <a href="https://bmaropis.github.io/romer-public/primus-weekly.html">https://bmaropis.github.io/romer-public/primus-weekly.html</a>
+  </div>
+
+</div>
+</body>
+</html>
