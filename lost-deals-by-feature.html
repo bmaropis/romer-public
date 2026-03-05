@@ -1,0 +1,2160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lost Deals by Feature — Apollo 1 &amp; 2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; padding: 24px; }
+  h1 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #64748b; margin-bottom: 24px; }
+  .group-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin: 24px 0 10px; padding-left: 4px; }
+  .gl-a1 { color: #4ade80; }
+  .gl-a2 { color: #60a5fa; }
+  .gl-none { color: #f87171; }
+  .feature-card { border-radius: 10px; border: 1px solid; margin-bottom: 10px; overflow: hidden; }
+  .feat-header { display: flex; align-items: center; gap: 16px; padding: 14px 18px; flex-wrap: wrap; cursor: default; }
+  .feat-name { font-size: 14px; font-weight: 700; color: #e2e8f0; margin-right: 6px; }
+  .tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; vertical-align: middle; }
+  .tag-a1 { background: #14532d; color: #4ade80; }
+  .tag-a2 { background: #1e3a5f; color: #60a5fa; }
+  .tag-none { background: #3b0a0a; color: #f87171; }
+  .feat-stats { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+  .stat-nc { font-size: 12px; font-weight: 700; color: #fb923c; }
+  .stat-c { font-size: 12px; color: #4ade80; }
+  .stat-total { font-size: 11px; color: #475569; }
+  .progress-bar { width: 80px; height: 6px; background: #1e2130; border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 3px; }
+  .toggle-feat { padding: 4px 12px; border-radius: 6px; border: 1px solid #2d3148; background: #1e2130; color: #94a3b8; font-size: 11px; cursor: pointer; white-space: nowrap; }
+  .toggle-feat:hover { background: #2d3148; color: #e2e8f0; }
+  .feat-body { border-top: 1px solid #1a1f30; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; padding: 8px 16px; color: #64748b; font-weight: 500; border-bottom: 1px solid #2d3148; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; background: #111420; }
+  td { padding: 8px 16px; border-bottom: 1px solid #1a1f30; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #1a1f30; }
+  .row-nc td:first-child { border-left: 3px solid #f97316; }
+  .row-c td:first-child { border-left: 3px solid #22c55e33; }
+  .acct { color: #60a5fa; text-decoration: none; font-weight: 500; }
+  .acct:hover { text-decoration: underline; }
+  .dim { color: #64748b; font-size: 11px; }
+  .small { font-size: 10px; }
+  .pill { display: inline-flex; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 600; }
+  .pill-no { background: #431407; color: #fb923c; }
+  .pill-yes { background: #052e16; color: #4ade80; }
+  .hidden { display: none; }
+  .top-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 24px; }
+  .top-card { background: #1e2130; border-radius: 10px; padding: 16px; border: 1px solid #2d3148; }
+  .tc-label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #64748b; margin-bottom: 4px; }
+  .tc-val { font-size: 26px; font-weight: 800; }
+  .note { font-size: 11px; color: #475569; text-align: center; padding: 20px 0; }
+  .expand-all { padding: 6px 14px; border-radius: 6px; border: 1px solid #2d3148; background: #1e2130; color: #94a3b8; font-size: 12px; cursor: pointer; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<h1>🔍 Lost Deals by Missing Feature</h1>
+<p class="subtitle">Drill into each feature to see which accounts lost — and whether they've been contacted · Mar 5, 2026</p>
+
+<div class="top-stats">
+  <div class="top-card" style="border-color:#f9731644;background:#1c0a00">
+    <div class="tc-label">Total Deals Lost to Features</div>
+    <div class="tc-val" style="color:#fb923c">112</div>
+  </div>
+  <div class="top-card" style="border-color:#ef444444;background:#200a0a">
+    <div class="tc-label">Not Re-Engaged Yet</div>
+    <div class="tc-val" style="color:#f87171">62</div>
+  </div>
+  <div class="top-card" style="border-color:#22c55e44;background:#052e16">
+    <div class="tc-label">Contacted Since Loss</div>
+    <div class="tc-val" style="color:#4ade80">50</div>
+  </div>
+</div>
+
+<button class="expand-all" onclick="expandAll()">Expand All Features</button>
+
+<div class="group-label gl-a1">✅ Apollo 1 — Features Live Now</div>
+<div class="feature-card" id="feat-0" style="border-color:#22c55e44;background:#030f07">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Project Management</span>
+      <span class="tag tag-a1">A1 ✅ Live Now</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">36 not contacted</span>
+      <span class="stat-c">20 contacted</span>
+      <span class="stat-total">56 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:64%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(0)">▼ Show 56 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-0">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WWLF0YAP" target="_blank" class="acct">Audio Integrations</a></td>
+          <td class="dim">2026-02-18</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-02-17</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VtOeAYAV" target="_blank" class="acct">Access Integration</a></td>
+          <td class="dim">2026-01-28</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-27</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLnqJYAT" target="_blank" class="acct">Copper Clad Systems</a></td>
+          <td class="dim">2026-01-23</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-22</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VWrNWYA1" target="_blank" class="acct">I2G Systems</a></td>
+          <td class="dim">2026-01-21</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-16</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SAuK9YAL" target="_blank" class="acct">Tailwinds Voice & Data</a></td>
+          <td class="dim">2026-01-16</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-13</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Qyst6YAB" target="_blank" class="acct">Ficrest Integration</a></td>
+          <td class="dim">2026-01-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-03</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TfGT7YAN" target="_blank" class="acct">Keen Project Solutions</a></td>
+          <td class="dim">2025-12-09</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Tfca5YAB" target="_blank" class="acct">Lane Electronic & Alarm Systems</a></td>
+          <td class="dim">2025-12-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TdIE7YAN" target="_blank" class="acct">Qovo Solutions Inc</a></td>
+          <td class="dim">2025-12-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-02</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TcrKNYAZ" target="_blank" class="acct">Hawkeye Electronic Security</a></td>
+          <td class="dim">2025-12-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-28</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TcVBnYAN" target="_blank" class="acct">Premises Control</a></td>
+          <td class="dim">2025-12-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TZhB4YAL" target="_blank" class="acct">J & J Security Services Corp</a></td>
+          <td class="dim">2025-11-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TR9eRYAT" target="_blank" class="acct">Elevate Tech Solutions</a></td>
+          <td class="dim">2025-11-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TBEqBYAX" target="_blank" class="acct">Audio Sentry</a></td>
+          <td class="dim">2025-11-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-19</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SnZUMYA3" target="_blank" class="acct">Security Center USA</a></td>
+          <td class="dim">2025-11-12</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-10</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SbscPYAR" target="_blank" class="acct">SelectQoS</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9CTGYA3" target="_blank" class="acct">SeaGlass Technology</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-03</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000StAWUYA3" target="_blank" class="acct">Gotcha Security</a></td>
+          <td class="dim">2025-11-07</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Sc8u5YAB" target="_blank" class="acct">Fusion Systems LLC</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-05</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShFuvYAF" target="_blank" class="acct">Imagit</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SWCynYAH" target="_blank" class="acct">CCI Network Services</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SVo3jYAD" target="_blank" class="acct">TYR Technologies</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-04</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SDiWAYA1" target="_blank" class="acct">Acoustic Design Systems</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-24</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9SWPYA3" target="_blank" class="acct">NetCentra</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-30</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Ru6O9YAJ" target="_blank" class="acct">Front Row AV</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-28</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9fgYYAR" target="_blank" class="acct">W. O'Donnell Consulting</a></td>
+          <td class="dim">2025-11-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-23</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SDnNoYAL" target="_blank" class="acct">Tech Solution</a></td>
+          <td class="dim">2025-10-28</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-27</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S1GgwYAF" target="_blank" class="acct">CS&M Tele-Systems</a></td>
+          <td class="dim">2025-10-27</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SHW8DYAX" target="_blank" class="acct">Grey Matter Technologies</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Qs325YAB" target="_blank" class="acct">Affiliated Technology Solutions</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-23</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RuHGLYA3" target="_blank" class="acct">B&S Integrated Security Systems</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RxIMNYA3" target="_blank" class="acct">Facility Protection Group</a></td>
+          <td class="dim">2025-10-17</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-16</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RN9j0YAD" target="_blank" class="acct">Hunter Communications</a></td>
+          <td class="dim">2025-10-13</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RRYdxYAH" target="_blank" class="acct">PROACTIVERISK</a></td>
+          <td class="dim">2025-10-10</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QazsPYAR" target="_blank" class="acct">Vision Security & Technology</a></td>
+          <td class="dim">2025-10-06</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-01</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QywVCYAZ" target="_blank" class="acct">Tricom Technology Solutions</a></td>
+          <td class="dim">2025-10-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VqZT2YAN" target="_blank" class="acct">Complete Technology Services</a></td>
+          <td class="dim">2026-01-23</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-01-23</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SWrNeYAL" target="_blank" class="acct">Atlantech Online</a></td>
+          <td class="dim">2025-12-29</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-29</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SqqAUYAZ" target="_blank" class="acct">Security Pros</a></td>
+          <td class="dim">2025-12-19</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-19</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TkNs9YAF" target="_blank" class="acct">Stone Mountain Systems</a></td>
+          <td class="dim">2025-12-09</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-09</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Tfz6rYAB" target="_blank" class="acct">Media Controlled</a></td>
+          <td class="dim">2025-12-09</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-09</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TgGKcYAN" target="_blank" class="acct">Complete Building Technology Services</a></td>
+          <td class="dim">2025-12-08</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-08</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TKOLdYAP" target="_blank" class="acct">SecurityBud</a></td>
+          <td class="dim">2025-12-03</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-03</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShpAPYAZ" target="_blank" class="acct">NetWatch, Inc.</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-11-06</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RKBHVYA5" target="_blank" class="acct">Telsco Security Systems inc.</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-11-06</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SPzrOYAT" target="_blank" class="acct">Video Vision Inc.</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-30</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S0p8rYAB" target="_blank" class="acct">K&S Electronics & Security</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-30</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SKfrhYAD" target="_blank" class="acct">DefenTec</a></td>
+          <td class="dim">2025-10-29</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-29</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RrBiXYAV" target="_blank" class="acct">BP Innovations</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-24</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RXR1tYAH" target="_blank" class="acct">Global Guardian Asset Security</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-24</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RcVeLYAV" target="_blank" class="acct">Awerx Holdings</a></td>
+          <td class="dim">2025-10-21</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-21</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Rhvt7YAB" target="_blank" class="acct">Extreme AVS</a></td>
+          <td class="dim">2025-10-15</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-15</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RaWRdYAN" target="_blank" class="acct">Oasis Integrations</a></td>
+          <td class="dim">2025-10-14</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-14</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RWPq9YAH" target="_blank" class="acct">Ovation Audio Visual</a></td>
+          <td class="dim">2025-10-14</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-14</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QeSpqYAF" target="_blank" class="acct">Edin Alarm</a></td>
+          <td class="dim">2025-10-14</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-14</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RGg8bYAD" target="_blank" class="acct">LayerOne</a></td>
+          <td class="dim">2025-10-03</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-03</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-6" style="border-color:#22c55e44;background:#030f07">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Enhanced Ticket Views</span>
+      <span class="tag tag-a1">A1 ✅ Live Now</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">11 not contacted</span>
+      <span class="stat-c">4 contacted</span>
+      <span class="stat-total">15 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:73%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(6)">▼ Show 15 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-6">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UL2FGYA1" target="_blank" class="acct">Tecflow Technology</a></td>
+          <td class="dim">2025-12-15</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-12</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SrNfuYAF" target="_blank" class="acct">CallHarbor</a></td>
+          <td class="dim">2025-12-10</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-01</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000StAWUYA3" target="_blank" class="acct">Gotcha Security</a></td>
+          <td class="dim">2025-11-07</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShFuvYAF" target="_blank" class="acct">Imagit</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SWCynYAH" target="_blank" class="acct">CCI Network Services</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SVo3jYAD" target="_blank" class="acct">TYR Technologies</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-04</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9fgYYAR" target="_blank" class="acct">W. O'Donnell Consulting</a></td>
+          <td class="dim">2025-11-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-23</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RdNwTYAV" target="_blank" class="acct">Core Security Services</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-29</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Qs325YAB" target="_blank" class="acct">Affiliated Technology Solutions</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-23</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QynU3YAJ" target="_blank" class="acct">Simplicity VoIP</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-07</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RxIMNYA3" target="_blank" class="acct">Facility Protection Group</a></td>
+          <td class="dim">2025-10-17</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-16</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLqBRYA1" target="_blank" class="acct">Nebula Cybersecurity Group</a></td>
+          <td class="dim">2026-01-22</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-01-22</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TkNs9YAF" target="_blank" class="acct">Stone Mountain Systems</a></td>
+          <td class="dim">2025-12-09</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-09</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000T9B1xYAF" target="_blank" class="acct">Flux Labs</a></td>
+          <td class="dim">2025-11-14</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-11-14</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RKBHVYA5" target="_blank" class="acct">Telsco Security Systems inc.</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-11-06</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-7" style="border-color:#22c55e44;background:#030f07">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Custom Fields / Reporting</span>
+      <span class="tag tag-a1">A1 ✅ Live Now</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">7 not contacted</span>
+      <span class="stat-c">6 contacted</span>
+      <span class="stat-total">13 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:53%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(7)">▼ Show 13 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-7">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VWrNWYA1" target="_blank" class="acct">I2G Systems</a></td>
+          <td class="dim">2026-01-21</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-16</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SAuK9YAL" target="_blank" class="acct">Tailwinds Voice & Data</a></td>
+          <td class="dim">2026-01-16</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-13</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TBEqBYAX" target="_blank" class="acct">Audio Sentry</a></td>
+          <td class="dim">2025-11-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-19</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000StA3RYAV" target="_blank" class="acct">Verified Security</a></td>
+          <td class="dim">2025-11-07</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShFuvYAF" target="_blank" class="acct">Imagit</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Qs325YAB" target="_blank" class="acct">Affiliated Technology Solutions</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-23</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RN9j0YAD" target="_blank" class="acct">Hunter Communications</a></td>
+          <td class="dim">2025-10-13</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WEeXpYAL" target="_blank" class="acct">Core Security Services</a></td>
+          <td class="dim">2026-03-03</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-03-03</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VqZT2YAN" target="_blank" class="acct">Complete Technology Services</a></td>
+          <td class="dim">2026-01-23</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-01-23</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SqqAUYAZ" target="_blank" class="acct">Security Pros</a></td>
+          <td class="dim">2025-12-19</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-19</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UFkajYAD" target="_blank" class="acct">Garage Door Group Chicago</a></td>
+          <td class="dim">2025-12-10</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-10</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RKBHVYA5" target="_blank" class="acct">Telsco Security Systems inc.</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-11-06</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RrBiXYAV" target="_blank" class="acct">BP Innovations</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-24</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-9" style="border-color:#22c55e44;background:#030f07">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Inventory</span>
+      <span class="tag tag-a1">A1 ✅ Live Now</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">5 not contacted</span>
+      <span class="stat-c">4 contacted</span>
+      <span class="stat-total">9 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:55%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(9)">▼ Show 9 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-9">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SAuK9YAL" target="_blank" class="acct">Tailwinds Voice & Data</a></td>
+          <td class="dim">2026-01-16</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-13</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLFLZYA5" target="_blank" class="acct">Blue Wave Communications</a></td>
+          <td class="dim">2026-01-14</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RuHGLYA3" target="_blank" class="acct">B&S Integrated Security Systems</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QynU3YAJ" target="_blank" class="acct">Simplicity VoIP</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-07</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RxIMNYA3" target="_blank" class="acct">Facility Protection Group</a></td>
+          <td class="dim">2025-10-17</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-16</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VICAXYA5" target="_blank" class="acct">OPAV</a></td>
+          <td class="dim">2026-02-04</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-02-04</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9WGiYAN" target="_blank" class="acct">MSC Systems</a></td>
+          <td class="dim">2025-10-28</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-28</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S67czYAB" target="_blank" class="acct">Aura Design</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-22</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RcVeLYAV" target="_blank" class="acct">Awerx Holdings</a></td>
+          <td class="dim">2025-10-21</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-21</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-15" style="border-color:#22c55e44;background:#030f07">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - Hubspot</span>
+      <span class="tag tag-a1">A1 ✅ Live Now</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">3 not contacted</span>
+      <span class="stat-c">2 contacted</span>
+      <span class="stat-total">5 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:60%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(15)">▼ Show 5 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-15">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VWrNWYA1" target="_blank" class="acct">I2G Systems</a></td>
+          <td class="dim">2026-01-21</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-16</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QynU3YAJ" target="_blank" class="acct">Simplicity VoIP</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-07</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RN9j0YAD" target="_blank" class="acct">Hunter Communications</a></td>
+          <td class="dim">2025-10-13</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VqqDbYAJ" target="_blank" class="acct">RingAlfa</a></td>
+          <td class="dim">2026-01-29</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-01-29</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SqqAUYAZ" target="_blank" class="acct">Security Pros</a></td>
+          <td class="dim">2025-12-19</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-19</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="group-label gl-a2">🔜 Apollo 2 — Features Dropping April 1</div>
+<div class="feature-card" id="feat-1" style="border-color:#3b82f644;background:#020810">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Mobile App / GPS Tracking</span>
+      <span class="tag tag-a2">A2 🔜 Apr 1</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">19 not contacted</span>
+      <span class="stat-c">8 contacted</span>
+      <span class="stat-total">27 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:70%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(1)">▼ Show 27 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-1">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000XI8c1YAD" target="_blank" class="acct">Underdog Fire & Security</a></td>
+          <td class="dim">2026-03-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-03-02</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WWLF0YAP" target="_blank" class="acct">Audio Integrations</a></td>
+          <td class="dim">2026-02-18</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-02-17</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WfJ13YAF" target="_blank" class="acct">Security Designs</a></td>
+          <td class="dim">2026-02-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000W4XW3YAN" target="_blank" class="acct">Just-N-Case Security</a></td>
+          <td class="dim">2026-02-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-02-03</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VtOeAYAV" target="_blank" class="acct">Access Integration</a></td>
+          <td class="dim">2026-01-28</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-27</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLFLZYA5" target="_blank" class="acct">Blue Wave Communications</a></td>
+          <td class="dim">2026-01-14</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UL2FGYA1" target="_blank" class="acct">Tecflow Technology</a></td>
+          <td class="dim">2025-12-15</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-12</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Tfca5YAB" target="_blank" class="acct">Lane Electronic & Alarm Systems</a></td>
+          <td class="dim">2025-12-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TdIE7YAN" target="_blank" class="acct">Qovo Solutions Inc</a></td>
+          <td class="dim">2025-12-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-02</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SnZUMYA3" target="_blank" class="acct">Security Center USA</a></td>
+          <td class="dim">2025-11-12</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-10</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SSg4EYAT" target="_blank" class="acct">818 Computer</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-31</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9CTGYA3" target="_blank" class="acct">SeaGlass Technology</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-03</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SGg81YAD" target="_blank" class="acct">Audio Video Systems</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-03</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9SWPYA3" target="_blank" class="acct">NetCentra</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-30</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RdNwTYAV" target="_blank" class="acct">Core Security Services</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-29</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S1GgwYAF" target="_blank" class="acct">CS&M Tele-Systems</a></td>
+          <td class="dim">2025-10-27</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Rd4iZYAR" target="_blank" class="acct">Atlantic Security Automation Partners</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-23</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RN9j0YAD" target="_blank" class="acct">Hunter Communications</a></td>
+          <td class="dim">2025-10-13</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QazsPYAR" target="_blank" class="acct">Vision Security & Technology</a></td>
+          <td class="dim">2025-10-06</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-01</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SqqAUYAZ" target="_blank" class="acct">Security Pros</a></td>
+          <td class="dim">2025-12-19</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-19</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShpAPYAZ" target="_blank" class="acct">NetWatch, Inc.</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-11-06</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SZ3kTYAT" target="_blank" class="acct">Aaron's Lock & Security</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-30</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S0p8rYAB" target="_blank" class="acct">K&S Electronics & Security</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-30</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Rhtg2YAB" target="_blank" class="acct">Self Secured Networks</a></td>
+          <td class="dim">2025-10-29</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-29</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S6YTVYA3" target="_blank" class="acct">SWEPT</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-22</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Rhvt7YAB" target="_blank" class="acct">Extreme AVS</a></td>
+          <td class="dim">2025-10-15</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-15</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RaWRdYAN" target="_blank" class="acct">Oasis Integrations</a></td>
+          <td class="dim">2025-10-14</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-14</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-2" style="border-color:#3b82f644;background:#020810">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Job Costing</span>
+      <span class="tag tag-a2">A2 🔜 Apr 1</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">20 not contacted</span>
+      <span class="stat-c">6 contacted</span>
+      <span class="stat-total">26 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:76%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(2)">▼ Show 26 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-2">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000XI8c1YAD" target="_blank" class="acct">Underdog Fire & Security</a></td>
+          <td class="dim">2026-03-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-03-02</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLnqJYAT" target="_blank" class="acct">Copper Clad Systems</a></td>
+          <td class="dim">2026-01-23</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-22</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TfGT7YAN" target="_blank" class="acct">Keen Project Solutions</a></td>
+          <td class="dim">2025-12-09</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Tfca5YAB" target="_blank" class="acct">Lane Electronic & Alarm Systems</a></td>
+          <td class="dim">2025-12-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TcrKNYAZ" target="_blank" class="acct">Hawkeye Electronic Security</a></td>
+          <td class="dim">2025-12-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-28</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TcVBnYAN" target="_blank" class="acct">Premises Control</a></td>
+          <td class="dim">2025-12-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TBEqBYAX" target="_blank" class="acct">Audio Sentry</a></td>
+          <td class="dim">2025-11-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-19</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SnZUMYA3" target="_blank" class="acct">Security Center USA</a></td>
+          <td class="dim">2025-11-12</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-10</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SbscPYAR" target="_blank" class="acct">SelectQoS</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000StA3RYAV" target="_blank" class="acct">Verified Security</a></td>
+          <td class="dim">2025-11-07</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShFuvYAF" target="_blank" class="acct">Imagit</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9SWPYA3" target="_blank" class="acct">NetCentra</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-30</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Ru6O9YAJ" target="_blank" class="acct">Front Row AV</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-28</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S1GgwYAF" target="_blank" class="acct">CS&M Tele-Systems</a></td>
+          <td class="dim">2025-10-27</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SHW8DYAX" target="_blank" class="acct">Grey Matter Technologies</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RuHGLYA3" target="_blank" class="acct">B&S Integrated Security Systems</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QynU3YAJ" target="_blank" class="acct">Simplicity VoIP</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-07</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RxIMNYA3" target="_blank" class="acct">Facility Protection Group</a></td>
+          <td class="dim">2025-10-17</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-16</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RN9j0YAD" target="_blank" class="acct">Hunter Communications</a></td>
+          <td class="dim">2025-10-13</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QazsPYAR" target="_blank" class="acct">Vision Security & Technology</a></td>
+          <td class="dim">2025-10-06</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-01</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000XCE94YAH" target="_blank" class="acct">Security Force</a></td>
+          <td class="dim">2026-03-02</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-03-02</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SqqAUYAZ" target="_blank" class="acct">Security Pros</a></td>
+          <td class="dim">2025-12-19</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-19</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UFkajYAD" target="_blank" class="acct">Garage Door Group Chicago</a></td>
+          <td class="dim">2025-12-10</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-10</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Tfz6rYAB" target="_blank" class="acct">Media Controlled</a></td>
+          <td class="dim">2025-12-09</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-09</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RcVeLYAV" target="_blank" class="acct">Awerx Holdings</a></td>
+          <td class="dim">2025-10-21</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-21</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RaWRdYAN" target="_blank" class="acct">Oasis Integrations</a></td>
+          <td class="dim">2025-10-14</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-14</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-3" style="border-color:#3b82f644;background:#020810">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Sales Opportunities</span>
+      <span class="tag tag-a2">A2 🔜 Apr 1</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">10 not contacted</span>
+      <span class="stat-c">10 contacted</span>
+      <span class="stat-total">20 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:50%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(3)">▼ Show 20 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-3">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000XI8c1YAD" target="_blank" class="acct">Underdog Fire & Security</a></td>
+          <td class="dim">2026-03-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-03-02</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WTpzBYAT" target="_blank" class="acct">Bosque IT</a></td>
+          <td class="dim">2026-02-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-02-10</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VXesrYAD" target="_blank" class="acct">Infinite Wireless</a></td>
+          <td class="dim">2026-01-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TcrKNYAZ" target="_blank" class="acct">Hawkeye Electronic Security</a></td>
+          <td class="dim">2025-12-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-28</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TBEqBYAX" target="_blank" class="acct">Audio Sentry</a></td>
+          <td class="dim">2025-11-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-19</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SnZUMYA3" target="_blank" class="acct">Security Center USA</a></td>
+          <td class="dim">2025-11-12</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-10</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SbscPYAR" target="_blank" class="acct">SelectQoS</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShFuvYAF" target="_blank" class="acct">Imagit</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SWCynYAH" target="_blank" class="acct">CCI Network Services</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SDnNoYAL" target="_blank" class="acct">Tech Solution</a></td>
+          <td class="dim">2025-10-28</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-27</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000XCE94YAH" target="_blank" class="acct">Security Force</a></td>
+          <td class="dim">2026-03-02</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-03-02</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VqqDbYAJ" target="_blank" class="acct">RingAlfa</a></td>
+          <td class="dim">2026-01-29</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-01-29</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Uc321YAB" target="_blank" class="acct">Pro Security Products</a></td>
+          <td class="dim">2026-01-13</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-01-13</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SWrNeYAL" target="_blank" class="acct">Atlantech Online</a></td>
+          <td class="dim">2025-12-29</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-29</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SqqAUYAZ" target="_blank" class="acct">Security Pros</a></td>
+          <td class="dim">2025-12-19</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-19</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TgGKcYAN" target="_blank" class="acct">Complete Building Technology Services</a></td>
+          <td class="dim">2025-12-08</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-08</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShpAPYAZ" target="_blank" class="acct">NetWatch, Inc.</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-11-06</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RKBHVYA5" target="_blank" class="acct">Telsco Security Systems inc.</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-11-06</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SZ3kTYAT" target="_blank" class="acct">Aaron's Lock & Security</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-30</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RX3vfYAD" target="_blank" class="acct">CMB Systems</a></td>
+          <td class="dim">2025-10-16</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-16</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-4" style="border-color:#3b82f644;background:#020810">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Progressive Billing</span>
+      <span class="tag tag-a2">A2 🔜 Apr 1</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">13 not contacted</span>
+      <span class="stat-c">5 contacted</span>
+      <span class="stat-total">18 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:72%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(4)">▼ Show 18 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-4">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000W4XW3YAN" target="_blank" class="acct">Just-N-Case Security</a></td>
+          <td class="dim">2026-02-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-02-03</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLnqJYAT" target="_blank" class="acct">Copper Clad Systems</a></td>
+          <td class="dim">2026-01-23</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-22</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Tfca5YAB" target="_blank" class="acct">Lane Electronic & Alarm Systems</a></td>
+          <td class="dim">2025-12-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TZhB4YAL" target="_blank" class="acct">J & J Security Services Corp</a></td>
+          <td class="dim">2025-11-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TR9eRYAT" target="_blank" class="acct">Elevate Tech Solutions</a></td>
+          <td class="dim">2025-11-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TBEqBYAX" target="_blank" class="acct">Audio Sentry</a></td>
+          <td class="dim">2025-11-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-19</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SnZUMYA3" target="_blank" class="acct">Security Center USA</a></td>
+          <td class="dim">2025-11-12</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-10</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SbscPYAR" target="_blank" class="acct">SelectQoS</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000StAWUYA3" target="_blank" class="acct">Gotcha Security</a></td>
+          <td class="dim">2025-11-07</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SGg81YAD" target="_blank" class="acct">Audio Video Systems</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-03</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9SWPYA3" target="_blank" class="acct">NetCentra</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-30</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QazsPYAR" target="_blank" class="acct">Vision Security & Technology</a></td>
+          <td class="dim">2025-10-06</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-01</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QywVCYAZ" target="_blank" class="acct">Tricom Technology Solutions</a></td>
+          <td class="dim">2025-10-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000XCE94YAH" target="_blank" class="acct">Security Force</a></td>
+          <td class="dim">2026-03-02</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-03-02</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SqqAUYAZ" target="_blank" class="acct">Security Pros</a></td>
+          <td class="dim">2025-12-19</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-19</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TgGKcYAN" target="_blank" class="acct">Complete Building Technology Services</a></td>
+          <td class="dim">2025-12-08</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-08</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RKBHVYA5" target="_blank" class="acct">Telsco Security Systems inc.</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-11-06</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RrBiXYAV" target="_blank" class="acct">BP Innovations</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-24</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-8" style="border-color:#3b82f644;background:#020810">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - Ninja RMM</span>
+      <span class="tag tag-a2">A2 🔜 Apr 1</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">7 not contacted</span>
+      <span class="stat-c">3 contacted</span>
+      <span class="stat-total">10 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:70%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(8)">▼ Show 10 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-8">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000W4gr3YAB" target="_blank" class="acct">IT In Demand</a></td>
+          <td class="dim">2026-02-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-02-02</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UZRTtYAP" target="_blank" class="acct">Qoverage</a></td>
+          <td class="dim">2026-01-06</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-16</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ULMsJYAX" target="_blank" class="acct">Voytel</a></td>
+          <td class="dim">2025-12-29</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-19</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UL2FGYA1" target="_blank" class="acct">Tecflow Technology</a></td>
+          <td class="dim">2025-12-15</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-12</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SbscPYAR" target="_blank" class="acct">SelectQoS</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9CTGYA3" target="_blank" class="acct">SeaGlass Technology</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-03</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RRYdxYAH" target="_blank" class="acct">PROACTIVERISK</a></td>
+          <td class="dim">2025-10-10</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VqqDbYAJ" target="_blank" class="acct">RingAlfa</a></td>
+          <td class="dim">2026-01-29</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-01-29</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VqZT2YAN" target="_blank" class="acct">Complete Technology Services</a></td>
+          <td class="dim">2026-01-23</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-01-23</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SKfrhYAD" target="_blank" class="acct">DefenTec</a></td>
+          <td class="dim">2025-10-29</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-29</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-11" style="border-color:#3b82f644;background:#020810">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">SLAs</span>
+      <span class="tag tag-a2">A2 🔜 Apr 1</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">5 not contacted</span>
+      <span class="stat-c">1 contacted</span>
+      <span class="stat-total">6 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:83%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(11)">▼ Show 6 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-11">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UL2FGYA1" target="_blank" class="acct">Tecflow Technology</a></td>
+          <td class="dim">2025-12-15</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-12</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SbscPYAR" target="_blank" class="acct">SelectQoS</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShFuvYAF" target="_blank" class="acct">Imagit</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9fgYYAR" target="_blank" class="acct">W. O'Donnell Consulting</a></td>
+          <td class="dim">2025-11-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-23</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QynU3YAJ" target="_blank" class="acct">Simplicity VoIP</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-07</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Vr4jZYAR" target="_blank" class="acct">Black Fire & Security Services</a></td>
+          <td class="dim">2026-02-03</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-02-03</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="group-label gl-none">❌ Not on Current Roadmap</div>
+<div class="feature-card" id="feat-5" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - Portal</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">10 not contacted</span>
+      <span class="stat-c">7 contacted</span>
+      <span class="stat-total">17 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:58%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(5)">▼ Show 17 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-5">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000XLtswYAD" target="_blank" class="acct">Great Sounds Audio-Video</a></td>
+          <td class="dim">2026-03-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WfJ13YAF" target="_blank" class="acct">Security Designs</a></td>
+          <td class="dim">2026-02-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000W4XW3YAN" target="_blank" class="acct">Just-N-Case Security</a></td>
+          <td class="dim">2026-02-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-02-03</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VDXHFYA5" target="_blank" class="acct">AV Pro Communications</a></td>
+          <td class="dim">2026-01-13</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-09</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000THIXhYAP" target="_blank" class="acct">Sound Advice & Video</a></td>
+          <td class="dim">2026-01-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-16</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TZhB4YAL" target="_blank" class="acct">J & J Security Services Corp</a></td>
+          <td class="dim">2025-11-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TR9eRYAT" target="_blank" class="acct">Elevate Tech Solutions</a></td>
+          <td class="dim">2025-11-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SSg4EYAT" target="_blank" class="acct">818 Computer</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-31</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Sq0ovYAB" target="_blank" class="acct">Premier Sound Security & Automation</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SDiWAYA1" target="_blank" class="acct">Acoustic Design Systems</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-24</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000XOk6pYAD" target="_blank" class="acct">Vultron Audio & Visual</a></td>
+          <td class="dim">2026-03-05</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-03-05</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000W7q14YAB" target="_blank" class="acct">Acoustic Design Systems</a></td>
+          <td class="dim">2026-02-05</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-02-05</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UXcYHYA1" target="_blank" class="acct">MGi Systems</a></td>
+          <td class="dim">2025-12-23</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-23</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SSSSfYAP" target="_blank" class="acct">Installation King</a></td>
+          <td class="dim">2025-11-14</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-11-14</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S67czYAB" target="_blank" class="acct">Aura Design</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-22</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RaWRdYAN" target="_blank" class="acct">Oasis Integrations</a></td>
+          <td class="dim">2025-10-14</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-14</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RWPq9YAH" target="_blank" class="acct">Ovation Audio Visual</a></td>
+          <td class="dim">2025-10-14</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-14</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-10" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - DTools</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">3 not contacted</span>
+      <span class="stat-c">4 contacted</span>
+      <span class="stat-total">7 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:42%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(10)">▼ Show 7 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-10">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WWLF0YAP" target="_blank" class="acct">Audio Integrations</a></td>
+          <td class="dim">2026-02-18</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-02-17</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VtfgcYAB" target="_blank" class="acct">Knight Nets Inc</a></td>
+          <td class="dim">2026-02-02</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-29</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VtOeAYAV" target="_blank" class="acct">Access Integration</a></td>
+          <td class="dim">2026-01-28</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-27</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000X3ge1YAB" target="_blank" class="acct">Access Integration</a></td>
+          <td class="dim">2026-02-25</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-02-25</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TKyM6YAL" target="_blank" class="acct">All About Sound and Video</a></td>
+          <td class="dim">2025-11-21</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-11-21</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SPzrOYAT" target="_blank" class="acct">Video Vision Inc.</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-30</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Rhvt7YAB" target="_blank" class="acct">Extreme AVS</a></td>
+          <td class="dim">2025-10-15</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-15</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-12" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">CPQ</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">3 not contacted</span>
+      <span class="stat-c">3 contacted</span>
+      <span class="stat-total">6 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:50%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(12)">▼ Show 6 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-12">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VWrNWYA1" target="_blank" class="acct">I2G Systems</a></td>
+          <td class="dim">2026-01-21</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-16</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShFuvYAF" target="_blank" class="acct">Imagit</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SAYDBYA5" target="_blank" class="acct">Digital Home Systems</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-30</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VKjaDYAT" target="_blank" class="acct">Dijis Technology Solutions</a></td>
+          <td class="dim">2026-01-12</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-01-12</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SWrNeYAL" target="_blank" class="acct">Atlantech Online</a></td>
+          <td class="dim">2025-12-29</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-29</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RKBHVYA5" target="_blank" class="acct">Telsco Security Systems inc.</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-11-06</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-13" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - TD Synnex</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">5 not contacted</span>
+      <span class="stat-c">0 contacted</span>
+      <span class="stat-total">5 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(13)">▼ Show 5 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-13">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000W4gr3YAB" target="_blank" class="acct">IT In Demand</a></td>
+          <td class="dim">2026-02-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-02-02</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VtfgcYAB" target="_blank" class="acct">Knight Nets Inc</a></td>
+          <td class="dim">2026-02-02</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-29</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ULMsJYAX" target="_blank" class="acct">Voytel</a></td>
+          <td class="dim">2025-12-29</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-19</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UL2FGYA1" target="_blank" class="acct">Tecflow Technology</a></td>
+          <td class="dim">2025-12-15</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-12</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SbscPYAR" target="_blank" class="acct">SelectQoS</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-14" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Internationalization</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">1 not contacted</span>
+      <span class="stat-c">4 contacted</span>
+      <span class="stat-total">5 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:20%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(14)">▼ Show 5 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-14">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SbscPYAR" target="_blank" class="acct">SelectQoS</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VWJP3YAP" target="_blank" class="acct">The Tech Shacks</a></td>
+          <td class="dim">2026-02-03</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-02-03</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLqBRYA1" target="_blank" class="acct">Nebula Cybersecurity Group</a></td>
+          <td class="dim">2026-01-22</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-01-22</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SqqAUYAZ" target="_blank" class="acct">Security Pros</a></td>
+          <td class="dim">2025-12-19</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-19</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S6YTVYA3" target="_blank" class="acct">SWEPT</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-22</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-16" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Subcontractors</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">1 not contacted</span>
+      <span class="stat-c">4 contacted</span>
+      <span class="stat-total">5 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:20%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(16)">▼ Show 5 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-16">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SAuK9YAL" target="_blank" class="acct">Tailwinds Voice & Data</a></td>
+          <td class="dim">2026-01-16</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-13</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TxIeXYAV" target="_blank" class="acct">CRAN-COM</a></td>
+          <td class="dim">2026-01-06</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-01-06</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TKOLdYAP" target="_blank" class="acct">SecurityBud</a></td>
+          <td class="dim">2025-12-03</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-03</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RrBiXYAV" target="_blank" class="acct">BP Innovations</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-24</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S0hEYYAZ" target="_blank" class="acct">Global Axiom</a></td>
+          <td class="dim">2025-10-23</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-23</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-17" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - QuickBooks Desktop</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">2 not contacted</span>
+      <span class="stat-c">2 contacted</span>
+      <span class="stat-total">4 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:50%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(17)">▼ Show 4 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-17">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TcVBnYAN" target="_blank" class="acct">Premises Control</a></td>
+          <td class="dim">2025-12-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S1GgwYAF" target="_blank" class="acct">CS&M Tele-Systems</a></td>
+          <td class="dim">2025-10-27</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WcwQLYAZ" target="_blank" class="acct">AV TechSource</a></td>
+          <td class="dim">2026-02-17</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-02-17</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000W7q14YAB" target="_blank" class="acct">Acoustic Design Systems</a></td>
+          <td class="dim">2026-02-05</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-02-05</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-18" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - IT Glue</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">4 not contacted</span>
+      <span class="stat-c">0 contacted</span>
+      <span class="stat-total">4 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(18)">▼ Show 4 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-18">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000W4gr3YAB" target="_blank" class="acct">IT In Demand</a></td>
+          <td class="dim">2026-02-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-02-02</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ULMsJYAX" target="_blank" class="acct">Voytel</a></td>
+          <td class="dim">2025-12-29</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-19</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UL2FGYA1" target="_blank" class="acct">Tecflow Technology</a></td>
+          <td class="dim">2025-12-15</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-12-12</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9CTGYA3" target="_blank" class="acct">SeaGlass Technology</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-03</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-19" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - Sage50</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">2 not contacted</span>
+      <span class="stat-c">1 contacted</span>
+      <span class="stat-total">3 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:66%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(19)">▼ Show 3 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-19">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TcrKNYAZ" target="_blank" class="acct">Hawkeye Electronic Security</a></td>
+          <td class="dim">2025-12-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-28</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TdLyLYAV" target="_blank" class="acct">JM Security</a></td>
+          <td class="dim">2025-11-26</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000W29ETYAZ" target="_blank" class="acct">Emergency Response USA</a></td>
+          <td class="dim">2026-01-28</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-01-28</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-20" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - CMS</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">3 not contacted</span>
+      <span class="stat-c">0 contacted</span>
+      <span class="stat-total">3 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(20)">▼ Show 3 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-20">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Tfca5YAB" target="_blank" class="acct">Lane Electronic & Alarm Systems</a></td>
+          <td class="dim">2025-12-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TZhB4YAL" target="_blank" class="acct">J & J Security Services Corp</a></td>
+          <td class="dim">2025-11-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SnZUMYA3" target="_blank" class="acct">Security Center USA</a></td>
+          <td class="dim">2025-11-12</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-11-10</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-21" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - RapidResponse</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">1 not contacted</span>
+      <span class="stat-c">1 contacted</span>
+      <span class="stat-total">2 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:50%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(21)">▼ Show 2 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-21">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RxPqsYAF" target="_blank" class="acct">Property Protection Consulting</a></td>
+          <td class="dim">2025-10-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-16</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000W8R74YAF" target="_blank" class="acct">H&R Alarms</a></td>
+          <td class="dim">2026-02-24</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-02-24</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-22" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Knowledgebase</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">2 not contacted</span>
+      <span class="stat-c">0 contacted</span>
+      <span class="stat-total">2 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(22)">▼ Show 2 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-22">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VWrNWYA1" target="_blank" class="acct">I2G Systems</a></td>
+          <td class="dim">2026-01-21</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-01-16</td>
+        </tr><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShFuvYAF" target="_blank" class="acct">Imagit</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-23" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - Xero</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">1 not contacted</span>
+      <span class="stat-c">1 contacted</span>
+      <span class="stat-total">2 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:50%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(23)">▼ Show 2 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-23">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SbscPYAR" target="_blank" class="acct">SelectQoS</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UTmPnYAL" target="_blank" class="acct">Workplace Technologies</a></td>
+          <td class="dim">2025-12-23</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-12-23</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-24" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Product Catalog - Kits/Bundles/Assembles</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">0 not contacted</span>
+      <span class="stat-c">1 contacted</span>
+      <span class="stat-total">1 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:0%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(24)">▼ Show 1 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-24">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WAe6cYAD" target="_blank" class="acct">Ranger Technology Solutions</a></td>
+          <td class="dim">2026-02-17</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2026-02-17</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-25" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Contracts - Hourly and Hourly Usage</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">1 not contacted</span>
+      <span class="stat-c">0 contacted</span>
+      <span class="stat-total">1 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(25)">▼ Show 1 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-25">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLlWkYAL" target="_blank" class="acct">Millennium Communications Group</a></td>
+          <td class="dim">2026-02-17</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-02-03</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-26" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Contracts - Product and Labor Pricing Management</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">1 not contacted</span>
+      <span class="stat-c">0 contacted</span>
+      <span class="stat-total">1 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(26)">▼ Show 1 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-26">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLlWkYAL" target="_blank" class="acct">Millennium Communications Group</a></td>
+          <td class="dim">2026-02-17</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2026-02-03</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-27" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - SageIntact</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">1 not contacted</span>
+      <span class="stat-c">0 contacted</span>
+      <span class="stat-total">1 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(27)">▼ Show 1 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-27">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TfGT7YAN" target="_blank" class="acct">Keen Project Solutions</a></td>
+          <td class="dim">2025-12-09</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-28" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - Zoho</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">1 not contacted</span>
+      <span class="stat-c">0 contacted</span>
+      <span class="stat-total">1 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(28)">▼ Show 1 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-28">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TR9eRYAT" target="_blank" class="acct">Elevate Tech Solutions</a></td>
+          <td class="dim">2025-11-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">—</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-29" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - N-Able RMM</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">1 not contacted</span>
+      <span class="stat-c">0 contacted</span>
+      <span class="stat-total">1 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(29)">▼ Show 1 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-29">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-nc">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9fgYYAR" target="_blank" class="acct">W. O'Donnell Consulting</a></td>
+          <td class="dim">2025-11-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim small">2025-10-23</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-30" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - Field Nation</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">0 not contacted</span>
+      <span class="stat-c">1 contacted</span>
+      <span class="stat-total">1 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:0%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(30)">▼ Show 1 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-30">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RrBiXYAV" target="_blank" class="acct">BP Innovations</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-24</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="feature-card" id="feat-31" style="border-color:#ef444444;background:#0a0202">
+  <div class="feat-header">
+    <div>
+      <span class="feat-name">Integration - Netsuite</span>
+      <span class="tag tag-none">❌ Not on Roadmap</span>
+    </div>
+    <div class="feat-stats">
+      <span class="stat-nc">0 not contacted</span>
+      <span class="stat-c">1 contacted</span>
+      <span class="stat-total">1 total</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:0%;background:#f97316"></div></div>
+    </div>
+    <button class="toggle-feat" onclick="toggleFeat(31)">▼ Show 1 accounts</button>
+  </div>
+  <div class="feat-body hidden" id="fb-31">
+    <table>
+      <thead><tr><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th></tr></thead>
+      <tbody><tr class="row-c">
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RXR1tYAH" target="_blank" class="acct">Global Guardian Asset Security</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-yes">✓ Contacted</span></td>
+          <td class="dim small">2025-10-24</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+
+<p class="note">Source: Salesforce Closed/Lost · Click account name to open SF record · "Contacted" = activity logged after close date · Generated by Romer · Rev.io Confidential</p>
+
+<script>
+function toggleFeat(idx) {
+  const body = document.getElementById('fb-'+idx);
+  const btn = body.previousElementSibling.querySelector('.toggle-feat');
+  const hidden = body.classList.toggle('hidden');
+  btn.textContent = hidden ? '▼ Show accounts' : '▲ Hide accounts';
+}
+function expandAll() {
+  document.querySelectorAll('.feat-body').forEach(b => b.classList.remove('hidden'));
+  document.querySelectorAll('.toggle-feat').forEach(b => b.textContent = '▲ Hide accounts');
+}
+</script>
+</body>
+</html>
