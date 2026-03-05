@@ -3,24 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rev.io AI Strategy — February 2026</title>
+<title>Romer Intelligence — Rev.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Inter', system-ui, sans-serif;
     background: #04050a;
     color: #e2e8f0;
     min-height: 100vh;
-    overflow-x: hidden;
   }
 
-  /* Hero */
+  /* HERO */
   .hero {
     background: linear-gradient(135deg, #04050a 0%, #0d1b3e 50%, #04050a 100%);
-    padding: 80px 60px 60px;
+    padding: 72px 60px 56px;
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid #1e293b;
@@ -29,275 +27,202 @@
     content: '';
     position: absolute;
     width: 600px; height: 600px;
-    background: radial-gradient(circle, #3b82f620 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
     top: -200px; right: -100px;
     border-radius: 50%;
+    pointer-events: none;
   }
   .hero::after {
     content: '';
     position: absolute;
     width: 400px; height: 400px;
-    background: radial-gradient(circle, #8b5cf620 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%);
     bottom: -150px; left: 100px;
     border-radius: 50%;
+    pointer-events: none;
   }
   .hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #3b82f615;
-    border: 1px solid #3b82f640;
+    background: rgba(59,130,246,0.08);
+    border: 1px solid rgba(59,130,246,0.25);
     color: #60a5fa;
     padding: 6px 16px;
     border-radius: 100px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     margin-bottom: 24px;
+    position: relative; z-index: 1;
   }
   .hero h1 {
-    font-size: clamp(36px, 5vw, 64px);
+    font-size: clamp(32px, 5vw, 56px);
     font-weight: 900;
     line-height: 1.1;
-    max-width: 700px;
+    max-width: 640px;
     background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 16px;
+    background-clip: text;
+    margin-bottom: 14px;
+    position: relative; z-index: 1;
   }
   .hero h1 span {
     background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .hero-sub {
-    font-size: 18px;
-    color: #64748b;
-    max-width: 560px;
+    font-size: 16px;
+    color: #475569;
+    max-width: 520px;
     line-height: 1.6;
-    margin-bottom: 40px;
+    position: relative; z-index: 1;
   }
-  .hero-stats {
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
-  .stat {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .stat-num {
-    font-size: 32px;
-    font-weight: 800;
-    color: #fff;
-  }
-  .stat-num.red { color: #f87171; }
-  .stat-num.green { color: #34d399; }
-  .stat-num.blue { color: #60a5fa; }
-  .stat-label { font-size: 13px; color: #475569; }
 
-  /* Main */
-  .main { max-width: 1200px; margin: 0 auto; padding: 60px 40px; }
-
-  /* Problem banner */
-  .problem {
-    background: linear-gradient(135deg, #450a0a20, #7f1d1d20);
-    border: 1px solid #ef444430;
-    border-radius: 16px;
-    padding: 32px 40px;
-    margin-bottom: 60px;
-    display: flex;
-    align-items: center;
-    gap: 24px;
+  /* MAIN */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
   }
-  .problem-icon { font-size: 48px; flex-shrink: 0; }
-  .problem h2 { font-size: 22px; font-weight: 700; color: #fca5a5; margin-bottom: 8px; }
-  .problem p { font-size: 15px; color: #94a3b8; line-height: 1.6; }
-  .problem strong { color: #fca5a5; }
 
-  /* Section title */
-  .section-title {
-    font-size: 11px;
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #475569;
-    margin-bottom: 32px;
+    color: #3b82f6;
+    margin-bottom: 20px;
+    margin-top: 48px;
   }
+  .section-label:first-child { margin-top: 0; }
 
-  /* Initiative cards */
-  .initiatives { display: grid; grid-template-columns: repeat(auto-fit, minmax(520px, 1fr)); gap: 24px; margin-bottom: 60px; }
+  /* CARD GRID */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 16px; margin-bottom: 8px; }
 
+  /* LINK CARD */
   .card {
     background: #0f172a;
     border: 1px solid #1e293b;
-    border-radius: 20px;
-    padding: 36px;
+    border-radius: 16px;
+    padding: 28px 32px;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
     position: relative;
     overflow: hidden;
-    transition: transform 0.2s, border-color 0.2s;
   }
-  .card:hover { transform: translateY(-2px); border-color: #334155; }
   .card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
+    border-radius: 16px 16px 0 0;
   }
-  .card.blue::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+  .card.blue::before   { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
   .card.purple::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
-  .card.green::before { background: linear-gradient(90deg, #10b981, #34d399); }
+  .card.green::before  { background: linear-gradient(90deg, #10b981, #34d399); }
   .card.orange::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-
-  .card-num {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .card.blue .card-num { color: #3b82f6; }
-  .card.purple .card-num { color: #8b5cf6; }
-  .card.green .card-num { color: #10b981; }
-  .card.orange .card-num { color: #f59e0b; }
-
-  .card-icon { font-size: 36px; margin-bottom: 16px; }
-  .card h3 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 8px; }
-  .card .card-tagline {
-    font-size: 14px;
-    font-style: italic;
-    margin-bottom: 20px;
-    padding: 10px 16px;
-    border-radius: 8px;
-    line-height: 1.5;
-  }
-  .card.blue .card-tagline { background: #3b82f610; color: #93c5fd; border-left: 3px solid #3b82f6; }
-  .card.purple .card-tagline { background: #8b5cf610; color: #c4b5fd; border-left: 3px solid #8b5cf6; }
-  .card.green .card-tagline { background: #10b98110; color: #6ee7b7; border-left: 3px solid #10b981; }
-  .card.orange .card-tagline { background: #f59e0b10; color: #fcd34d; border-left: 3px solid #f59e0b; }
-
-  .card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .card ul li {
-    font-size: 14px;
-    color: #94a3b8;
-    padding-left: 20px;
-    position: relative;
-    line-height: 1.5;
-  }
-  .card ul li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    font-weight: 600;
-  }
-  .card.blue ul li::before { color: #3b82f6; }
-  .card.purple ul li::before { color: #8b5cf6; }
-  .card.green ul li::before { color: #10b981; }
-  .card.orange ul li::before { color: #f59e0b; }
-
-  .card-metric {
-    margin-top: 20px;
-    padding: 14px 18px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
-  }
-  .card.blue .card-metric { background: #3b82f615; color: #93c5fd; }
-  .card.purple .card-metric { background: #8b5cf615; color: #c4b5fd; }
-  .card.green .card-metric { background: #10b98115; color: #6ee7b7; }
-  .card.orange .card-metric { background: #f59e0b15; color: #fcd34d; }
-
-  /* Flywheel */
-  .flywheel-section { margin-bottom: 60px; }
-  .flywheel {
-    background: #0f172a;
-    border: 1px solid #1e293b;
-    border-radius: 20px;
-    padding: 48px;
-  }
-  .flywheel h2 { font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 8px; }
-  .flywheel-sub { color: #475569; font-size: 15px; margin-bottom: 40px; }
-
-  .flywheel-steps {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0;
-    justify-content: center;
-  }
-  .fw-step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    min-width: 120px;
-  }
-  .fw-circle {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    border: 2px solid;
-    flex-shrink: 0;
-  }
-  .fw-circle.blue { background: #3b82f615; border-color: #3b82f640; }
-  .fw-circle.purple { background: #8b5cf615; border-color: #8b5cf640; }
-  .fw-circle.green { background: #10b98115; border-color: #10b98140; }
-  .fw-circle.orange { background: #f59e0b15; border-color: #f59e0b40; }
-  .fw-circle.pink { background: #ec489915; border-color: #ec489940; }
-  .fw-label { font-size: 12px; font-weight: 600; color: #94a3b8; text-align: center; max-width: 100px; }
-
-  .fw-arrow {
-    font-size: 20px;
-    color: #334155;
-    padding: 0 8px;
-    flex-shrink: 0;
+  .card.cyan::before   { background: linear-gradient(90deg, #06b6d4, #67e8f9); }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: #2d3f5e;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
   }
 
-  /* Monday actions */
-  .actions-section { margin-bottom: 60px; }
-  .actions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
-  .action-item {
-    background: #0f172a;
-    border: 1px solid #1e293b;
-    border-radius: 12px;
-    padding: 20px 24px;
+  .card-top {
     display: flex;
     align-items: flex-start;
-    gap: 16px;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
   }
-  .action-check {
-    width: 24px; height: 24px;
-    border: 2px solid #334155;
-    border-radius: 6px;
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+  }
+  .card-arrow {
+    font-size: 18px;
+    color: #334155;
     flex-shrink: 0;
-    margin-top: 1px;
+    margin-top: 2px;
+    transition: color 0.2s, transform 0.2s;
   }
-  .action-content h4 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
-  .action-content p { font-size: 13px; color: #475569; line-height: 1.4; }
+  .card:hover .card-arrow { color: #60a5fa; transform: translateX(3px); }
 
-  /* Footer */
+  .card-desc {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .card-sources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .source-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid #1e293b;
+    border-radius: 6px;
+    padding: 3px 9px;
+    font-size: 11px;
+    color: #475569;
+    font-weight: 500;
+  }
+  .source-tag .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-sf   { background: #60a5fa; }
+  .dot-notion { background: #a78bfa; }
+  .dot-revio { background: #34d399; }
+  .dot-kaia { background: #fbbf24; }
+  .dot-github { background: #f472b6; }
+  .dot-manual { background: #94a3b8; }
+
+  .card-updated {
+    font-size: 10px;
+    color: #334155;
+    margin-top: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  /* EXTERNAL CARD */
+  .card.external .card-title::after {
+    content: ' ↗';
+    font-size: 13px;
+    color: #475569;
+  }
+
+  /* FOOTER */
   footer {
     text-align: center;
-    padding: 40px;
+    padding: 32px 40px;
     border-top: 1px solid #1e293b;
     color: #334155;
-    font-size: 13px;
+    font-size: 12px;
   }
   footer span { color: #475569; }
 
-  @media (max-width: 768px) {
-    .hero { padding: 48px 24px 40px; }
-    .main { padding: 40px 20px; }
-    .initiatives { grid-template-columns: 1fr; }
-    .hero-stats { gap: 24px; }
-    .flywheel { padding: 32px 24px; }
-    .problem { flex-direction: column; }
-    .fw-arrow { display: none; }
+  @media (max-width: 640px) {
+    .hero { padding: 48px 20px 40px; }
+    .main { padding: 40px 16px 60px; }
+    .grid { grid-template-columns: 1fr; }
+    .card { padding: 22px 20px; }
   }
 </style>
 </head>
@@ -305,210 +230,110 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">🧠 Strategy Brief · February 28, 2026</div>
-  <h1>Rev.io <span>AI-First</span><br>Growth Strategy</h1>
-  <p class="hero-sub">Four initiatives to unlock onboarding velocity, create a feedback flywheel, and attack every dollar sitting in the pipeline.</p>
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num red">6 / 16</div>
-      <div class="stat-label">PSA Deals Went Live (Feb Target)</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num orange">~$100K</div>
-      <div class="stat-label">Recoverable Pipeline (Graveyard)</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num green">80%</div>
-      <div class="stat-label">Target: Pre-configured Before Day 1</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num blue">1:1</div>
-      <div class="stat-label">Agentic Marketing at Scale</div>
-    </div>
-  </div>
+  <div class="hero-badge">🧠 Romer Intelligence Hub</div>
+  <h1>Rev.io <span>Intelligence</span><br>& Analysis</h1>
+  <p class="hero-sub">Live reports, dashboards, and analysis built by Romer from Rev.io's connected data systems. Updated continuously.</p>
 </div>
 
 <!-- MAIN -->
 <div class="main">
 
-  <!-- PROBLEM -->
-  <div class="problem">
-    <div class="problem-icon">⚡</div>
-    <div>
-      <h2>The Core Problem</h2>
-      <p>We're selling. We're <strong>not onboarding fast enough.</strong> Feb target was 16 PSA deals onboarded — 6 went live. The bottleneck isn't leads or closes. It's onboarding velocity. Solve this and the entire revenue engine accelerates.</p>
-    </div>
-  </div>
+  <!-- REV.IO STRATEGY -->
+  <div class="section-label">Strategy & Go-To-Market</div>
+  <div class="grid">
 
-  <!-- INITIATIVES -->
-  <div class="section-title">The Four Initiatives</div>
-  <div class="initiatives">
+    <a href="https://bmaropis.github.io/romer-public/gtm-analysis.html" class="card blue" target="_blank">
+      <div class="card-top">
+        <div class="card-title">PSA Web GTM Performance Analysis</div>
+        <div class="card-arrow">→</div>
+      </div>
+      <p class="card-desc">Full funnel autopsy of PSA Web since launch (Jun 2025). Win rates, rep benchmarking, ICP breakdown, loss reason analysis, 5× math model, and prioritized recommendations. Built by Revay (Evan's agent) and restyled.</p>
+      <div class="card-sources">
+        <span class="source-tag"><span class="dot dot-sf"></span>Salesforce</span>
+        <span class="source-tag"><span class="dot dot-kaia"></span>Kaia Call Recordings</span>
+        <span class="source-tag"><span class="dot dot-notion"></span>Notion</span>
+      </div>
+      <div class="card-updated">Last updated: Mar 3, 2026 · Prepared by Revay AI</div>
+    </a>
 
-    <!-- 1 -->
-    <div class="card blue">
-      <div class="card-num">Initiative 01</div>
-      <div class="card-icon">⚙️</div>
-      <h3>Automated Onboarding via Sales Intelligence</h3>
-      <div class="card-tagline">"Your system is 80% configured before your first call."</div>
-      <ul>
-        <li>Sales process captures everything: workflows, integrations, use cases, pain points</li>
-        <li>At deal close, that data auto-configures the Rev.io instance — 50–80% built before Day 1</li>
-        <li>Remaining gaps filled via agent-guided client intake on kickoff</li>
-        <li>SA capacity doubles without adding headcount</li>
-      </ul>
-      <div class="card-metric">🎯 Key metric: Days from close to fully onboarded — cut in half</div>
-    </div>
-
-    <!-- 2 -->
-    <div class="card purple">
-      <div class="card-num">Initiative 02</div>
-      <div class="card-icon">🔄</div>
-      <h3>Feedback Loop: Client → Product → Marketing</h3>
-      <div class="card-tagline">Nothing gets lost. Every gap becomes a signal.</div>
-      <ul>
-        <li>Onboarding friction flags immediately route to product team</li>
-        <li>Product roadmap updates trigger automatic marketing content generation</li>
-        <li>Market the "80% configured" story as a core differentiator — in real time</li>
-        <li>Full loop: Client Experience → Product Priority → Marketing Message → Next Sale</li>
-      </ul>
-      <div class="card-metric">🎯 Key metric: Time from client feedback to marketing publish — days, not quarters</div>
-    </div>
-
-    <!-- 3 -->
-    <div class="card green">
-      <div class="card-num">Initiative 03</div>
-      <div class="card-icon">🎯</div>
-      <h3>Agentic Marketing — 1:1 at Scale</h3>
-      <div class="card-tagline">SaaS marketing was spray-and-pray. This is a sniper at scale.</div>
-      <ul>
-        <li>Old model: blast campaigns to broad segments</li>
-        <li>New model: every prospect gets bespoke outreach, timed and personalized by agent</li>
-        <li>Cross-reference Apollo signals → when a lead re-engages, an agent fires instantly</li>
-        <li>Human reviews, approves, sends — agent does the heavy lifting</li>
-      </ul>
-      <div class="card-metric">🎯 Key metric: Response rate on outreach vs. previous campaign benchmarks</div>
-    </div>
-
-    <!-- 4 -->
-    <div class="card orange">
-      <div class="card-num">Initiative 04</div>
-      <div class="card-icon">💀</div>
-      <h3>Attack the Graveyard — ~$100K Opportunity</h3>
-      <div class="card-tagline">Canceled, on-hold, and pending deals aren't dead — they're waiting.</div>
-      <ul>
-        <li>~$100K sitting in canceled / on-hold / pending in Salesforce right now</li>
-        <li>Deploy agents to monitor each deal: company signals, personnel changes, competitor pain</li>
-        <li>Trigger fires → agent builds bespoke, contextual outreach → human reviews and sends</li>
-        <li>Cross-reference Apollo timing to know exactly when the window opens</li>
-      </ul>
-      <div class="card-metric">🎯 Key metric: $$ recovered from graveyard pipeline in 90 days</div>
-    </div>
+    <a href="https://bmaropis.github.io/romer-public/" class="card purple" target="_blank">
+      <div class="card-top">
+        <div class="card-title">Rev.io AI-First Growth Strategy</div>
+        <div class="card-arrow">→</div>
+      </div>
+      <p class="card-desc">Four strategic initiatives to accelerate onboarding velocity, build a product feedback flywheel, and unlock pipeline through agentic marketing. Includes the "80% configured before Day 1" framework.</p>
+      <div class="card-sources">
+        <span class="source-tag"><span class="dot dot-sf"></span>Salesforce</span>
+        <span class="source-tag"><span class="dot dot-manual"></span>Brent's Prompt + Claude</span>
+      </div>
+      <div class="card-updated">Last updated: Feb 28, 2026</div>
+    </a>
 
   </div>
 
-  <!-- FLYWHEEL -->
-  <div class="flywheel-section">
-    <div class="section-title">The Flywheel</div>
-    <div class="flywheel">
-      <h2>How It All Connects</h2>
-      <p class="flywheel-sub">Each initiative feeds the next. This is a self-reinforcing loop — not four separate projects.</p>
-      <div class="flywheel-steps">
-        <div class="fw-step">
-          <div class="fw-circle blue">🤝</div>
-          <div class="fw-label">Sell</div>
-        </div>
-        <div class="fw-arrow">→</div>
-        <div class="fw-step">
-          <div class="fw-circle blue">⚙️</div>
-          <div class="fw-label">Auto-Configure</div>
-        </div>
-        <div class="fw-arrow">→</div>
-        <div class="fw-step">
-          <div class="fw-circle purple">🚀</div>
-          <div class="fw-label">Fast Onboard</div>
-        </div>
-        <div class="fw-arrow">→</div>
-        <div class="fw-step">
-          <div class="fw-circle green">😊</div>
-          <div class="fw-label">Happy Client</div>
-        </div>
-        <div class="fw-arrow">→</div>
-        <div class="fw-step">
-          <div class="fw-circle green">💬</div>
-          <div class="fw-label">Feedback Captured</div>
-        </div>
-        <div class="fw-arrow">→</div>
-        <div class="fw-step">
-          <div class="fw-circle purple">🛠️</div>
-          <div class="fw-label">Product Improves</div>
-        </div>
-        <div class="fw-arrow">→</div>
-        <div class="fw-step">
-          <div class="fw-circle orange">📣</div>
-          <div class="fw-label">Marketing Fires</div>
-        </div>
-        <div class="fw-arrow">→</div>
-        <div class="fw-step">
-          <div class="fw-circle pink">🔁</div>
-          <div class="fw-label">Repeat</div>
-        </div>
+  <!-- PIPELINE & DEALS -->
+  <div class="section-label">Pipeline & Deal Intelligence</div>
+  <div class="grid">
+
+    <a href="https://bmaropis.github.io/romer-public/lost-deals-apollo.html" class="card green" target="_blank">
+      <div class="card-top">
+        <div class="card-title">Lost Deals — Apollo 1 & 2 Recovery</div>
+        <div class="card-arrow">→</div>
       </div>
-    </div>
+      <p class="card-desc">123 deals lost to missing features in Q4 2025–Q1 2026, cross-referenced against the Apollo 1 & 2 roadmap. Identifies 88 recoverable deals worth ~$8,300/mo ARR. Includes re-engagement action plan and features still not on the roadmap.</p>
+      <div class="card-sources">
+        <span class="source-tag"><span class="dot dot-sf"></span>Salesforce (Closed/Lost)</span>
+        <span class="source-tag"><span class="dot dot-notion"></span>Notion Products Roadmap</span>
+      </div>
+      <div class="card-updated">Last updated: Mar 3, 2026 · 1,231 deals analyzed</div>
+    </a>
+
   </div>
 
-  <!-- MONDAY ACTIONS -->
-  <div class="actions-section">
-    <div class="section-title">Monday Action List</div>
-    <div class="actions-grid">
-      <div class="action-item">
-        <div class="action-check"></div>
-        <div class="action-content">
-          <h4>Define Sales Data Capture</h4>
-          <p>Which CRM fields, call recordings, and intake forms feed the auto-config engine?</p>
-        </div>
+  <!-- INVESTOR -->
+  <div class="section-label">Investor Relations</div>
+  <div class="grid">
+
+    <a href="https://bmaropis.github.io/romer-public/primus-weekly.html" class="card orange" target="_blank">
+      <div class="card-top">
+        <div class="card-title">Primus Capital Weekly Summary</div>
+        <div class="card-arrow">→</div>
       </div>
-      <div class="action-item">
-        <div class="action-check"></div>
-        <div class="action-content">
-          <h4>Scope Auto-Configuration</h4>
-          <p>What can be pre-built from existing sales data today? What's the 80% list?</p>
-        </div>
+      <p class="card-desc">Weekly one-pager for Ron Hess at Primus Capital Partners. Covers February 2026 results, March forecast, Q1 tracker, department scorecards, and board-level action items. Refreshed weekly after the Monday ELT call.</p>
+      <div class="card-sources">
+        <span class="source-tag"><span class="dot dot-manual"></span>ELT Call Transcript</span>
+        <span class="source-tag"><span class="dot dot-notion"></span>Notion SLT Dashboard</span>
+        <span class="source-tag"><span class="dot dot-sf"></span>Salesforce</span>
       </div>
-      <div class="action-item">
-        <div class="action-check"></div>
-        <div class="action-content">
-          <h4>Build the Graveyard Attack List</h4>
-          <p>Pull all canceled / on-hold / pending from Salesforce. Prioritize by MRR and close proximity.</p>
-        </div>
+      <div class="card-updated">Last updated: Mar 2, 2026 · Audience: Ron Hess, Primus Capital</div>
+    </a>
+
+  </div>
+
+  <!-- EXTERNAL / PARTNER -->
+  <div class="section-label">Partner Intelligence</div>
+  <div class="grid">
+
+    <a href="https://erice320.github.io/revay/revio-intelligence-deck.html" class="card cyan external" target="_blank">
+      <div class="card-top">
+        <div class="card-title">Revay Intelligence Deck</div>
+        <div class="card-arrow">→</div>
       </div>
-      <div class="action-item">
-        <div class="action-check"></div>
-        <div class="action-content">
-          <h4>Align Evan on Feedback Loop</h4>
-          <p>Who owns the product → marketing handoff? Define the process and the trigger.</p>
-        </div>
+      <p class="card-desc">Rev.io's voice-of-customer intelligence report built by Revay (Evan's AI agent). Synthesizes Tier 1 Kaia call recordings with Salesforce and Notion data. Covers prospect pain points, competitive mentions, rep performance signals, and feature gaps. Reviewed weekly by Romer every Monday.</p>
+      <div class="card-sources">
+        <span class="source-tag"><span class="dot dot-kaia"></span>583 Kaia Recordings</span>
+        <span class="source-tag"><span class="dot dot-sf"></span>Salesforce</span>
+        <span class="source-tag"><span class="dot dot-notion"></span>Notion</span>
       </div>
-      <div class="action-item">
-        <div class="action-check"></div>
-        <div class="action-content">
-          <h4>Make "80% Configured" a Headline</h4>
-          <p>This is the differentiator. Brief marketing to build the campaign around it this week.</p>
-        </div>
-      </div>
-      <div class="action-item">
-        <div class="action-check"></div>
-        <div class="action-content">
-          <h4>Define 1:1 Marketing Trigger Rules</h4>
-          <p>What Apollo signals fire an outreach sequence? Map the top 5 triggers.</p>
-        </div>
-      </div>
-    </div>
+      <div class="card-updated">Maintained by Revay AI (Evan Rice) · External</div>
+    </a>
+
   </div>
 
 </div>
 
 <footer>
-  <p>Rev.io AI Strategy · Captured by Romer · <span>February 28, 2026</span></p>
+  Built and maintained by <span>Romer</span> · Rev.io Confidential · <span>bmaropis.github.io/romer-public</span>
 </footer>
 
 </body>
