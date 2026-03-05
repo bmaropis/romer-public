@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lost Deals — Full Prospect List for Review</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; padding: 24px; }
+  h1 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #64748b; margin-bottom: 20px; }
+  .filters { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+  .filter-btn { padding: 6px 14px; border-radius: 6px; border: 1px solid #2d3148; background: #1e2130; color: #94a3b8; font-size: 12px; cursor: pointer; transition: all .2s; }
+  .filter-btn:hover, .filter-btn.active { background: #2d3148; color: #e2e8f0; }
+  .filter-btn.f-a1.active { background: #14532d; border-color: #22c55e; color: #4ade80; }
+  .filter-btn.f-a2.active { background: #1e3a5f; border-color: #3b82f6; color: #60a5fa; }
+  .filter-btn.f-both.active { background: #1a1f30; border-color: #8b5cf6; color: #a78bfa; }
+  .filter-btn.f-neither.active { background: #3b0a0a; border-color: #ef4444; color: #f87171; }
+  .search-box { padding: 6px 12px; border-radius: 6px; border: 1px solid #2d3148; background: #1e2130; color: #e2e8f0; font-size: 12px; width: 220px; }
+  .count-badge { font-size: 11px; color: #64748b; margin-left: auto; }
+  .card { background: #1e2130; border-radius: 12px; border: 1px solid #2d3148; overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; padding: 10px 12px; color: #64748b; font-weight: 500; border-bottom: 1px solid #2d3148; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; background: #171a29; position: sticky; top: 0; }
+  td { padding: 9px 12px; border-bottom: 1px solid #1a1f30; vertical-align: top; }
+  tr:hover td { background: #252840; }
+  tr:last-child td { border-bottom: none; }
+  .row-a1 td { border-left: 2px solid #22c55e44; }
+  .row-a2 td { border-left: 2px solid #3b82f644; }
+  .row-both td { border-left: 2px solid #8b5cf644; }
+  .row-neither td { border-left: 2px solid #ef444444; }
+  .pill { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 600; white-space: nowrap; margin: 1px; }
+  .pill-green { background: #14532d; color: #4ade80; }
+  .pill-blue { background: #1e3a5f; color: #60a5fa; }
+  .pill-gray { background: #1e2130; color: #64748b; border: 1px solid #2d3148; }
+  .feat { font-size: 10px; padding: 2px 0; line-height: 1.4; }
+  .feat-green { color: #4ade80; }
+  .feat-blue { color: #60a5fa; }
+  .feat-gray { color: #64748b; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
+  .stat-card { background: #1e2130; border-radius: 10px; padding: 16px; border: 1px solid #2d3148; }
+  .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #64748b; margin-bottom: 4px; }
+  .stat-value { font-size: 28px; font-weight: 800; }
+  .note { font-size: 11px; color: #475569; text-align: center; padding: 16px 0; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<h1>🎯 Lost Deals — Full Prospect Review List</h1>
+<p class="subtitle">Q4 2025 – Q1 2026 · Salesforce Closed Lost · Missing Features · Click SF link to open record · Mar 5, 2026</p>
+
+<div class="grid-4">
+  <div class="stat-card" style="border-color:#22c55e44;background:#052e16">
+    <div class="stat-label">Apollo 1 (Re-engage Now)</div>
+    <div class="stat-value" style="color:#4ade80">70</div>
+    <div style="font-size:11px;color:#64748b;margin-top:4px">Features already shipped</div>
+  </div>
+  <div class="stat-card" style="border-color:#3b82f644;background:#0c1a3a">
+    <div class="stat-label">Apollo 2 (Re-engage Apr 1)</div>
+    <div class="stat-value" style="color:#60a5fa">64</div>
+    <div style="font-size:11px;color:#64748b;margin-top:4px">Dropping April 1, 2026</div>
+  </div>
+  <div class="stat-card" style="border-color:#8b5cf644;background:#1a0f2e">
+    <div class="stat-label">Both A1 + A2</div>
+    <div class="stat-value" style="color:#a78bfa">47</div>
+    <div style="font-size:11px;color:#64748b;margin-top:4px">Multiple recoverable features</div>
+  </div>
+  <div class="stat-card" style="border-color:#ef444444;background:#200a0a">
+    <div class="stat-label">Not on Roadmap</div>
+    <div class="stat-value" style="color:#f87171">25</div>
+    <div style="font-size:11px;color:#64748b;margin-top:4px">Need product decision</div>
+  </div>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filterTable('all', this)">All (112)</button>
+  <button class="filter-btn f-a1" onclick="filterTable('row-a1', this)">A1 Only (23)</button>
+  <button class="filter-btn f-a2" onclick="filterTable('row-a2', this)">A2 Only (17)</button>
+  <button class="filter-btn f-both" onclick="filterTable('row-both', this)">Both (47)</button>
+  <button class="filter-btn f-neither" onclick="filterTable('row-neither', this)">Not on Roadmap (25)</button>
+  <input class="search-box" type="text" placeholder="Search company..." oninput="searchTable(this.value)">
+  <span class="count-badge" id="rowCount">112 records</span>
+</div>
+
+<div class="card">
+<table id="mainTable">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Account</th>
+      <th>Opportunity</th>
+      <th>Close Date</th>
+      <th>Recovery</th>
+      <th>Missing Features → Roadmap Match</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">1</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RGg8bYAD" target="_blank" style="color:#60a5fa;text-decoration:none">LayerOne</a></td>
+      <td style="color:#94a3b8;font-size:11px">LayerOne 2</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-03</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">2</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RRYdxYAH" target="_blank" style="color:#60a5fa;text-decoration:none">PROACTIVERISK</a></td>
+      <td style="color:#94a3b8;font-size:11px">ProactiveRISK</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-10</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-gray">Other: Integration - Ninja RMM</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">3</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RWPq9YAH" target="_blank" style="color:#60a5fa;text-decoration:none">Ovation Audio Visual</a></td>
+      <td style="color:#94a3b8;font-size:11px">Ovation Audio Visual</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-14</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">4</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000QeSpqYAF" target="_blank" style="color:#60a5fa;text-decoration:none">Edin Alarm</a></td>
+      <td style="color:#94a3b8;font-size:11px">Edin Alarm</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-14</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">5</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000S67czYAB" target="_blank" style="color:#60a5fa;text-decoration:none">Aura Design</a></td>
+      <td style="color:#94a3b8;font-size:11px">Aura Design</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-22</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Inventory</div><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">6</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RXR1tYAH" target="_blank" style="color:#60a5fa;text-decoration:none">Global Guardian Asset Security</a></td>
+      <td style="color:#94a3b8;font-size:11px">Global Guardian Asset Security</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-24</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-gray">Other: Integration - Netsuite</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">7</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000Qs325YAB" target="_blank" style="color:#60a5fa;text-decoration:none">Affiliated Technology Solutions</a></td>
+      <td style="color:#94a3b8;font-size:11px">Affiliated - PSA Web</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-24</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Enhanced Ticket Views; Custom Fields / Reporting</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">8</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000S9WGiYAN" target="_blank" style="color:#60a5fa;text-decoration:none">MSC Systems</a></td>
+      <td style="color:#94a3b8;font-size:11px">MSC Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-28</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Inventory</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">9</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SKfrhYAD" target="_blank" style="color:#60a5fa;text-decoration:none">DefenTec</a></td>
+      <td style="color:#94a3b8;font-size:11px">DefenTec</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-29</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-gray">Other: Integration - Ninja RMM</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">10</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SPzrOYAT" target="_blank" style="color:#60a5fa;text-decoration:none">Video Vision Inc.</a></td>
+      <td style="color:#94a3b8;font-size:11px">Video Vision</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-30</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-gray">Other: Integration - DTools</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">11</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SDiWAYA1" target="_blank" style="color:#60a5fa;text-decoration:none">Acoustic Design Systems</a></td>
+      <td style="color:#94a3b8;font-size:11px">Acoustic Design Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-04</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">12</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SVo3jYAD" target="_blank" style="color:#60a5fa;text-decoration:none">TYR Technologies</a></td>
+      <td style="color:#94a3b8;font-size:11px">TYR Technologies PSA I</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-05</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Enhanced Ticket Views</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">13</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000Sc8u5YAB" target="_blank" style="color:#60a5fa;text-decoration:none">Fusion Systems LLC</a></td>
+      <td style="color:#94a3b8;font-size:11px">Fusion Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-06</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">14</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000T9B1xYAF" target="_blank" style="color:#60a5fa;text-decoration:none">Flux Labs</a></td>
+      <td style="color:#94a3b8;font-size:11px">Flux Labs</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-14</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Enhanced Ticket Views</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">15</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000TKOLdYAP" target="_blank" style="color:#60a5fa;text-decoration:none">SecurityBud</a></td>
+      <td style="color:#94a3b8;font-size:11px">SecurityBud</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-03</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-gray">Other: Subcontractors</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">16</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000TkNs9YAF" target="_blank" style="color:#60a5fa;text-decoration:none">Stone Mountain Systems</a></td>
+      <td style="color:#94a3b8;font-size:11px">Stone Mountain Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-09</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Enhanced Ticket Views</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">17</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SrNfuYAF" target="_blank" style="color:#60a5fa;text-decoration:none">CallHarbor</a></td>
+      <td style="color:#94a3b8;font-size:11px">CallHarbor PSA I</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-10</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Enhanced Ticket Views</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">18</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000Qyst6YAB" target="_blank" style="color:#60a5fa;text-decoration:none">Ficrest Integration</a></td>
+      <td style="color:#94a3b8;font-size:11px">Ficrest Integration</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-05</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">19</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SAuK9YAL" target="_blank" style="color:#60a5fa;text-decoration:none">Tailwinds Voice & Data</a></td>
+      <td style="color:#94a3b8;font-size:11px">Tailwinds PSA I</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-16</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Custom Fields / Reporting; Inventory</div><div class="feat feat-gray">Other: Subcontractors</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">20</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VLqBRYA1" target="_blank" style="color:#60a5fa;text-decoration:none">Nebula Cybersecurity Group</a></td>
+      <td style="color:#94a3b8;font-size:11px">Nebula Cyber Security</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-22</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Enhanced Ticket Views</div><div class="feat feat-gray">Other: Internationalization</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">21</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VqZT2YAN" target="_blank" style="color:#60a5fa;text-decoration:none">Complete Technology Services</a></td>
+      <td style="color:#94a3b8;font-size:11px">Complete Technology Services</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-23</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Custom Fields / Reporting</div><div class="feat feat-gray">Other: Integration - Ninja RMM</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">22</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VICAXYA5" target="_blank" style="color:#60a5fa;text-decoration:none">OPAV</a></td>
+      <td style="color:#94a3b8;font-size:11px">OPAV</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-04</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Inventory</div></td>
+    </tr><tr class="row-a1">
+      <td style="color:#64748b;font-size:11px">23</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000WEeXpYAL" target="_blank" style="color:#60a5fa;text-decoration:none">Core Security Services</a></td>
+      <td style="color:#94a3b8;font-size:11px">Core Security Services</td>
+      <td style="font-size:11px;color:#94a3b8">2026-03-03</td>
+      <td><span class="pill pill-green">A1 ✅ Now</span></td>
+      <td><div class="feat feat-green">A1: Custom Fields / Reporting</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">24</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RX3vfYAD" target="_blank" style="color:#60a5fa;text-decoration:none">CMB Systems</a></td>
+      <td style="color:#94a3b8;font-size:11px">CMB Systems 2</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-16</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Sales Opportunities</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">25</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000S6YTVYA3" target="_blank" style="color:#60a5fa;text-decoration:none">SWEPT</a></td>
+      <td style="color:#94a3b8;font-size:11px">SWEPT</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-22</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Mobile App / GPS Tracking</div><div class="feat feat-gray">Other: Internationalization</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">26</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000Rd4iZYAR" target="_blank" style="color:#60a5fa;text-decoration:none">Atlantic Security Automation Partners</a></td>
+      <td style="color:#94a3b8;font-size:11px">Atlantic Security Automation Partners</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-24</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Mobile App / GPS Tracking</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">27</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000Rhtg2YAB" target="_blank" style="color:#60a5fa;text-decoration:none">Self Secured Networks</a></td>
+      <td style="color:#94a3b8;font-size:11px">Self Secured Networks</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-29</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Mobile App / GPS Tracking</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">28</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SZ3kTYAT" target="_blank" style="color:#60a5fa;text-decoration:none">Aaron's Lock & Security</a></td>
+      <td style="color:#94a3b8;font-size:11px">Aaron's Lock</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-30</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Mobile App / GPS Tracking; Sales Opportunities</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">29</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SGg81YAD" target="_blank" style="color:#60a5fa;text-decoration:none">Audio Video Systems</a></td>
+      <td style="color:#94a3b8;font-size:11px">Audio Video Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-04</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Mobile App / GPS Tracking; Progressive Billing</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">30</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SAYDBYA5" target="_blank" style="color:#60a5fa;text-decoration:none">Digital Home Systems</a></td>
+      <td style="color:#94a3b8;font-size:11px">Digital Home Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-04</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: CPQ</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">31</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SSg4EYAT" target="_blank" style="color:#60a5fa;text-decoration:none">818 Computer</a></td>
+      <td style="color:#94a3b8;font-size:11px">818 Computer</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-11</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Mobile App / GPS Tracking</div><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">32</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VKjaDYAT" target="_blank" style="color:#60a5fa;text-decoration:none">Dijis Technology Solutions</a></td>
+      <td style="color:#94a3b8;font-size:11px">Dijis Technology Solutions</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-12</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: CPQ</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">33</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000Uc321YAB" target="_blank" style="color:#60a5fa;text-decoration:none">Pro Security Products</a></td>
+      <td style="color:#94a3b8;font-size:11px">Pro Security Products</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-13</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Sales Opportunities</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">34</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VXesrYAD" target="_blank" style="color:#60a5fa;text-decoration:none">Infinite Wireless</a></td>
+      <td style="color:#94a3b8;font-size:11px">Infinite Wireless</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-20</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Sales Opportunities</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">35</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000Vr4jZYAR" target="_blank" style="color:#60a5fa;text-decoration:none">Black Fire & Security Services</a></td>
+      <td style="color:#94a3b8;font-size:11px">Black Fire & Security Services</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-03</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: SLAs</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">36</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000W4XW3YAN" target="_blank" style="color:#60a5fa;text-decoration:none">Just-N-Case Security</a></td>
+      <td style="color:#94a3b8;font-size:11px">Just-N-Case Security</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-04</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Mobile App / GPS Tracking; Progressive Billing</div><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">37</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000WfJ13YAF" target="_blank" style="color:#60a5fa;text-decoration:none">Security Designs</a></td>
+      <td style="color:#94a3b8;font-size:11px">Security Designs</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-11</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Mobile App / GPS Tracking</div><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">38</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000WTpzBYAT" target="_blank" style="color:#60a5fa;text-decoration:none">Bosque IT</a></td>
+      <td style="color:#94a3b8;font-size:11px">Bosque IT</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-11</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Sales Opportunities</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">39</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000XCE94YAH" target="_blank" style="color:#60a5fa;text-decoration:none">Security Force</a></td>
+      <td style="color:#94a3b8;font-size:11px">Security Force</td>
+      <td style="font-size:11px;color:#94a3b8">2026-03-02</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Job Costing; Progressive Billing; Sales Opportunities</div></td>
+    </tr><tr class="row-a2">
+      <td style="color:#64748b;font-size:11px">40</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000XI8c1YAD" target="_blank" style="color:#60a5fa;text-decoration:none">Underdog Fire & Security</a></td>
+      <td style="color:#94a3b8;font-size:11px">Underdog Fire & Security</td>
+      <td style="font-size:11px;color:#94a3b8">2026-03-04</td>
+      <td><span class="pill pill-blue">A2 🔜 Apr 1</span></td>
+      <td><div class="feat feat-blue">A2: Mobile App / GPS Tracking; Job Costing; Sales Opportunities</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">41</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000QywVCYAZ" target="_blank" style="color:#60a5fa;text-decoration:none">Tricom Technology Solutions</a></td>
+      <td style="color:#94a3b8;font-size:11px">Tricom Technology Solutions</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-01</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Progressive Billing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">42</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000QazsPYAR" target="_blank" style="color:#60a5fa;text-decoration:none">Vision Security & Technology</a></td>
+      <td style="color:#94a3b8;font-size:11px">Vision Security & Technology (AiN)</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-06</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking; Job Costing; Progressive Billing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">43</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RN9j0YAD" target="_blank" style="color:#60a5fa;text-decoration:none">Hunter Communications</a></td>
+      <td style="color:#94a3b8;font-size:11px">Hunter Communications (PSA)</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-13</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Custom Fields / Reporting; Integration - Hubspot</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking; Job Costing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">44</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RaWRdYAN" target="_blank" style="color:#60a5fa;text-decoration:none">Oasis Integrations</a></td>
+      <td style="color:#94a3b8;font-size:11px">Oasis Smart Home</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-14</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking; Job Costing</div><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">45</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000Rhvt7YAB" target="_blank" style="color:#60a5fa;text-decoration:none">Extreme AVS</a></td>
+      <td style="color:#94a3b8;font-size:11px">Extreme AVS</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-15</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking</div><div class="feat feat-gray">Other: Integration - DTools</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">46</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RxIMNYA3" target="_blank" style="color:#60a5fa;text-decoration:none">Facility Protection Group</a></td>
+      <td style="color:#94a3b8;font-size:11px">Facility Protection Group</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-17</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Enhanced Ticket Views; Inventory</div><div class="feat feat-blue">A2: Job Costing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">47</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RcVeLYAV" target="_blank" style="color:#60a5fa;text-decoration:none">Awerx Holdings</a></td>
+      <td style="color:#94a3b8;font-size:11px">Awerx</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-21</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Inventory</div><div class="feat feat-blue">A2: Job Costing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">48</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RuHGLYA3" target="_blank" style="color:#60a5fa;text-decoration:none">B&S Integrated Security Systems</a></td>
+      <td style="color:#94a3b8;font-size:11px">B&S Integrated Security Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-22</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Inventory</div><div class="feat feat-blue">A2: Job Costing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">49</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000QynU3YAJ" target="_blank" style="color:#60a5fa;text-decoration:none">Simplicity VoIP</a></td>
+      <td style="color:#94a3b8;font-size:11px">Simplicity VoIP</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-22</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Enhanced Ticket Views; Integration - Hubspot; Inventory</div><div class="feat feat-blue">A2: Job Costing; SLAs</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">50</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SHW8DYAX" target="_blank" style="color:#60a5fa;text-decoration:none">Grey Matter Technologies</a></td>
+      <td style="color:#94a3b8;font-size:11px">Grey Matter Technologies</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-24</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Job Costing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">51</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RrBiXYAV" target="_blank" style="color:#60a5fa;text-decoration:none">BP Innovations</a></td>
+      <td style="color:#94a3b8;font-size:11px">BP Innovations</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-24</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Custom Fields / Reporting</div><div class="feat feat-blue">A2: Progressive Billing</div><div class="feat feat-gray">Other: Subcontractors; Integration - Field Nation</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">52</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000S1GgwYAF" target="_blank" style="color:#60a5fa;text-decoration:none">CS&M Tele-Systems</a></td>
+      <td style="color:#94a3b8;font-size:11px">CS&M Tele-Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-27</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking; Job Costing</div><div class="feat feat-gray">Other: Integration - QuickBooks Desktop</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">53</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SDnNoYAL" target="_blank" style="color:#60a5fa;text-decoration:none">Tech Solution</a></td>
+      <td style="color:#94a3b8;font-size:11px">Tech Solution</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-28</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Sales Opportunities</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">54</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000S0p8rYAB" target="_blank" style="color:#60a5fa;text-decoration:none">K&S Electronics & Security</a></td>
+      <td style="color:#94a3b8;font-size:11px">K&S Electronics & Security</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-30</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">55</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RdNwTYAV" target="_blank" style="color:#60a5fa;text-decoration:none">Core Security Services</a></td>
+      <td style="color:#94a3b8;font-size:11px">Core Security Services</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-30</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Enhanced Ticket Views</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">56</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000S9fgYYAR" target="_blank" style="color:#60a5fa;text-decoration:none">W. O'Donnell Consulting</a></td>
+      <td style="color:#94a3b8;font-size:11px">W. O'Donnell - PSA Web</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-03</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Enhanced Ticket Views</div><div class="feat feat-blue">A2: SLAs</div><div class="feat feat-gray">Other: Integration - N-Able RMM</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">57</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000S9SWPYA3" target="_blank" style="color:#60a5fa;text-decoration:none">NetCentra</a></td>
+      <td style="color:#94a3b8;font-size:11px">NetCentra</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-04</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking; Job Costing; Progressive Billing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">58</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000Ru6O9YAJ" target="_blank" style="color:#60a5fa;text-decoration:none">Front Row AV</a></td>
+      <td style="color:#94a3b8;font-size:11px">Front Row AV 2</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-04</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Job Costing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">59</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000ShFuvYAF" target="_blank" style="color:#60a5fa;text-decoration:none">Imagit</a></td>
+      <td style="color:#94a3b8;font-size:11px">Imagit</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-05</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Enhanced Ticket Views; Custom Fields / Reporting</div><div class="feat feat-blue">A2: Job Costing; Sales Opportunities; CPQ; SLAs</div><div class="feat feat-gray">Other: Knowledgebase</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">60</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SWCynYAH" target="_blank" style="color:#60a5fa;text-decoration:none">CCI Network Services</a></td>
+      <td style="color:#94a3b8;font-size:11px">CCI Network Services</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-05</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Enhanced Ticket Views</div><div class="feat feat-blue">A2: Sales Opportunities</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">61</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000ShpAPYAZ" target="_blank" style="color:#60a5fa;text-decoration:none">NetWatch, Inc.</a></td>
+      <td style="color:#94a3b8;font-size:11px">NetWatch Inc.</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-06</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking; Sales Opportunities</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">62</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RKBHVYA5" target="_blank" style="color:#60a5fa;text-decoration:none">Telsco Security Systems inc.</a></td>
+      <td style="color:#94a3b8;font-size:11px">Telsco Security Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-06</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Enhanced Ticket Views; Custom Fields / Reporting</div><div class="feat feat-blue">A2: Progressive Billing; Sales Opportunities; CPQ</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">63</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000StAWUYA3" target="_blank" style="color:#60a5fa;text-decoration:none">Gotcha Security</a></td>
+      <td style="color:#94a3b8;font-size:11px">Gotcha Security</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-07</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Enhanced Ticket Views</div><div class="feat feat-blue">A2: Progressive Billing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">64</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000StA3RYAV" target="_blank" style="color:#60a5fa;text-decoration:none">Verified Security</a></td>
+      <td style="color:#94a3b8;font-size:11px">Verified Security</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-07</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Custom Fields / Reporting</div><div class="feat feat-blue">A2: Job Costing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">65</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SbscPYAR" target="_blank" style="color:#60a5fa;text-decoration:none">SelectQoS</a></td>
+      <td style="color:#94a3b8;font-size:11px">SelectQoS</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-11</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Job Costing; Progressive Billing; Sales Opportunities; SLAs</div><div class="feat feat-gray">Other: Internationalization; Integration - Ninja RMM; Integration - TD Synnex; Integration - Xero</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">66</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000S9CTGYA3" target="_blank" style="color:#60a5fa;text-decoration:none">SeaGlass Technology</a></td>
+      <td style="color:#94a3b8;font-size:11px">SeaGlass Technology</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-11</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking</div><div class="feat feat-gray">Other: Integration - Ninja RMM; Integration - IT Glue</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">67</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SnZUMYA3" target="_blank" style="color:#60a5fa;text-decoration:none">Security Center USA</a></td>
+      <td style="color:#94a3b8;font-size:11px">Security Center USA</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-12</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking; Job Costing; Progressive Billing; Sales Opportunities</div><div class="feat feat-gray">Other: Integration - CMS</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">68</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000TR9eRYAT" target="_blank" style="color:#60a5fa;text-decoration:none">Elevate Tech Solutions</a></td>
+      <td style="color:#94a3b8;font-size:11px">Elevate Tech Solutions</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-20</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Progressive Billing</div><div class="feat feat-gray">Other: Integration - Portal; Integration - Zoho</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">69</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000TBEqBYAX" target="_blank" style="color:#60a5fa;text-decoration:none">Audio Sentry</a></td>
+      <td style="color:#94a3b8;font-size:11px">Audio Sentry</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-20</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Custom Fields / Reporting</div><div class="feat feat-blue">A2: Job Costing; Progressive Billing; Sales Opportunities</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">70</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000TZhB4YAL" target="_blank" style="color:#60a5fa;text-decoration:none">J & J Security Services Corp</a></td>
+      <td style="color:#94a3b8;font-size:11px">J & J Security Services Corp</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-24</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Progressive Billing</div><div class="feat feat-gray">Other: Integration - Portal; Integration - CMS</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">71</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000TcrKNYAZ" target="_blank" style="color:#60a5fa;text-decoration:none">Hawkeye Electronic Security</a></td>
+      <td style="color:#94a3b8;font-size:11px">Hawkeye Electronic Security</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-01</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Job Costing; Sales Opportunities</div><div class="feat feat-gray">Other: Integration - Sage50</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">72</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000TcVBnYAN" target="_blank" style="color:#60a5fa;text-decoration:none">Premises Control</a></td>
+      <td style="color:#94a3b8;font-size:11px">Premises Control</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-01</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Job Costing</div><div class="feat feat-gray">Other: Integration - QuickBooks Desktop</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">73</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000TdIE7YAN" target="_blank" style="color:#60a5fa;text-decoration:none">Qovo Solutions Inc</a></td>
+      <td style="color:#94a3b8;font-size:11px">Qovo Solutions Inc</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-03</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">74</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000Tfca5YAB" target="_blank" style="color:#60a5fa;text-decoration:none">Lane Electronic & Alarm Systems</a></td>
+      <td style="color:#94a3b8;font-size:11px">Lane Electronic & Alarm Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-05</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking; Job Costing; Progressive Billing</div><div class="feat feat-gray">Other: Integration - CMS</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">75</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000TgGKcYAN" target="_blank" style="color:#60a5fa;text-decoration:none">Complete Building Technology Services</a></td>
+      <td style="color:#94a3b8;font-size:11px">Complete Building Technology Services</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-08</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Progressive Billing; Sales Opportunities</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">76</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000Tfz6rYAB" target="_blank" style="color:#60a5fa;text-decoration:none">Media Controlled</a></td>
+      <td style="color:#94a3b8;font-size:11px">Media Controlled</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-09</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Job Costing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">77</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000TfGT7YAN" target="_blank" style="color:#60a5fa;text-decoration:none">Keen Project Solutions</a></td>
+      <td style="color:#94a3b8;font-size:11px">Keen Project Solutions PSA I</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-09</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Job Costing</div><div class="feat feat-gray">Other: Integration - SageIntact</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">78</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000UFkajYAD" target="_blank" style="color:#60a5fa;text-decoration:none">Garage Door Group Chicago</a></td>
+      <td style="color:#94a3b8;font-size:11px">Garage Door Group Chicago</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-10</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Custom Fields / Reporting</div><div class="feat feat-blue">A2: Job Costing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">79</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000UL2FGYA1" target="_blank" style="color:#60a5fa;text-decoration:none">Tecflow Technology</a></td>
+      <td style="color:#94a3b8;font-size:11px">Tecflow Technology</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-15</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Enhanced Ticket Views</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking; SLAs</div><div class="feat feat-gray">Other: Integration - Ninja RMM; Integration - TD Synnex; Integration - IT Glue</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">80</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SqqAUYAZ" target="_blank" style="color:#60a5fa;text-decoration:none">Security Pros</a></td>
+      <td style="color:#94a3b8;font-size:11px">Security Pros</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-19</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Custom Fields / Reporting; Integration - Hubspot</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking; Job Costing; Progressive Billing; Sales Opportunities</div><div class="feat feat-gray">Other: Internationalization</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">81</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SWrNeYAL" target="_blank" style="color:#60a5fa;text-decoration:none">Atlantech Online</a></td>
+      <td style="color:#94a3b8;font-size:11px">Atlantech Online - PSA</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-29</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Sales Opportunities; CPQ</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">82</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VLFLZYA5" target="_blank" style="color:#60a5fa;text-decoration:none">Blue Wave Communications</a></td>
+      <td style="color:#94a3b8;font-size:11px">Blue Wave Communications</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-14</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Inventory</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">83</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VWrNWYA1" target="_blank" style="color:#60a5fa;text-decoration:none">I2G Systems</a></td>
+      <td style="color:#94a3b8;font-size:11px">I2G Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-21</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management; Custom Fields / Reporting; Integration - Hubspot</div><div class="feat feat-blue">A2: CPQ</div><div class="feat feat-gray">Other: Knowledgebase</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">84</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VLnqJYAT" target="_blank" style="color:#60a5fa;text-decoration:none">Copper Clad Systems</a></td>
+      <td style="color:#94a3b8;font-size:11px">Copper Clad Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-23</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Job Costing; Progressive Billing</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">85</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VtOeAYAV" target="_blank" style="color:#60a5fa;text-decoration:none">Access Integration</a></td>
+      <td style="color:#94a3b8;font-size:11px">Access Integration</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-28</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking</div><div class="feat feat-gray">Other: Integration - DTools</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">86</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VqqDbYAJ" target="_blank" style="color:#60a5fa;text-decoration:none">RingAlfa</a></td>
+      <td style="color:#94a3b8;font-size:11px">RingAlfa</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-29</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Integration - Hubspot</div><div class="feat feat-blue">A2: Sales Opportunities</div><div class="feat feat-gray">Other: Integration - Ninja RMM</div></td>
+    </tr><tr class="row-both">
+      <td style="color:#64748b;font-size:11px">87</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000WWLF0YAP" target="_blank" style="color:#60a5fa;text-decoration:none">Audio Integrations</a></td>
+      <td style="color:#94a3b8;font-size:11px">Audio Integrations</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-18</td>
+      <td><span class="pill pill-green">A1 ✅</span> <span class="pill pill-blue">A2 🔜</span></td>
+      <td><div class="feat feat-green">A1: Project Management</div><div class="feat feat-blue">A2: Mobile App / GPS Tracking</div><div class="feat feat-gray">Other: Integration - DTools</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">88</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000RxPqsYAF" target="_blank" style="color:#60a5fa;text-decoration:none">Property Protection Consulting</a></td>
+      <td style="color:#94a3b8;font-size:11px">Property Protection Consulting</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-20</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - RapidResponse</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">89</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000S0hEYYAZ" target="_blank" style="color:#60a5fa;text-decoration:none">Global Axiom</a></td>
+      <td style="color:#94a3b8;font-size:11px">Global Axiom</td>
+      <td style="font-size:11px;color:#94a3b8">2025-10-23</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Subcontractors</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">90</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000Sq0ovYAB" target="_blank" style="color:#60a5fa;text-decoration:none">Premier Sound Security & Automation</a></td>
+      <td style="color:#94a3b8;font-size:11px">Premier Sound Security & Automate</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-06</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">91</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000SSSSfYAP" target="_blank" style="color:#60a5fa;text-decoration:none">Installation King</a></td>
+      <td style="color:#94a3b8;font-size:11px">Installation King</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-14</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">92</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000TKyM6YAL" target="_blank" style="color:#60a5fa;text-decoration:none">All About Sound and Video</a></td>
+      <td style="color:#94a3b8;font-size:11px">All About Sound and Video</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-21</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - DTools</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">93</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000TdLyLYAV" target="_blank" style="color:#60a5fa;text-decoration:none">JM Security</a></td>
+      <td style="color:#94a3b8;font-size:11px">JM Security</td>
+      <td style="font-size:11px;color:#94a3b8">2025-11-26</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Sage50</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">94</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000UXcYHYA1" target="_blank" style="color:#60a5fa;text-decoration:none">MGi Systems</a></td>
+      <td style="color:#94a3b8;font-size:11px">MGi Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-23</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">95</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000UTmPnYAL" target="_blank" style="color:#60a5fa;text-decoration:none">Workplace Technologies</a></td>
+      <td style="color:#94a3b8;font-size:11px">Workplace Technologies</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-23</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Xero</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">96</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000ULMsJYAX" target="_blank" style="color:#60a5fa;text-decoration:none">Voytel</a></td>
+      <td style="color:#94a3b8;font-size:11px">Voytel</td>
+      <td style="font-size:11px;color:#94a3b8">2025-12-29</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Ninja RMM; Integration - TD Synnex; Integration - IT Glue</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">97</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000THIXhYAP" target="_blank" style="color:#60a5fa;text-decoration:none">Sound Advice & Video</a></td>
+      <td style="color:#94a3b8;font-size:11px">Sound Advice & Video</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-05</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">98</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000UZRTtYAP" target="_blank" style="color:#60a5fa;text-decoration:none">Qoverage</a></td>
+      <td style="color:#94a3b8;font-size:11px">Qoverage</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-06</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Ninja RMM</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">99</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000TxIeXYAV" target="_blank" style="color:#60a5fa;text-decoration:none">CRAN-COM</a></td>
+      <td style="color:#94a3b8;font-size:11px">CranCom</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-06</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Subcontractors</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">100</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VDXHFYA5" target="_blank" style="color:#60a5fa;text-decoration:none">AV Pro Communications</a></td>
+      <td style="color:#94a3b8;font-size:11px">AV Pro Communications</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-13</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">101</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000W29ETYAZ" target="_blank" style="color:#60a5fa;text-decoration:none">Emergency Response USA</a></td>
+      <td style="color:#94a3b8;font-size:11px">Emergency Response USA PSA</td>
+      <td style="font-size:11px;color:#94a3b8">2026-01-28</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Sage50</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">102</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VtfgcYAB" target="_blank" style="color:#60a5fa;text-decoration:none">Knight Nets Inc</a></td>
+      <td style="color:#94a3b8;font-size:11px">Knight Nets Inc</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-02</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - DTools; Integration - TD Synnex</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">103</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000W4gr3YAB" target="_blank" style="color:#60a5fa;text-decoration:none">IT In Demand</a></td>
+      <td style="color:#94a3b8;font-size:11px">IT In Demand</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-03</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Ninja RMM; Integration - TD Synnex; Integration - IT Glue</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">104</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VWJP3YAP" target="_blank" style="color:#60a5fa;text-decoration:none">The Tech Shacks</a></td>
+      <td style="color:#94a3b8;font-size:11px">The Tech Shacks PSA I</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-03</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Internationalization</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">105</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000W7q14YAB" target="_blank" style="color:#60a5fa;text-decoration:none">Acoustic Design Systems</a></td>
+      <td style="color:#94a3b8;font-size:11px">Acoustic Design Systems</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-05</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Portal; Integration - QuickBooks Desktop</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">106</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000WcwQLYAZ" target="_blank" style="color:#60a5fa;text-decoration:none">AV TechSource</a></td>
+      <td style="color:#94a3b8;font-size:11px">AV TechSource</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-17</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - QuickBooks Desktop</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">107</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000WAe6cYAD" target="_blank" style="color:#60a5fa;text-decoration:none">Ranger Technology Solutions</a></td>
+      <td style="color:#94a3b8;font-size:11px">Ranger Technology Solutions PSA</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-17</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Product Catalog - Kits/Bundles/Assembles</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">108</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000VLlWkYAL" target="_blank" style="color:#60a5fa;text-decoration:none">Millennium Communications Group</a></td>
+      <td style="color:#94a3b8;font-size:11px">Millennium Communications Group</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-17</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Contracts - Hourly and Hourly Usage; Contracts - Product and Labor Pricing Management</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">109</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000W8R74YAF" target="_blank" style="color:#60a5fa;text-decoration:none">H&R Alarms</a></td>
+      <td style="color:#94a3b8;font-size:11px">H&R Alarms PSA</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-24</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - RapidResponse</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">110</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000X3ge1YAB" target="_blank" style="color:#60a5fa;text-decoration:none">Access Integration</a></td>
+      <td style="color:#94a3b8;font-size:11px">Access Integration</td>
+      <td style="font-size:11px;color:#94a3b8">2026-02-25</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - DTools</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">111</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000XLtswYAD" target="_blank" style="color:#60a5fa;text-decoration:none">Great Sounds Audio-Video</a></td>
+      <td style="color:#94a3b8;font-size:11px">Great Sounds Audio-Video</td>
+      <td style="font-size:11px;color:#94a3b8">2026-03-03</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr><tr class="row-neither">
+      <td style="color:#64748b;font-size:11px">112</td>
+      <td><a href="https://rev-io.my.salesforce.com/006PX00000XOk6pYAD" target="_blank" style="color:#60a5fa;text-decoration:none">Vultron Audio & Visual</a></td>
+      <td style="color:#94a3b8;font-size:11px">Vultron</td>
+      <td style="font-size:11px;color:#94a3b8">2026-03-05</td>
+      <td><span class="pill pill-gray">Not on Roadmap</span></td>
+      <td><div class="feat feat-gray">Other: Integration - Portal</div></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p class="note">Source: Salesforce Closed Lost · Click account name to open SF record · Generated by Romer · Rev.io Confidential</p>
+
+<script>
+let currentFilter = 'all';
+
+function filterTable(cls, btn) {
+  currentFilter = cls;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function searchTable(val) {
+  applyFilters(val);
+}
+
+function applyFilters(searchVal) {
+  const search = (searchVal || document.querySelector('.search-box').value).toLowerCase();
+  let visible = 0;
+  document.querySelectorAll('#mainTable tbody tr').forEach(row => {
+    const matchClass = currentFilter === 'all' || row.classList.contains(currentFilter);
+    const matchSearch = !search || row.textContent.toLowerCase().includes(search);
+    if (matchClass && matchSearch) {
+      row.classList.remove('hidden');
+      visible++;
+    } else {
+      row.classList.add('hidden');
+    }
+  });
+  document.getElementById('rowCount').textContent = visible + ' records';
+}
+</script>
+</body>
+</html>
