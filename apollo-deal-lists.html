@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apollo 1 &amp; 2 — Deal Lists with Contact Status</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; padding: 24px; }
+  h1 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #64748b; margin-bottom: 28px; }
+  h2 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .section { margin-bottom: 32px; }
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; flex-wrap: wrap; }
+  .stat-pill { font-size: 12px; padding: 4px 12px; border-radius: 20px; font-weight: 600; }
+  .sp-total { background: #1e2130; color: #94a3b8; border: 1px solid #2d3148; }
+  .sp-warn { background: #431407; color: #fb923c; }
+  .sp-ok { background: #052e16; color: #4ade80; }
+  .search { padding: 5px 10px; border-radius: 6px; border: 1px solid #2d3148; background: #1e2130; color: #e2e8f0; font-size: 12px; width: 180px; }
+  .toggle-btn { padding: 4px 12px; border-radius: 6px; border: 1px solid #2d3148; background: #1e2130; color: #94a3b8; font-size: 11px; cursor: pointer; }
+  .toggle-btn.active { background: #431407; border-color: #f97316; color: #fb923c; }
+  .count-lbl { font-size: 11px; color: #475569; margin-left: auto; }
+  .card { background: #1e2130; border-radius: 12px; border: 1px solid #2d3148; overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; padding: 9px 12px; color: #64748b; font-weight: 500; border-bottom: 1px solid #2d3148; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; background: #171a29; position: sticky; top: 0; z-index: 1; }
+  td { padding: 8px 12px; border-bottom: 1px solid #1a1f30; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #252840; }
+  .row-need td:first-child { border-left: 3px solid #f97316; }
+  .row-done td:first-child { border-left: 3px solid #22c55e33; }
+  .num { color: #475569; font-size: 11px; width: 30px; }
+  .acct { color: #60a5fa; text-decoration: none; font-weight: 500; }
+  .acct:hover { text-decoration: underline; }
+  .dim { color: #64748b; font-size: 11px; }
+  .feat { font-size: 11px; color: #94a3b8; }
+  .pill { display: inline-flex; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 600; white-space: nowrap; }
+  .pill-no { background: #431407; color: #fb923c; }
+  .pill-contacted { background: #052e16; color: #4ade80; }
+  .hidden { display: none !important; }
+  .note { font-size: 11px; color: #475569; text-align: center; padding: 16px 0; }
+  @media (max-width: 700px) { .section-header { flex-direction: column; align-items: flex-start; } }
+</style>
+</head>
+<body>
+
+<h1>🎯 Apollo 1 &amp; 2 — Deal Lists with Contact Status</h1>
+<p class="subtitle">Sorted: Not Contacted First · Click account name to open Salesforce record · Mar 5, 2026</p>
+
+<!-- APOLLO 1 -->
+<div class="section">
+  <div class="section-header">
+    <h2 style="color:#4ade80">✅ Apollo 1 — Re-engage NOW (70 deals)</h2>
+    <span class="stat-pill sp-warn">⚠ 42 not contacted</span>
+    <span class="stat-pill sp-ok">✓ 28 contacted</span>
+    <input class="search" type="text" placeholder="Search..." oninput="search('a1',this.value)" id="s1">
+    <button class="toggle-btn" id="t1" onclick="toggleNC('a1','t1')">Show Not Contacted Only</button>
+    <span class="count-lbl" id="c1">70 records</span>
+  </div>
+  <div class="card">
+  <table id="a1">
+    <thead><tr><th>#</th><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th><th>Missing Features (A1)</th></tr></thead>
+    <tbody><tr class="row-need">
+          <td class="num">1</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QywVCYAZ" target="_blank" class="acct">Tricom Technology Solutions</a></td>
+          <td class="dim">2025-10-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">2</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QazsPYAR" target="_blank" class="acct">Vision Security & Technology</a></td>
+          <td class="dim">2025-10-06</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-01</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing; Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">3</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RRYdxYAH" target="_blank" class="acct">PROACTIVERISK</a></td>
+          <td class="dim">2025-10-10</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span></td>
+        </tr><tr class="row-need">
+          <td class="num">4</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RN9j0YAD" target="_blank" class="acct">Hunter Communications</a></td>
+          <td class="dim">2025-10-13</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Custom Fields / Reporting; Integration - Hubspot</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">5</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RxIMNYA3" target="_blank" class="acct">Facility Protection Group</a></td>
+          <td class="dim">2025-10-17</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-16</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views; Inventory</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">6</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RuHGLYA3" target="_blank" class="acct">B&S Integrated Security Systems</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Inventory</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">7</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QynU3YAJ" target="_blank" class="acct">Simplicity VoIP</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-07</td>
+          <td class="feat"><span style="color:#4ade80">Enhanced Ticket Views; Integration - Hubspot; Inventory</span> · <span style="color:#60a5fa">Job Costing; SLAs</span></td>
+        </tr><tr class="row-need">
+          <td class="num">8</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SHW8DYAX" target="_blank" class="acct">Grey Matter Technologies</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">9</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Qs325YAB" target="_blank" class="acct">Affiliated Technology Solutions</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-23</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views; Custom Fields / Reporting</span></td>
+        </tr><tr class="row-need">
+          <td class="num">10</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S1GgwYAF" target="_blank" class="acct">CS&M Tele-Systems</a></td>
+          <td class="dim">2025-10-27</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">11</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SDnNoYAL" target="_blank" class="acct">Tech Solution</a></td>
+          <td class="dim">2025-10-28</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-27</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Sales Opportunities</span></td>
+        </tr><tr class="row-need">
+          <td class="num">12</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RdNwTYAV" target="_blank" class="acct">Core Security Services</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-29</td>
+          <td class="feat"><span style="color:#4ade80">Enhanced Ticket Views</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">13</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9fgYYAR" target="_blank" class="acct">W. O'Donnell Consulting</a></td>
+          <td class="dim">2025-11-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-23</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views</span> · <span style="color:#60a5fa">SLAs</span></td>
+        </tr><tr class="row-need">
+          <td class="num">14</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SDiWAYA1" target="_blank" class="acct">Acoustic Design Systems</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-24</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span></td>
+        </tr><tr class="row-need">
+          <td class="num">15</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9SWPYA3" target="_blank" class="acct">NetCentra</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-30</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing; Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">16</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Ru6O9YAJ" target="_blank" class="acct">Front Row AV</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-28</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">17</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShFuvYAF" target="_blank" class="acct">Imagit</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views; Custom Fields / Reporting</span> · <span style="color:#60a5fa">Job Costing; Sales Opportunities; CPQ; SLAs</span></td>
+        </tr><tr class="row-need">
+          <td class="num">18</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SWCynYAH" target="_blank" class="acct">CCI Network Services</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views</span> · <span style="color:#60a5fa">Sales Opportunities</span></td>
+        </tr><tr class="row-need">
+          <td class="num">19</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SVo3jYAD" target="_blank" class="acct">TYR Technologies</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-11-04</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views</span></td>
+        </tr><tr class="row-need">
+          <td class="num">20</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Sc8u5YAB" target="_blank" class="acct">Fusion Systems LLC</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-11-05</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span></td>
+        </tr><tr class="row-need">
+          <td class="num">21</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000StAWUYA3" target="_blank" class="acct">Gotcha Security</a></td>
+          <td class="dim">2025-11-07</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views</span> · <span style="color:#60a5fa">Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">22</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000StA3RYAV" target="_blank" class="acct">Verified Security</a></td>
+          <td class="dim">2025-11-07</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Custom Fields / Reporting</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">23</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SbscPYAR" target="_blank" class="acct">SelectQoS</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing; Progressive Billing; Sales Opportunities; SLAs</span></td>
+        </tr><tr class="row-need">
+          <td class="num">24</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9CTGYA3" target="_blank" class="acct">SeaGlass Technology</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-11-03</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">25</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SnZUMYA3" target="_blank" class="acct">Security Center USA</a></td>
+          <td class="dim">2025-11-12</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-11-10</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing; Progressive Billing; Sales Opportunities</span></td>
+        </tr><tr class="row-need">
+          <td class="num">26</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TR9eRYAT" target="_blank" class="acct">Elevate Tech Solutions</a></td>
+          <td class="dim">2025-11-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">27</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TBEqBYAX" target="_blank" class="acct">Audio Sentry</a></td>
+          <td class="dim">2025-11-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-11-19</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Custom Fields / Reporting</span> · <span style="color:#60a5fa">Job Costing; Progressive Billing; Sales Opportunities</span></td>
+        </tr><tr class="row-need">
+          <td class="num">28</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TZhB4YAL" target="_blank" class="acct">J & J Security Services Corp</a></td>
+          <td class="dim">2025-11-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">29</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TcrKNYAZ" target="_blank" class="acct">Hawkeye Electronic Security</a></td>
+          <td class="dim">2025-12-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-11-28</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing; Sales Opportunities</span></td>
+        </tr><tr class="row-need">
+          <td class="num">30</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TcVBnYAN" target="_blank" class="acct">Premises Control</a></td>
+          <td class="dim">2025-12-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">31</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TdIE7YAN" target="_blank" class="acct">Qovo Solutions Inc</a></td>
+          <td class="dim">2025-12-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-12-02</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">32</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Tfca5YAB" target="_blank" class="acct">Lane Electronic & Alarm Systems</a></td>
+          <td class="dim">2025-12-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing; Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">33</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TfGT7YAN" target="_blank" class="acct">Keen Project Solutions</a></td>
+          <td class="dim">2025-12-09</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">34</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SrNfuYAF" target="_blank" class="acct">CallHarbor</a></td>
+          <td class="dim">2025-12-10</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-12-01</td>
+          <td class="feat"><span style="color:#4ade80">Enhanced Ticket Views</span></td>
+        </tr><tr class="row-need">
+          <td class="num">35</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UL2FGYA1" target="_blank" class="acct">Tecflow Technology</a></td>
+          <td class="dim">2025-12-15</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-12-12</td>
+          <td class="feat"><span style="color:#4ade80">Enhanced Ticket Views</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; SLAs</span></td>
+        </tr><tr class="row-need">
+          <td class="num">36</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Qyst6YAB" target="_blank" class="acct">Ficrest Integration</a></td>
+          <td class="dim">2026-01-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-03</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span></td>
+        </tr><tr class="row-need">
+          <td class="num">37</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLFLZYA5" target="_blank" class="acct">Blue Wave Communications</a></td>
+          <td class="dim">2026-01-14</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Inventory</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">38</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SAuK9YAL" target="_blank" class="acct">Tailwinds Voice & Data</a></td>
+          <td class="dim">2026-01-16</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2026-01-13</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Custom Fields / Reporting; Inventory</span></td>
+        </tr><tr class="row-need">
+          <td class="num">39</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VWrNWYA1" target="_blank" class="acct">I2G Systems</a></td>
+          <td class="dim">2026-01-21</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2026-01-16</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Custom Fields / Reporting; Integration - Hubspot</span> · <span style="color:#60a5fa">CPQ</span></td>
+        </tr><tr class="row-need">
+          <td class="num">40</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLnqJYAT" target="_blank" class="acct">Copper Clad Systems</a></td>
+          <td class="dim">2026-01-23</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2026-01-22</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing; Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">41</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VtOeAYAV" target="_blank" class="acct">Access Integration</a></td>
+          <td class="dim">2026-01-28</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2026-01-27</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">42</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WWLF0YAP" target="_blank" class="acct">Audio Integrations</a></td>
+          <td class="dim">2026-02-18</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2026-02-17</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-done">
+          <td class="num">43</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RGg8bYAD" target="_blank" class="acct">LayerOne</a></td>
+          <td class="dim">2025-10-03</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-03</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span></td>
+        </tr><tr class="row-done">
+          <td class="num">44</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RaWRdYAN" target="_blank" class="acct">Oasis Integrations</a></td>
+          <td class="dim">2025-10-14</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-14</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing</span></td>
+        </tr><tr class="row-done">
+          <td class="num">45</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RWPq9YAH" target="_blank" class="acct">Ovation Audio Visual</a></td>
+          <td class="dim">2025-10-14</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-14</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span></td>
+        </tr><tr class="row-done">
+          <td class="num">46</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QeSpqYAF" target="_blank" class="acct">Edin Alarm</a></td>
+          <td class="dim">2025-10-14</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-14</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span></td>
+        </tr><tr class="row-done">
+          <td class="num">47</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Rhvt7YAB" target="_blank" class="acct">Extreme AVS</a></td>
+          <td class="dim">2025-10-15</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-15</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-done">
+          <td class="num">48</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RcVeLYAV" target="_blank" class="acct">Awerx Holdings</a></td>
+          <td class="dim">2025-10-21</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-21</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Inventory</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-done">
+          <td class="num">49</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S67czYAB" target="_blank" class="acct">Aura Design</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-22</td>
+          <td class="feat"><span style="color:#4ade80">Inventory</span></td>
+        </tr><tr class="row-done">
+          <td class="num">50</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RrBiXYAV" target="_blank" class="acct">BP Innovations</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-24</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Custom Fields / Reporting</span> · <span style="color:#60a5fa">Progressive Billing</span></td>
+        </tr><tr class="row-done">
+          <td class="num">51</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RXR1tYAH" target="_blank" class="acct">Global Guardian Asset Security</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-24</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span></td>
+        </tr><tr class="row-done">
+          <td class="num">52</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9WGiYAN" target="_blank" class="acct">MSC Systems</a></td>
+          <td class="dim">2025-10-28</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-28</td>
+          <td class="feat"><span style="color:#4ade80">Inventory</span></td>
+        </tr><tr class="row-done">
+          <td class="num">53</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SKfrhYAD" target="_blank" class="acct">DefenTec</a></td>
+          <td class="dim">2025-10-29</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-29</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span></td>
+        </tr><tr class="row-done">
+          <td class="num">54</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SPzrOYAT" target="_blank" class="acct">Video Vision Inc.</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-30</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span></td>
+        </tr><tr class="row-done">
+          <td class="num">55</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S0p8rYAB" target="_blank" class="acct">K&S Electronics & Security</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-30</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-done">
+          <td class="num">56</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShpAPYAZ" target="_blank" class="acct">NetWatch, Inc.</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-11-06</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Sales Opportunities</span></td>
+        </tr><tr class="row-done">
+          <td class="num">57</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RKBHVYA5" target="_blank" class="acct">Telsco Security Systems inc.</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-11-06</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views; Custom Fields / Reporting</span> · <span style="color:#60a5fa">Progressive Billing; Sales Opportunities; CPQ</span></td>
+        </tr><tr class="row-done">
+          <td class="num">58</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000T9B1xYAF" target="_blank" class="acct">Flux Labs</a></td>
+          <td class="dim">2025-11-14</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-11-14</td>
+          <td class="feat"><span style="color:#4ade80">Enhanced Ticket Views</span></td>
+        </tr><tr class="row-done">
+          <td class="num">59</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TKOLdYAP" target="_blank" class="acct">SecurityBud</a></td>
+          <td class="dim">2025-12-03</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-12-03</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span></td>
+        </tr><tr class="row-done">
+          <td class="num">60</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TgGKcYAN" target="_blank" class="acct">Complete Building Technology Services</a></td>
+          <td class="dim">2025-12-08</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-12-08</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Progressive Billing; Sales Opportunities</span></td>
+        </tr><tr class="row-done">
+          <td class="num">61</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TkNs9YAF" target="_blank" class="acct">Stone Mountain Systems</a></td>
+          <td class="dim">2025-12-09</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-12-09</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views</span></td>
+        </tr><tr class="row-done">
+          <td class="num">62</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Tfz6rYAB" target="_blank" class="acct">Media Controlled</a></td>
+          <td class="dim">2025-12-09</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-12-09</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-done">
+          <td class="num">63</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UFkajYAD" target="_blank" class="acct">Garage Door Group Chicago</a></td>
+          <td class="dim">2025-12-10</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-12-10</td>
+          <td class="feat"><span style="color:#4ade80">Custom Fields / Reporting</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-done">
+          <td class="num">64</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SqqAUYAZ" target="_blank" class="acct">Security Pros</a></td>
+          <td class="dim">2025-12-19</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-12-19</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Custom Fields / Reporting; Integration - Hubspot</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing; Progressive Billing; Sales Opportunities</span></td>
+        </tr><tr class="row-done">
+          <td class="num">65</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SWrNeYAL" target="_blank" class="acct">Atlantech Online</a></td>
+          <td class="dim">2025-12-29</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-12-29</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Sales Opportunities; CPQ</span></td>
+        </tr><tr class="row-done">
+          <td class="num">66</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLqBRYA1" target="_blank" class="acct">Nebula Cybersecurity Group</a></td>
+          <td class="dim">2026-01-22</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2026-01-22</td>
+          <td class="feat"><span style="color:#4ade80">Enhanced Ticket Views</span></td>
+        </tr><tr class="row-done">
+          <td class="num">67</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VqZT2YAN" target="_blank" class="acct">Complete Technology Services</a></td>
+          <td class="dim">2026-01-23</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2026-01-23</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Custom Fields / Reporting</span></td>
+        </tr><tr class="row-done">
+          <td class="num">68</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VqqDbYAJ" target="_blank" class="acct">RingAlfa</a></td>
+          <td class="dim">2026-01-29</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2026-01-29</td>
+          <td class="feat"><span style="color:#4ade80">Integration - Hubspot</span> · <span style="color:#60a5fa">Sales Opportunities</span></td>
+        </tr><tr class="row-done">
+          <td class="num">69</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VICAXYA5" target="_blank" class="acct">OPAV</a></td>
+          <td class="dim">2026-02-04</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2026-02-04</td>
+          <td class="feat"><span style="color:#4ade80">Inventory</span></td>
+        </tr><tr class="row-done">
+          <td class="num">70</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WEeXpYAL" target="_blank" class="acct">Core Security Services</a></td>
+          <td class="dim">2026-03-03</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2026-03-03</td>
+          <td class="feat"><span style="color:#4ade80">Custom Fields / Reporting</span></td>
+        </tr></tbody>
+  </table>
+  </div>
+</div>
+
+<!-- APOLLO 2 -->
+<div class="section">
+  <div class="section-header">
+    <h2 style="color:#60a5fa">🔜 Apollo 2 — Re-engage April 1 (64 deals)</h2>
+    <span class="stat-pill sp-warn">⚠ 43 not contacted</span>
+    <span class="stat-pill sp-ok">✓ 21 contacted</span>
+    <input class="search" type="text" placeholder="Search..." oninput="search('a2',this.value)" id="s2">
+    <button class="toggle-btn" id="t2" onclick="toggleNC('a2','t2')">Show Not Contacted Only</button>
+    <span class="count-lbl" id="c2">64 records</span>
+  </div>
+  <div class="card">
+  <table id="a2">
+    <thead><tr><th>#</th><th>Account</th><th>Close Date</th><th>Contact Status</th><th>Last Activity</th><th>Missing Features (A2)</th></tr></thead>
+    <tbody><tr class="row-need">
+          <td class="num">1</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QywVCYAZ" target="_blank" class="acct">Tricom Technology Solutions</a></td>
+          <td class="dim">2025-10-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">2</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QazsPYAR" target="_blank" class="acct">Vision Security & Technology</a></td>
+          <td class="dim">2025-10-06</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-01</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing; Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">3</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RN9j0YAD" target="_blank" class="acct">Hunter Communications</a></td>
+          <td class="dim">2025-10-13</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Custom Fields / Reporting; Integration - Hubspot</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">4</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RxIMNYA3" target="_blank" class="acct">Facility Protection Group</a></td>
+          <td class="dim">2025-10-17</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-16</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views; Inventory</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">5</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RuHGLYA3" target="_blank" class="acct">B&S Integrated Security Systems</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Inventory</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">6</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000QynU3YAJ" target="_blank" class="acct">Simplicity VoIP</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-07</td>
+          <td class="feat"><span style="color:#4ade80">Enhanced Ticket Views; Integration - Hubspot; Inventory</span> · <span style="color:#60a5fa">Job Costing; SLAs</span></td>
+        </tr><tr class="row-need">
+          <td class="num">7</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SHW8DYAX" target="_blank" class="acct">Grey Matter Technologies</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">8</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Rd4iZYAR" target="_blank" class="acct">Atlantic Security Automation Partners</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-23</td>
+          <td class="feat"><span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">9</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S1GgwYAF" target="_blank" class="acct">CS&M Tele-Systems</a></td>
+          <td class="dim">2025-10-27</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">10</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SDnNoYAL" target="_blank" class="acct">Tech Solution</a></td>
+          <td class="dim">2025-10-28</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-27</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Sales Opportunities</span></td>
+        </tr><tr class="row-need">
+          <td class="num">11</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RdNwTYAV" target="_blank" class="acct">Core Security Services</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-29</td>
+          <td class="feat"><span style="color:#4ade80">Enhanced Ticket Views</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">12</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9fgYYAR" target="_blank" class="acct">W. O'Donnell Consulting</a></td>
+          <td class="dim">2025-11-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-23</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views</span> · <span style="color:#60a5fa">SLAs</span></td>
+        </tr><tr class="row-need">
+          <td class="num">13</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SGg81YAD" target="_blank" class="acct">Audio Video Systems</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-11-03</td>
+          <td class="feat"><span style="color:#60a5fa">Mobile App / GPS Tracking; Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">14</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SAYDBYA5" target="_blank" class="acct">Digital Home Systems</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-30</td>
+          <td class="feat"><span style="color:#60a5fa">CPQ</span></td>
+        </tr><tr class="row-need">
+          <td class="num">15</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9SWPYA3" target="_blank" class="acct">NetCentra</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-30</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing; Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">16</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Ru6O9YAJ" target="_blank" class="acct">Front Row AV</a></td>
+          <td class="dim">2025-11-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-28</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">17</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShFuvYAF" target="_blank" class="acct">Imagit</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views; Custom Fields / Reporting</span> · <span style="color:#60a5fa">Job Costing; Sales Opportunities; CPQ; SLAs</span></td>
+        </tr><tr class="row-need">
+          <td class="num">18</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SWCynYAH" target="_blank" class="acct">CCI Network Services</a></td>
+          <td class="dim">2025-11-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views</span> · <span style="color:#60a5fa">Sales Opportunities</span></td>
+        </tr><tr class="row-need">
+          <td class="num">19</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000StAWUYA3" target="_blank" class="acct">Gotcha Security</a></td>
+          <td class="dim">2025-11-07</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views</span> · <span style="color:#60a5fa">Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">20</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000StA3RYAV" target="_blank" class="acct">Verified Security</a></td>
+          <td class="dim">2025-11-07</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Custom Fields / Reporting</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">21</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SbscPYAR" target="_blank" class="acct">SelectQoS</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing; Progressive Billing; Sales Opportunities; SLAs</span></td>
+        </tr><tr class="row-need">
+          <td class="num">22</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SSg4EYAT" target="_blank" class="acct">818 Computer</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-10-31</td>
+          <td class="feat"><span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">23</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S9CTGYA3" target="_blank" class="acct">SeaGlass Technology</a></td>
+          <td class="dim">2025-11-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-11-03</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">24</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SnZUMYA3" target="_blank" class="acct">Security Center USA</a></td>
+          <td class="dim">2025-11-12</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-11-10</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing; Progressive Billing; Sales Opportunities</span></td>
+        </tr><tr class="row-need">
+          <td class="num">25</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TR9eRYAT" target="_blank" class="acct">Elevate Tech Solutions</a></td>
+          <td class="dim">2025-11-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">26</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TBEqBYAX" target="_blank" class="acct">Audio Sentry</a></td>
+          <td class="dim">2025-11-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-11-19</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Custom Fields / Reporting</span> · <span style="color:#60a5fa">Job Costing; Progressive Billing; Sales Opportunities</span></td>
+        </tr><tr class="row-need">
+          <td class="num">27</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TZhB4YAL" target="_blank" class="acct">J & J Security Services Corp</a></td>
+          <td class="dim">2025-11-24</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">28</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TcrKNYAZ" target="_blank" class="acct">Hawkeye Electronic Security</a></td>
+          <td class="dim">2025-12-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-11-28</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing; Sales Opportunities</span></td>
+        </tr><tr class="row-need">
+          <td class="num">29</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TcVBnYAN" target="_blank" class="acct">Premises Control</a></td>
+          <td class="dim">2025-12-01</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">30</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TdIE7YAN" target="_blank" class="acct">Qovo Solutions Inc</a></td>
+          <td class="dim">2025-12-03</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-12-02</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">31</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Tfca5YAB" target="_blank" class="acct">Lane Electronic & Alarm Systems</a></td>
+          <td class="dim">2025-12-05</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing; Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">32</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TfGT7YAN" target="_blank" class="acct">Keen Project Solutions</a></td>
+          <td class="dim">2025-12-09</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">33</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UL2FGYA1" target="_blank" class="acct">Tecflow Technology</a></td>
+          <td class="dim">2025-12-15</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2025-12-12</td>
+          <td class="feat"><span style="color:#4ade80">Enhanced Ticket Views</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; SLAs</span></td>
+        </tr><tr class="row-need">
+          <td class="num">34</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLFLZYA5" target="_blank" class="acct">Blue Wave Communications</a></td>
+          <td class="dim">2026-01-14</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#4ade80">Inventory</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">35</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VXesrYAD" target="_blank" class="acct">Infinite Wireless</a></td>
+          <td class="dim">2026-01-20</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#60a5fa">Sales Opportunities</span></td>
+        </tr><tr class="row-need">
+          <td class="num">36</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VWrNWYA1" target="_blank" class="acct">I2G Systems</a></td>
+          <td class="dim">2026-01-21</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2026-01-16</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Custom Fields / Reporting; Integration - Hubspot</span> · <span style="color:#60a5fa">CPQ</span></td>
+        </tr><tr class="row-need">
+          <td class="num">37</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VLnqJYAT" target="_blank" class="acct">Copper Clad Systems</a></td>
+          <td class="dim">2026-01-23</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2026-01-22</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing; Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">38</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VtOeAYAV" target="_blank" class="acct">Access Integration</a></td>
+          <td class="dim">2026-01-28</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2026-01-27</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">39</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000W4XW3YAN" target="_blank" class="acct">Just-N-Case Security</a></td>
+          <td class="dim">2026-02-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2026-02-03</td>
+          <td class="feat"><span style="color:#60a5fa">Mobile App / GPS Tracking; Progressive Billing</span></td>
+        </tr><tr class="row-need">
+          <td class="num">40</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WfJ13YAF" target="_blank" class="acct">Security Designs</a></td>
+          <td class="dim">2026-02-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">—</td>
+          <td class="feat"><span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">41</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WTpzBYAT" target="_blank" class="acct">Bosque IT</a></td>
+          <td class="dim">2026-02-11</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2026-02-10</td>
+          <td class="feat"><span style="color:#60a5fa">Sales Opportunities</span></td>
+        </tr><tr class="row-need">
+          <td class="num">42</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000WWLF0YAP" target="_blank" class="acct">Audio Integrations</a></td>
+          <td class="dim">2026-02-18</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2026-02-17</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-need">
+          <td class="num">43</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000XI8c1YAD" target="_blank" class="acct">Underdog Fire & Security</a></td>
+          <td class="dim">2026-03-04</td>
+          <td><span class="pill pill-no">⚠ Not Contacted</span></td>
+          <td class="dim">2026-03-02</td>
+          <td class="feat"><span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing; Sales Opportunities</span></td>
+        </tr><tr class="row-done">
+          <td class="num">44</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RaWRdYAN" target="_blank" class="acct">Oasis Integrations</a></td>
+          <td class="dim">2025-10-14</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-14</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing</span></td>
+        </tr><tr class="row-done">
+          <td class="num">45</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Rhvt7YAB" target="_blank" class="acct">Extreme AVS</a></td>
+          <td class="dim">2025-10-15</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-15</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-done">
+          <td class="num">46</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RX3vfYAD" target="_blank" class="acct">CMB Systems</a></td>
+          <td class="dim">2025-10-16</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-16</td>
+          <td class="feat"><span style="color:#60a5fa">Sales Opportunities</span></td>
+        </tr><tr class="row-done">
+          <td class="num">47</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RcVeLYAV" target="_blank" class="acct">Awerx Holdings</a></td>
+          <td class="dim">2025-10-21</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-21</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Inventory</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-done">
+          <td class="num">48</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S6YTVYA3" target="_blank" class="acct">SWEPT</a></td>
+          <td class="dim">2025-10-22</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-22</td>
+          <td class="feat"><span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-done">
+          <td class="num">49</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RrBiXYAV" target="_blank" class="acct">BP Innovations</a></td>
+          <td class="dim">2025-10-24</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-24</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Custom Fields / Reporting</span> · <span style="color:#60a5fa">Progressive Billing</span></td>
+        </tr><tr class="row-done">
+          <td class="num">50</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Rhtg2YAB" target="_blank" class="acct">Self Secured Networks</a></td>
+          <td class="dim">2025-10-29</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-29</td>
+          <td class="feat"><span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-done">
+          <td class="num">51</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SZ3kTYAT" target="_blank" class="acct">Aaron's Lock & Security</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-30</td>
+          <td class="feat"><span style="color:#60a5fa">Mobile App / GPS Tracking; Sales Opportunities</span></td>
+        </tr><tr class="row-done">
+          <td class="num">52</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000S0p8rYAB" target="_blank" class="acct">K&S Electronics & Security</a></td>
+          <td class="dim">2025-10-30</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-10-30</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking</span></td>
+        </tr><tr class="row-done">
+          <td class="num">53</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000ShpAPYAZ" target="_blank" class="acct">NetWatch, Inc.</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-11-06</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Sales Opportunities</span></td>
+        </tr><tr class="row-done">
+          <td class="num">54</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000RKBHVYA5" target="_blank" class="acct">Telsco Security Systems inc.</a></td>
+          <td class="dim">2025-11-06</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-11-06</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Enhanced Ticket Views; Custom Fields / Reporting</span> · <span style="color:#60a5fa">Progressive Billing; Sales Opportunities; CPQ</span></td>
+        </tr><tr class="row-done">
+          <td class="num">55</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000TgGKcYAN" target="_blank" class="acct">Complete Building Technology Services</a></td>
+          <td class="dim">2025-12-08</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-12-08</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Progressive Billing; Sales Opportunities</span></td>
+        </tr><tr class="row-done">
+          <td class="num">56</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Tfz6rYAB" target="_blank" class="acct">Media Controlled</a></td>
+          <td class="dim">2025-12-09</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-12-09</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-done">
+          <td class="num">57</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000UFkajYAD" target="_blank" class="acct">Garage Door Group Chicago</a></td>
+          <td class="dim">2025-12-10</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-12-10</td>
+          <td class="feat"><span style="color:#4ade80">Custom Fields / Reporting</span> · <span style="color:#60a5fa">Job Costing</span></td>
+        </tr><tr class="row-done">
+          <td class="num">58</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SqqAUYAZ" target="_blank" class="acct">Security Pros</a></td>
+          <td class="dim">2025-12-19</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-12-19</td>
+          <td class="feat"><span style="color:#4ade80">Project Management; Custom Fields / Reporting; Integration - Hubspot</span> · <span style="color:#60a5fa">Mobile App / GPS Tracking; Job Costing; Progressive Billing; Sales Opportunities</span></td>
+        </tr><tr class="row-done">
+          <td class="num">59</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000SWrNeYAL" target="_blank" class="acct">Atlantech Online</a></td>
+          <td class="dim">2025-12-29</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2025-12-29</td>
+          <td class="feat"><span style="color:#4ade80">Project Management</span> · <span style="color:#60a5fa">Sales Opportunities; CPQ</span></td>
+        </tr><tr class="row-done">
+          <td class="num">60</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VKjaDYAT" target="_blank" class="acct">Dijis Technology Solutions</a></td>
+          <td class="dim">2026-01-12</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2026-01-12</td>
+          <td class="feat"><span style="color:#60a5fa">CPQ</span></td>
+        </tr><tr class="row-done">
+          <td class="num">61</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Uc321YAB" target="_blank" class="acct">Pro Security Products</a></td>
+          <td class="dim">2026-01-13</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2026-01-13</td>
+          <td class="feat"><span style="color:#60a5fa">Sales Opportunities</span></td>
+        </tr><tr class="row-done">
+          <td class="num">62</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000VqqDbYAJ" target="_blank" class="acct">RingAlfa</a></td>
+          <td class="dim">2026-01-29</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2026-01-29</td>
+          <td class="feat"><span style="color:#4ade80">Integration - Hubspot</span> · <span style="color:#60a5fa">Sales Opportunities</span></td>
+        </tr><tr class="row-done">
+          <td class="num">63</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000Vr4jZYAR" target="_blank" class="acct">Black Fire & Security Services</a></td>
+          <td class="dim">2026-02-03</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2026-02-03</td>
+          <td class="feat"><span style="color:#60a5fa">SLAs</span></td>
+        </tr><tr class="row-done">
+          <td class="num">64</td>
+          <td><a href="https://rev-io.my.salesforce.com/006PX00000XCE94YAH" target="_blank" class="acct">Security Force</a></td>
+          <td class="dim">2026-03-02</td>
+          <td><span class="pill pill-contacted">✓ Contacted</span></td>
+          <td class="dim">2026-03-02</td>
+          <td class="feat"><span style="color:#60a5fa">Job Costing; Progressive Billing; Sales Opportunities</span></td>
+        </tr></tbody>
+  </table>
+  </div>
+</div>
+
+<p class="note">Source: Salesforce Closed/Lost · "Contacted" = activity logged after close date · Generated by Romer · Rev.io Confidential</p>
+
+<script>
+const states = {};
+function search(id, val) {
+  applyFilters(id);
+}
+function toggleNC(id, btnId) {
+  states[id] = !states[id];
+  document.getElementById(btnId).classList.toggle('active', states[id]);
+  applyFilters(id);
+}
+function applyFilters(id) {
+  const q = document.getElementById(id==='a1'?'s1':'s2').value.toLowerCase();
+  const ncOnly = !!states[id];
+  const cLabel = document.getElementById(id==='a1'?'c1':'c2');
+  let n = 0;
+  document.querySelectorAll('#'+id+' tbody tr').forEach(row => {
+    const isNC = row.classList.contains('row-need');
+    const matchNC = !ncOnly || isNC;
+    const matchQ = !q || row.textContent.toLowerCase().includes(q);
+    const show = matchNC && matchQ;
+    row.classList.toggle('hidden', !show);
+    if (show) n++;
+  });
+  cLabel.textContent = n + ' records';
+}
+</script>
+</body>
+</html>
