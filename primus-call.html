@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rev.io — Primus Weekly | March 6, 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f6f9; color: #1a1a2e; font-size: 13.5px; line-height: 1.5; }
+  .page { max-width: 960px; margin: 0 auto; padding: 24px 20px 40px; }
+
+  /* Header */
+  .header { background: #0f1b35; color: #fff; border-radius: 10px; padding: 22px 28px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+  .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+  .header-left p { color: #8fa8d0; font-size: 12px; margin-top: 3px; }
+  .header-right { text-align: right; font-size: 12px; color: #8fa8d0; }
+  .header-right strong { color: #fff; display: block; font-size: 13px; }
+
+  /* Section */
+  .section { background: #fff; border-radius: 8px; border: 1px solid #e2e8f0; padding: 16px 20px; margin-bottom: 14px; }
+  .section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #6b7280; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .section-title span { font-size: 14px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th { background: #f8fafc; color: #374151; font-weight: 600; padding: 7px 10px; text-align: left; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
+  td { padding: 7px 10px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafbfc; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; }
+  .bold { font-weight: 600; }
+  .indent { padding-left: 22px; color: #4b5563; }
+
+  /* Badges */
+  .g { background: #dcfce7; color: #166534; padding: 2px 7px; border-radius: 10px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .y { background: #fef9c3; color: #854d0e; padding: 2px 7px; border-radius: 10px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .r { background: #fee2e2; color: #991b1b; padding: 2px 7px; border-radius: 10px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .b { background: #eff6ff; color: #1d4ed8; padding: 2px 7px; border-radius: 10px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+
+  /* KPI row */
+  .kpi-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .kpi { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 14px; min-width: 110px; }
+  .kpi-val { font-size: 18px; font-weight: 700; color: #0f1b35; }
+  .kpi-lbl { font-size: 10px; color: #9ca3af; margin-top: 2px; }
+  .kpi.red { border-color: #fca5a5; background: #fef2f2; }
+  .kpi.red .kpi-val { color: #991b1b; }
+  .kpi.green { border-color: #86efac; background: #f0fdf4; }
+  .kpi.green .kpi-val { color: #166534; }
+  .kpi.yellow { border-color: #fde68a; background: #fffbeb; }
+  .kpi.yellow .kpi-val { color: #92400e; }
+
+  /* Two-col layout */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Dashboard links */
+  .dash-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .dash-link { display: inline-flex; align-items: center; gap: 5px; background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; border-radius: 6px; padding: 5px 10px; font-size: 12px; font-weight: 500; text-decoration: none; }
+  .dash-link:hover { background: #dbeafe; }
+
+  /* Progress bar */
+  .prog-wrap { background: #e2e8f0; border-radius: 4px; height: 8px; margin-top: 4px; }
+  .prog-bar { height: 8px; border-radius: 4px; }
+  .prog-label { font-size: 11px; color: #6b7280; margin-top: 3px; }
+
+  /* Flags */
+  .flag { background: #fff7ed; border-left: 3px solid #f97316; padding: 6px 10px; border-radius: 0 4px 4px 0; font-size: 12px; color: #7c2d12; margin-top: 8px; }
+  .flag.red { background: #fef2f2; border-color: #ef4444; color: #7f1d1d; }
+  .flag.green { background: #f0fdf4; border-color: #22c55e; color: #14532d; }
+  .flag.blue { background: #eff6ff; border-color: #3b82f6; color: #1e3a8a; }
+
+  /* Roadmap status pills */
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; margin: 1px; }
+  .pill-done { background: #dcfce7; color: #166534; }
+  .pill-staged { background: #dbeafe; color: #1d4ed8; }
+  .pill-inprog { background: #fef9c3; color: #854d0e; }
+  .pill-notstart { background: #f1f5f9; color: #475569; }
+
+  /* Ask section */
+  .ask-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+  .ask-item:last-child { margin-bottom: 0; }
+  .ask-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: #9ca3af; margin-bottom: 4px; }
+  .ask-text { font-size: 13px; color: #111; }
+
+  /* Footer */
+  .footer { text-align: center; font-size: 11px; color: #9ca3af; margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Rev.io — Primus Weekly</h1>
+      <p>Week of March 6, 2026 &nbsp;|&nbsp; Q1 Final Month &nbsp;|&nbsp; 26 days to Apollo Two</p>
+    </div>
+    <div class="header-right">
+      <strong>Prepared For</strong>
+      Ron Hess, Growth Equity Partner<br>Primus Capital Partners<br>
+      <span style="margin-top:4px; display:block; color:#4a7cc7;">Updated: March 6, 2026</span>
+    </div>
+  </div>
+
+  <!-- ① BUSINESS PULSE -->
+  <div class="section">
+    <div class="section-title"><span>📊</span> Business Pulse — March MTD (through March 6)</div>
+    <div class="kpi-row">
+      <div class="kpi red">
+        <div class="kpi-val">$2,800</div>
+        <div class="kpi-lbl">New MRR Booked (MTD)</div>
+      </div>
+      <div class="kpi red">
+        <div class="kpi-val">10.3%</div>
+        <div class="kpi-lbl">Win Rate (March)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">8</div>
+        <div class="kpi-lbl">Deals Closed (MTD)</div>
+      </div>
+      <div class="kpi yellow">
+        <div class="kpi-val">$90.4K</div>
+        <div class="kpi-lbl">Open Pipeline (March)</div>
+      </div>
+    </div>
+
+    <!-- Q1 Tracker -->
+    <table>
+      <thead>
+        <tr>
+          <th>Q1 Tracker</th>
+          <th class="num">Q1 Target</th>
+          <th class="num">Jan + Feb Actual</th>
+          <th class="num">March MTD</th>
+          <th class="num">Q1 Total</th>
+          <th class="num">% to Target</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bold">Total New MRR</td>
+          <td class="num">$99,946</td>
+          <td class="num">$35,413</td>
+          <td class="num">$2,800</td>
+          <td class="num bold">$38,213</td>
+          <td class="num">38%</td>
+          <td><span class="r">🔴 MISS TRACK</span></td>
+        </tr>
+        <tr>
+          <td class="indent">↳ PSA 2.0</td>
+          <td class="num">—</td>
+          <td class="num">$15,774</td>
+          <td class="num">$600</td>
+          <td class="num">$16,374</td>
+          <td class="num">—</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="indent">↳ Billing</td>
+          <td class="num">—</td>
+          <td class="num">$16,415</td>
+          <td class="num">$695</td>
+          <td class="num">$17,110</td>
+          <td class="num">—</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="indent">↳ Payments AR</td>
+          <td class="num">$27,000</td>
+          <td class="num">$2,974</td>
+          <td class="num">$1,505</td>
+          <td class="num">$4,479</td>
+          <td class="num">17%</td>
+          <td><span class="r">🔴 LAGGING</span></td>
+        </tr>
+        <tr>
+          <td class="indent">↳ Other (CyberProtect, CommerceHub)</td>
+          <td class="num">—</td>
+          <td class="num">$250</td>
+          <td class="num">$0</td>
+          <td class="num">$250</td>
+          <td class="num">—</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="flag red" style="margin-top:10px;">⚠️ Q1 requires <strong>$61,733</strong> in remaining March days to hit target — pipeline at $90.4K exists, but conversion at current 10.3% win rate projects a shortfall. Apollo Two momentum (Apr 1) is the primary re-acceleration catalyst for Q2.</div>
+  </div>
+
+  <!-- ② NEW BUSINESS — WHAT WE SOLD -->
+  <div class="section">
+    <div class="section-title"><span>🏆</span> New Business — What We Sold (March MTD)</div>
+
+    <div class="two-col">
+      <!-- Product Line -->
+      <div>
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:#6b7280;margin-bottom:8px;">By Product Line</p>
+        <table>
+          <thead>
+            <tr><th>Product</th><th class="num">Deals</th><th class="num">New ARR</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="bold">PSA 2.0</td><td class="num">1</td><td class="num">$600</td></tr>
+            <tr><td class="bold">Billing</td><td class="num">3</td><td class="num">$695</td></tr>
+            <tr><td class="bold">Payments AR</td><td class="num">3</td><td class="num">$1,505</td></tr>
+            <tr><td class="bold">CommerceHub</td><td class="num">1</td><td class="num">$0</td></tr>
+            <tr style="background:#f8fafc;"><td class="bold">Total</td><td class="num bold">8</td><td class="num bold">$2,800</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ITMSP Displacement -->
+      <div>
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:#6b7280;margin-bottom:8px;">PSA — ITMSP Competitive Displacement (90-Day)</p>
+        <table>
+          <thead>
+            <tr><th>Displaced From</th><th class="num">Deals</th><th class="num">ARR</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="bold" style="color:#dc2626;">ConnectWise</td><td class="num">5</td><td class="num">$3,744</td></tr>
+            <tr><td class="bold">Halo</td><td class="num">2</td><td class="num">$1,000</td></tr>
+            <tr><td class="bold">SuperOps</td><td class="num">1</td><td class="num">$500</td></tr>
+            <tr><td>Kaseya / Autotask</td><td class="num">0</td><td class="num">—</td></tr>
+            <tr><td>Syncro</td><td class="num">0</td><td class="num">—</td></tr>
+          </tbody>
+        </table>
+        <div class="flag blue" style="margin-top:8px;">22% of PSA wins are ITMSP displacements today. Apollo Two (Mobile, SLA, Sales Opps, NinjaOne/N-able RMM) is the unlock for CW/Kaseya pipeline.</div>
+      </div>
+    </div>
+
+    <!-- Open Pipeline -->
+    <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:#6b7280;margin:14px 0 8px;">March Open Pipeline</p>
+    <table>
+      <thead>
+        <tr><th>Product</th><th class="num">Open Deals</th><th class="num">Pipeline ARR</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>PSA 2.0</td><td class="num">—</td><td class="num">$56,640</td></tr>
+        <tr><td>Billing</td><td class="num">—</td><td class="num">$22,315</td></tr>
+        <tr><td>Cyber Protect</td><td class="num">—</td><td class="num">$9,252</td></tr>
+        <tr><td>Payments AR</td><td class="num">—</td><td class="num">$1,183</td></tr>
+        <tr style="background:#f8fafc;"><td class="bold">Total (March)</td><td class="num">118</td><td class="num bold">$90,390</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Onboarding link -->
+    <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:#6b7280;margin:14px 0 6px;">Onboarding — Forecast vs. Actual</p>
+    <div class="dash-links">
+      <a class="dash-link" href="https://green-river-03f870c10.4.azurestaticapps.net/forecast" target="_blank">📅 Forecast vs. Actual →</a>
+      <a class="dash-link" href="https://green-river-03f870c10.4.azurestaticapps.net/dashboard" target="_blank">📋 Full Portfolio →</a>
+      <a class="dash-link" href="https://green-river-03f870c10.4.azurestaticapps.net/rts" target="_blank">🚀 Ready to Start →</a>
+    </div>
+  </div>
+
+  <!-- ③ RETENTION -->
+  <div class="section">
+    <div class="section-title"><span>🔒</span> Retention</div>
+
+    <div class="two-col">
+      <div>
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:#6b7280;margin-bottom:8px;">Churn &amp; Retention Dashboards</p>
+        <div class="dash-links" style="flex-direction:column; align-items:flex-start;">
+          <a class="dash-link" href="https://green-river-03f870c10.4.azurestaticapps.net/cancellations" target="_blank">📉 Cancellations Tracker →</a>
+          <a class="dash-link" href="https://green-river-03f870c10.4.azurestaticapps.net/stick-rate" target="_blank">📌 Stick Rate →</a>
+          <a class="dash-link" href="https://green-river-03f870c10.4.azurestaticapps.net/sa-overview" target="_blank">👤 SA Overview →</a>
+        </div>
+        <div class="flag" style="margin-top:10px;">Feb churn: $11,088 MRR — as expected. Mar forecast: $8,000. Trend controlled.</div>
+      </div>
+
+      <div>
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:#6b7280;margin-bottom:8px;">TigerPaw Migration</p>
+        <ul class="bullets" style="padding-left:14px; color:#374151;">
+          <li>TigerPaw Source Adapter (Hosted + On-Prem) in Apollo Two scope — ships Apr 1</li>
+          <li>Current migration pace &amp; at-risk accounts: see <a href="https://green-river-03f870c10.4.azurestaticapps.net/dashboard" target="_blank" style="color:#1d4ed8;">Portfolio Dashboard →</a></li>
+          <li>Strategy: auto-configuration + feature-demo-in-instance to pull forward go-lives</li>
+        </ul>
+
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:#6b7280;margin: 12px 0 6px;">Cross-Sell Motion</p>
+        <ul class="bullets" style="padding-left:14px; color:#374151;">
+          <li>Billing → PSA: actively working stalled billing base with PSA 2.0 demo motion</li>
+          <li>PSA → Billing: natural upgrade path; cross-sell tracked in Salesforce</li>
+          <li>Payments attach: see Payments section below</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ PAYMENTS -->
+  <div class="section">
+    <div class="section-title"><span>💳</span> Payments</div>
+    <div class="kpi-row">
+      <div class="kpi red">
+        <div class="kpi-val">$4,479</div>
+        <div class="kpi-lbl">Q1 ARR Booked (of $27K target)</div>
+      </div>
+      <div class="kpi red">
+        <div class="kpi-val">17%</div>
+        <div class="kpi-lbl">Q1 Attainment vs. Target</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">19</div>
+        <div class="kpi-lbl">Q1 New Activations</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">$1,505</div>
+        <div class="kpi-lbl">March MTD New ARR</div>
+      </div>
+    </div>
+    <ul class="bullets" style="padding-left:14px; color:#374151; margin-bottom:8px;">
+      <li><strong>Root cause of lag:</strong> PSA pipeline velocity — A/P module drives ~50% of Payments TAM. Until PSA onboarding accelerates, Payments will trail.</li>
+      <li><strong>Attach motion:</strong> Targeting billing customers directly for Payments AR activation (does not require PSA).</li>
+      <li><strong>Margin improvement:</strong> Active initiatives on processing economics — update available on request from Patrick (CFO).</li>
+    </ul>
+    <div class="flag red">Q1 Payments at 17% of target. Apollo Two is the structural fix — Revii + Automated Onboarding will compress the PSA time-to-live that's gating Payments attach.</div>
+  </div>
+
+  <!-- ⑤ AI / REVII -->
+  <div class="section">
+    <div class="section-title"><span>🤖</span> AI / Revii — Cross-Product Initiative</div>
+    <div class="two-col">
+      <div>
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:#6b7280;margin-bottom:8px;">What Revii Is Moving</p>
+        <ul class="bullets" style="padding-left:14px; color:#374151;">
+          <li><strong>CAC impact:</strong> Revii Automated Onboarding (Apollo Two) — targets reduction in time-to-live, compressing PSA onboarding from weeks to days</li>
+          <li><strong>LTV impact:</strong> Churn early warning system — 74 at-risk accounts surfaced in first run (SkySwitch, Cloudli, PrestigeTech leading)</li>
+          <li><strong>Support deflection:</strong> AI front-end opportunity to deflect 70%+ of Zendesk tactical tickets (13,500+ queue)</li>
+          <li><strong>Dev velocity:</strong> Playwright end-to-end testing now live — AI-assisted coding pipeline reducing bug rate before every production release</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:#6b7280;margin-bottom:8px;">Apollo Two Revii Features</p>
+        <ul class="bullets" style="padding-left:14px; color:#374151;">
+          <li>Revii Voice Duplex — hands-free AI in the product</li>
+          <li>Revii on the App — mobile AI access</li>
+          <li>Revii Ticket Summaries — instant context for techs</li>
+          <li>Revii Deeplinks (Customer &amp; Ticket)</li>
+          <li>Revii Page Context — AI aware of what user is viewing</li>
+          <li>Ask Revii — enhanced query system</li>
+        </ul>
+        <div class="flag green" style="margin-top:8px;">Revii AI already live in production (launched 2025). Apollo Two expands capabilities — does NOT introduce it.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ ROADMAP -->
+  <div class="section">
+    <div class="section-title"><span>🗺</span> Roadmap</div>
+
+    <!-- Apollo Two progress -->
+    <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:#6b7280;margin-bottom:8px;">Apollo Two — April 1, 2026 (26 days)</p>
+
+    <div class="kpi-row">
+      <div class="kpi green">
+        <div class="kpi-val">23</div>
+        <div class="kpi-lbl">Available (Shipped)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">5</div>
+        <div class="kpi-lbl">Staged for Release</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">5</div>
+        <div class="kpi-lbl">Dev Complete</div>
+      </div>
+      <div class="kpi yellow">
+        <div class="kpi-val">47</div>
+        <div class="kpi-lbl">In Progress</div>
+      </div>
+      <div class="kpi red">
+        <div class="kpi-val">17</div>
+        <div class="kpi-lbl">Not Started</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <div class="prog-wrap"><div class="prog-bar" style="width:31%; background: linear-gradient(90deg, #22c55e, #86efac);"></div></div>
+      <div class="prog-label">31% available/shipped of 107 items — 33 items done or staged, 47 in progress</div>
+    </div>
+
+    <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:#6b7280;margin-bottom:6px;">Key ITMSP-Unlocking Features in Apollo Two</p>
+    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
+      <span class="pill pill-inprog">Sales Opportunity Management</span>
+      <span class="pill pill-inprog">PSA Mobile App</span>
+      <span class="pill pill-inprog">SLA Management</span>
+      <span class="pill pill-inprog">RMM: NinjaOne Phase 1</span>
+      <span class="pill pill-inprog">RMM: N-able Phase 1</span>
+      <span class="pill pill-done">Enhanced Customer Portal</span>
+      <span class="pill pill-inprog">TigerPaw Source Adapter (Hosted)</span>
+      <span class="pill pill-inprog">TigerPaw Source Adapter (On-Prem)</span>
+      <span class="pill pill-done">Revii Ticket Summaries</span>
+    </div>
+
+    <div class="dash-links" style="margin-bottom:14px;">
+      <a class="dash-link" href="https://pod-performance.vercel.app/" target="_blank">⚙️ Engineering Pod Performance →</a>
+    </div>
+
+    <hr style="border:none; border-top:1px solid #f1f5f9; margin: 12px 0;">
+
+    <!-- Apollo Three -->
+    <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;color:#6b7280;margin-bottom:8px;">Apollo Three — Horizon (64 items, all planning stage)</p>
+    <div style="display:flex; flex-wrap:wrap; gap:6px;">
+      <span class="pill pill-notstart">Global Search</span>
+      <span class="pill pill-notstart">Reseller Model</span>
+      <span class="pill pill-notstart">Internationalization</span>
+      <span class="pill pill-notstart">Client Knowledge Base</span>
+      <span class="pill pill-notstart">Orders</span>
+      <span class="pill pill-notstart">License Management</span>
+      <span class="pill pill-notstart">GPS Tracking Enhancements</span>
+      <span class="pill pill-notstart">Predictive Analytics (Revii)</span>
+      <span class="pill pill-notstart">Project Management</span>
+      <span class="pill pill-notstart">Analytics Hub</span>
+      <span class="pill pill-notstart">TRX Payments Reporting</span>
+      <span class="pill pill-notstart">Migration Assistant (Generic)</span>
+    </div>
+    <div class="flag blue" style="margin-top:10px;">Apollo Three scope defines the product 18–24 months out. Global Search, Reseller Model, and Predictive Analytics with Revii are the highest-signal features for enterprise/ITMSP expansion.</div>
+  </div>
+
+  <!-- ⑦ THE ASK -->
+  <div class="section">
+    <div class="section-title"><span>🙋</span> The Ask</div>
+    <div class="ask-item">
+      <div class="ask-label">Ask #1</div>
+      <div class="ask-text" style="color:#9ca3af; font-style:italic;">— Prepared by Brent before each call —</div>
+    </div>
+    <div class="ask-item">
+      <div class="ask-label">Ask #2</div>
+      <div class="ask-text" style="color:#9ca3af; font-style:italic;">— Prepared by Brent before each call —</div>
+    </div>
+    <div class="flag" style="margin-top:8px; font-size:11.5px;">Format: "Problem: [specific]. Need: [specific]. How you can help: [specific action]." Max 2 asks. Pre-written. Never improvised.</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    Rev.io — Primus Weekly &nbsp;|&nbsp; Week of March 6, 2026 &nbsp;|&nbsp; Prepared by Romer (AI) &nbsp;|&nbsp; Data: Salesforce + Notion (live pull)
+  </div>
+
+</div>
+</body>
+</html>
