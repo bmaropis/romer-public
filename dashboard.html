@@ -45,7 +45,7 @@
                 <p>Rev.io AI Operations Dashboard</p>
             </div>
         </div>
-        <div class="generated">Updated: March 10, 2026 10:02 AM ET</div>
+        <div class="generated">Updated: March 10, 2026 10:03 AM ET</div>
     </div>
 
     <div class="container">
@@ -54,12 +54,12 @@
         <div class="stat-grid">
             <div class="stat-card">
                 <div class="label">Active Crons</div>
-                <div class="value" style="color:#22c55e;">0</div>
-                <div class="sub">of 0 total configured</div>
+                <div class="value" style="color:#22c55e;">24</div>
+                <div class="sub">of 42 total configured</div>
             </div>
             <div class="stat-card">
                 <div class="label">Cron Errors</div>
-                <div class="value" style="color:#22c55e;">0</div>
+                <div class="value" style="color:#ef4444;">3</div>
                 <div class="sub">consecutive error crons</div>
             </div>
             <div class="stat-card">
@@ -74,12 +74,12 @@
             </div>
             <div class="stat-card">
                 <div class="label">Memory</div>
-                <div class="value" style="color:#22c55e;">59.6%</div>
+                <div class="value" style="color:#22c55e;">59.4%</div>
                 <div class="sub">2.1GB / 3.6GB used</div>
             </div>
             <div class="stat-card">
                 <div class="label">Last Backup</div>
-                <div class="value" style="font-size:16px;margin-top:4px;color:#22c55e;">50 minutes ago</div>
+                <div class="value" style="font-size:16px;margin-top:4px;color:#22c55e;">51 minutes ago</div>
                 <div class="sub">GitHub workspace backup</div>
             </div>
         </div>
@@ -89,7 +89,7 @@
             <div class="section-header">
                 <span>⏰</span>
                 <h2>Cron Jobs</h2>
-                <span class="count">0 jobs</span>
+                <span class="count">42 jobs</span>
             </div>
             <table>
                 <thead>
@@ -103,7 +103,385 @@
                         <th>Next Run</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">5am Morning Brief (Consolidated)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 5 * * 1-5 (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/10 05:00 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">3.2m</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/11 05:00 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Audi Maintenance Reminder</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">at</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/18 12:00 PM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">0s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Churn Early Warning (Monday 5am ET)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 5 * * 1 (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/09 05:00 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">1.5m</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/16 05:00 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Circle Community Intelligence Report</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 7 * * * (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/10 07:00 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">1.4m</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/11 07:00 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Daily Crypto Update <span style="color:#ef4444;font-weight:bold;">⚠ 1x</span></td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 11 * * * (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">ERROR</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/24 11:00 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">35s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Daily Health Check</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 9 * * * (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/10 09:00 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">45s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/11 09:00 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Daily Self-Improvement Ideas</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 6 * * * (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/10 06:00 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">2.0m</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/11 06:00 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Daily Value Suggestions</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">30 10 * * *</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/13 05:30 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">19s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Deal Velocity Dashboard (Monday 5:10am ET)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">10 5 * * 1 (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/09 05:10 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">33s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/16 05:10 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Email Monitor (Gmail + M365)</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">every</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/26 02:38 PM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">0s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Evening Email Check 7:30pm ET</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">30 19 * * * (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/09 07:30 PM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">35s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/10 07:30 PM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Family Goals Review Reminder</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">at</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">Never</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/30 09:00 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Family Goals Review Reminder — March 30</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">at</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">Never</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/30 08:00 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">GitHub Backup (every 30min)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">every</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/10 09:38 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">0s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/10 10:08 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">GitHub backup setup reminder</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">at</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/18 06:13 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">0s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">GitHub backup setup reminder v2</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">at</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/18 06:42 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">0s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Health & Longevity Weekly Digest</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 14 * * 0 (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/08 02:00 PM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">0s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/15 02:00 PM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Lp(a) Drug Trial Weekly Update</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 14 * * 2 (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/03 02:00 PM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">1.9m</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/10 02:00 PM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Monthly Rx Reminder</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 14 12 * *</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/12 09:00 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">0s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/12 10:00 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Morning Ideas & Interests Brief</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">30 10 * * * (UTC)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/26 05:30 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">1.0m</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">NAD Reminder</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 10 * * 1,3,5</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/23 05:01 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">0s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Payments NRR reminder</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">at</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">Never</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">06/02 09:00 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Pipeline Intelligence (Monday 5:05am ET)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">5 5 * * 1 (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/09 05:05 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">35s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/16 05:05 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Primus Weekly Page Rebuild</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 6 * * 1 (America/New_York)</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">Never</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/16 06:00 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Rev.io Daily SaaS Intelligence Brief</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 10 * * * (UTC)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/26 05:00 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">3.3m</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Rev.io Growth & Reputation Monitor</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">45 10 * * 1-5</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/26 05:45 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">3.1m</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Revay Intelligence Deck — Weekly Review</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 14 * * 1 (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/09 02:02 PM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">3.1m</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/16 02:00 PM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Roadmap vs Tickets (Weekly Friday 9am ET)</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 14 * * 5 (America/New_York)</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">Never</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Rufus Du Sol Birmingham VIP Box Ticket Monitor</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">every</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/09 12:31 PM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">1.6m</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/10 12:31 PM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Rufus Ticket Search — 3-Day Status Update</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">every</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/08 09:33 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">9s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/11 09:33 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">SCCO Daily Alert</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 10 * * *</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/13 05:00 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">1.2m</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">SCCO Price Threshold Alert</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 10,12,14,16,18,20 * * 1-5</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/02 07:00 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">15s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">SCCO/Copper Daily Brief <span style="color:#ef4444;font-weight:bold;">⚠ 1x</span></td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 10 * * * (UTC)</td>
+            <td style="padding:10px 12px;"><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">ERROR</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/24 05:00 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">49s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">SOL Price Alert ($118) <span style="color:#ef4444;font-weight:bold;">⚠ 1x</span></td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 */4 * * * (America/Chicago)</td>
+            <td style="padding:10px 12px;"><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">ERROR</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/24 09:01 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">13s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">TC AuditSight Reply Monitor</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">every</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/10 09:52 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">14s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/10 10:07 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Tulum Safety Check for Whitney</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">at</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">Never</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">04/17 10:00 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Valentine's Day Card Reminder</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">at</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/13 04:00 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">0s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Valentine's Day Cards Reminder (Evening)</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">at</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">02/13 05:00 PM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Weekly AI Agent Research</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 14 * * 1 (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/09 02:00 PM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">2.9m</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/16 02:00 PM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Weekly Lp(a) Drug Tracker</td>
+            <td style="padding:10px 12px;"><span style="background:#6b7280;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">OFF</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 11 * * 1 (America/New_York)</td>
+            <td style="padding:10px 12px;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">Never</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+            <td style="padding:10px 12px;color:#94a3b8;">—</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Weekly Memory Consolidation</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 10 * * 0 (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/08 10:00 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">4.6m</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/15 10:00 AM ET</td>
+        </tr>
+        <tr>
+            <td style="padding:10px 12px;font-weight:500;">Weekly Sales & PSA Onboarding Forecast</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;">ON</span></td>
+            <td style="padding:10px 12px;font-family:monospace;font-size:12px;color:#94a3b8;">0 20 * * 0 (America/New_York)</td>
+            <td style="padding:10px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">OK</span></td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/09 05:41 AM ET</td>
+            <td style="padding:10px 12px;color:#94a3b8;">20s</td>
+            <td style="padding:10px 12px;color:#94a3b8;">03/15 08:00 PM ET</td>
+        </tr></tbody>
             </table>
         </div>
 
