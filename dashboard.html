@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="3600">
+    <title>Romer Mission Control</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0f172a; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-bottom: 1px solid #1e293b; padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-emoji { font-size: 32px; }
+        .logo-text h1 { font-size: 22px; font-weight: 700; color: #f1f5f9; }
+        .logo-text p { font-size: 13px; color: #64748b; margin-top: 2px; }
+        .generated { font-size: 12px; color: #64748b; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 32px; }
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+        .stat-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; }
+        .stat-card .label { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+        .stat-card .value { font-size: 28px; font-weight: 700; }
+        .stat-card .sub { font-size: 12px; color: #64748b; margin-top: 4px; }
+        .section { background: #1e293b; border: 1px solid #334155; border-radius: 12px; margin-bottom: 24px; overflow: hidden; }
+        .section-header { padding: 16px 20px; border-bottom: 1px solid #334155; display: flex; align-items: center; gap: 8px; }
+        .section-header h2 { font-size: 15px; font-weight: 600; color: #f1f5f9; }
+        .section-header .count { background: #334155; color: #94a3b8; padding: 2px 8px; border-radius: 10px; font-size: 12px; }
+        table { width: 100%; border-collapse: collapse; }
+        th { padding: 10px 12px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; border-bottom: 1px solid #334155; }
+        tr:hover td { background: #243044; }
+        .health-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; padding: 20px; }
+        .health-item { display: flex; align-items: center; gap: 10px; }
+        .health-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        .health-label { font-size: 13px; }
+        .health-value { font-size: 12px; color: #94a3b8; }
+        .footer { text-align: center; padding: 24px; color: #334155; font-size: 12px; }
+        @media (max-width: 768px) { .container { padding: 16px; } th:nth-child(n+4) { display: none; } td:nth-child(n+4) { display: none; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <div class="logo-emoji">🧠</div>
+            <div class="logo-text">
+                <h1>Romer Mission Control</h1>
+                <p>Rev.io AI Operations Dashboard</p>
+            </div>
+        </div>
+        <div class="generated">Updated: March 10, 2026 10:02 AM ET</div>
+    </div>
+
+    <div class="container">
+
+        <!-- Stat Cards -->
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="label">Active Crons</div>
+                <div class="value" style="color:#22c55e;">0</div>
+                <div class="sub">of 0 total configured</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Cron Errors</div>
+                <div class="value" style="color:#22c55e;">0</div>
+                <div class="sub">consecutive error crons</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Gateway</div>
+                <div class="value" style="color:#22c55e;font-size:20px;">Online</div>
+                <div class="sub">OpenClaw runtime</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Disk Usage</div>
+                <div class="value" style="color:#22c55e;">47.5%</div>
+                <div class="sub">9.3GB / 19.6GB</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Memory</div>
+                <div class="value" style="color:#22c55e;">59.6%</div>
+                <div class="sub">2.1GB / 3.6GB used</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Last Backup</div>
+                <div class="value" style="font-size:16px;margin-top:4px;color:#22c55e;">50 minutes ago</div>
+                <div class="sub">GitHub workspace backup</div>
+            </div>
+        </div>
+
+        <!-- Cron Status -->
+        <div class="section">
+            <div class="section-header">
+                <span>⏰</span>
+                <h2>Cron Jobs</h2>
+                <span class="count">0 jobs</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Schedule</th>
+                        <th>Last Run</th>
+                        <th>Last Ran</th>
+                        <th>Runtime</th>
+                        <th>Next Run</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- Run Log -->
+        <div class="section">
+            <div class="section-header">
+                <span>📋</span>
+                <h2>Run Log</h2>
+                <span class="count">last 30 runs</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Cron</th>
+                        <th>Status</th>
+                        <th>Runtime</th>
+                        <th>Key Metric</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+        <tr>
+            <td style="padding:8px 12px;color:#94a3b8;font-size:12px;">-e 2026-03-10T11:00:45Z</td>
+            <td style="padding:8px 12px;font-size:13px;">Circle Community Intelligence</td>
+            <td style="padding:8px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">KEEP</span></td>
+            <td style="padding:8px 12px;font-size:12px;color:#94a3b8;">45s</td>
+            <td style="padding:8px 12px;font-size:12px;color:#64748b;">22</td>
+            <td style="padding:8px 12px;font-size:12px;color:#64748b;">top: Email Outbox score 22, no competitor mentions, ticketing theme dominant acr</td>
+        </tr>
+        <tr>
+            <td style="padding:8px 12px;color:#94a3b8;font-size:12px;">-e 2026-03-10T10:00:42Z</td>
+            <td style="padding:8px 12px;font-size:13px;">Self-Improvement Ideas</td>
+            <td style="padding:8px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">KEEP</span></td>
+            <td style="padding:8px 12px;font-size:12px;color:#94a3b8;">42s</td>
+            <td style="padding:8px 12px;font-size:12px;color:#64748b;">3</td>
+            <td style="padding:8px 12px;font-size:12px;color:#64748b;">spirituality, physical health, learning</td>
+        </tr>
+        <tr>
+            <td style="padding:8px 12px;color:#94a3b8;font-size:12px;">03/10 05:03 AM ET</td>
+            <td style="padding:8px 12px;font-size:13px;">Morning Brief</td>
+            <td style="padding:8px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">KEEP</span></td>
+            <td style="padding:8px 12px;font-size:12px;color:#94a3b8;">192s</td>
+            <td style="padding:8px 12px;font-size:12px;color:#64748b;">5</td>
+            <td style="padding:8px 12px;font-size:12px;color:#64748b;">5 sections delivered: valuation pulse (SEG 2026 report), Aria Systems competitor</td>
+        </tr>
+        <tr>
+            <td style="padding:8px 12px;color:#94a3b8;font-size:12px;">-e 2026-03-09T11:00:42Z</td>
+            <td style="padding:8px 12px;font-size:13px;">Circle Community Intelligence</td>
+            <td style="padding:8px 12px;"><span style="background:#22c55e;color:#fff;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;">KEEP</span></td>
+            <td style="padding:8px 12px;font-size:12px;color:#94a3b8;">42s</td>
+            <td style="padding:8px 12px;font-size:12px;color:#64748b;">22</td>
+            <td style="padding:8px 12px;font-size:12px;color:#64748b;">top: Email Outbox score 22, no competitor mentions, 14/20 posts are Ideas with c</td>
+        </tr></tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Romer Mission Control · Auto-refreshes every hour · Built without npm 🧠
+    </div>
+</body>
+</html>
