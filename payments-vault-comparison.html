@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rev.io Payments Vault: Spreedly vs IXOPay</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0f1117;
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 32px 16px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .header .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #1e2330;
+    border: 1px solid #2d3748;
+    border-radius: 10px;
+    padding: 8px 18px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 8px;
+  }
+  .header p {
+    color: #94a3b8;
+    font-size: 15px;
+  }
+
+  /* Architecture Diagram */
+  .arch-section {
+    background: #1a1f2e;
+    border: 1px solid #2d3748;
+    border-radius: 14px;
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+  .arch-section h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+  }
+  .arch-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .arch-node {
+    background: #252d40;
+    border: 1px solid #3d4d6a;
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 110px;
+  }
+  .arch-node .icon { font-size: 22px; margin-bottom: 6px; }
+  .arch-node .label { font-size: 12px; font-weight: 600; color: #cbd5e1; }
+  .arch-node .sublabel { font-size: 10px; color: #64748b; margin-top: 2px; }
+  .arch-node.highlight {
+    background: linear-gradient(135deg, #1e3a5f, #1a2f4a);
+    border-color: #3b82f6;
+  }
+  .arch-node.highlight .label { color: #93c5fd; }
+  .arch-arrow {
+    color: #4b5563;
+    font-size: 20px;
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+  .arch-arrow.dual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 11px;
+    color: #6b7280;
+    gap: 2px;
+  }
+
+  /* Network token callout */
+  .network-token-banner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: linear-gradient(135deg, #0f2d1a, #0d2416);
+    border: 1px solid #16a34a;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+  }
+  .network-token-banner .icon { font-size: 28px; flex-shrink: 0; }
+  .network-token-banner h3 { font-size: 15px; font-weight: 700; color: #4ade80; margin-bottom: 4px; }
+  .network-token-banner p { font-size: 13px; color: #86efac; line-height: 1.5; }
+
+  /* Comparison Grid */
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    gap: 2px;
+    background: #2d3748;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .grid-header {
+    padding: 20px 24px;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+  }
+  .grid-header.left { background: #1a1f2e; text-align: left; color: #64748b; font-size: 13px; font-weight: 500; }
+  .grid-header.spreedly {
+    background: linear-gradient(135deg, #1a2f5a, #152447);
+    color: #93c5fd;
+    border-bottom: 3px solid #3b82f6;
+  }
+  .grid-header.ixopay {
+    background: linear-gradient(135deg, #1f2a1a, #182212);
+    color: #86efac;
+    border-bottom: 3px solid #22c55e;
+  }
+  .grid-header .vendor-icon { font-size: 24px; display: block; margin-bottom: 4px; }
+  .grid-header .vendor-sub { font-size: 11px; opacity: 0.7; font-weight: 400; }
+
+  .grid-row-label {
+    background: #1a1f2e;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #94a3b8;
+    border-top: 1px solid #252d40;
+  }
+  .grid-row-label .row-icon { font-size: 16px; }
+
+  .grid-cell {
+    padding: 16px 20px;
+    font-size: 13px;
+    line-height: 1.6;
+    border-top: 1px solid #252d40;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .grid-cell.spreedly-col { background: #151c2e; }
+  .grid-cell.ixopay-col { background: #141a12; }
+
+  .win { color: #4ade80; font-weight: 600; }
+  .lose { color: #f87171; }
+  .tie { color: #fbbf24; }
+  .neutral { color: #cbd5e1; }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .badge-win { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); }
+  .badge-lose { background: rgba(248, 113, 113, 0.1); color: #f87171; border: 1px solid rgba(248, 113, 113, 0.2); }
+  .badge-tie { background: rgba(251, 191, 36, 0.1); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.2); }
+  .badge-yes { background: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); }
+
+  /* Phase recommendation */
+  .phases {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .phase-card {
+    background: #1a1f2e;
+    border: 1px solid #2d3748;
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .phase-card.phase1 { border-top: 3px solid #3b82f6; }
+  .phase-card.phase2 { border-top: 3px solid #22c55e; }
+  .phase-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .phase-tag.p1 { color: #3b82f6; }
+  .phase-tag.p2 { color: #22c55e; }
+  .phase-card h3 { font-size: 17px; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .phase-card .timeline { font-size: 12px; color: #64748b; margin-bottom: 14px; }
+  .phase-card ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .phase-card ul li { font-size: 13px; color: #94a3b8; padding-left: 18px; position: relative; line-height: 1.4; }
+  .phase-card ul li::before { content: "→"; position: absolute; left: 0; color: #4b5563; }
+
+  /* Impact bar */
+  .impact-section {
+    background: #1a1f2e;
+    border: 1px solid #2d3748;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .impact-section h2 { font-size: 14px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
+  .impact-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .impact-label { font-size: 13px; color: #94a3b8; width: 240px; flex-shrink: 0; }
+  .impact-bar-bg { flex: 1; height: 8px; background: #252d40; border-radius: 4px; overflow: hidden; }
+  .impact-bar { height: 100%; border-radius: 4px; transition: width 0.3s; }
+  .impact-value { font-size: 13px; font-weight: 700; color: #f1f5f9; width: 80px; text-align: right; }
+
+  .footer-note {
+    text-align: center;
+    font-size: 12px;
+    color: #4b5563;
+    padding-top: 16px;
+    border-top: 1px solid #1e2330;
+  }
+
+  @media (max-width: 700px) {
+    .comparison-grid { grid-template-columns: 140px 1fr 1fr; }
+    .phases { grid-template-columns: 1fr; }
+    .arch-flow { flex-direction: column; }
+    .arch-arrow { transform: rotate(90deg); }
+    .impact-label { width: 160px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="logo">🧠 Romer · Rev.io Payments Infrastructure</div>
+    <h1>Spreedly vs IXOPay — Token Vault Decision</h1>
+    <p>Prepared for Brent Maropis · March 13, 2026</p>
+  </div>
+
+  <!-- Architecture Flow -->
+  <div class="arch-section">
+    <h2>📐 How a Token Vault Fits Into Rev.io's Payments Stack</h2>
+    <div class="arch-flow">
+      <div class="arch-node">
+        <div class="icon">🏢</div>
+        <div class="label">Rev.io Client</div>
+        <div class="sublabel">MSP / CSP</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="icon">💳</div>
+        <div class="label">Card Entered</div>
+        <div class="sublabel">Raw PAN</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node highlight">
+        <div class="icon">🔐</div>
+        <div class="label">Token Vault</div>
+        <div class="sublabel">Spreedly or IXOPay</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="icon">🌐</div>
+        <div class="label">Network Token</div>
+        <div class="sublabel">Visa VTS / MC MDES</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="icon">🏦</div>
+        <div class="label">Processor</div>
+        <div class="sublabel">Paya · TRX · Any</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="icon">✅</div>
+        <div class="label">Authorized</div>
+        <div class="sublabel">Revenue captured</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:16px;font-size:12px;color:#4b5563;">
+      Rev.io only stores a vault token — never the raw card number. PCI scope shrinks dramatically.
+    </div>
+  </div>
+
+  <!-- Network Token Banner -->
+  <div class="network-token-banner">
+    <div class="icon">✅</div>
+    <div>
+      <h3>Both Spreedly AND IXOPay support Visa VTS + Mastercard MDES network tokenization</h3>
+      <p>Either platform can request network tokens on Rev.io's behalf — meaning automatic card updates, higher authorization rates (3–8% uplift), and potential interchange savings. This is not a differentiator between them.</p>
+    </div>
+  </div>
+
+  <!-- Comparison Grid -->
+  <div class="comparison-grid">
+    <div class="grid-header left">Dimension</div>
+    <div class="grid-header spreedly">
+      <span class="vendor-icon">🔵</span>
+      Spreedly
+      <div class="vendor-sub">Payment Orchestration Platform</div>
+    </div>
+    <div class="grid-header ixopay">
+      <span class="vendor-icon">🟢</span>
+      IXOPay
+      <div class="vendor-sub">White-Label Vault + Orchestration</div>
+    </div>
+
+    <!-- Row: Network Tokens -->
+    <div class="grid-row-label"><span class="row-icon">🌐</span>Network Tokens</div>
+    <div class="grid-cell spreedly-col">
+      <span class="badge badge-yes">✓ Supported</span>
+      <span class="neutral">Visa VTS + Mastercard MDES. Requested automatically at charge time.</span>
+    </div>
+    <div class="grid-cell ixopay-col">
+      <span class="badge badge-yes">✓ Supported</span>
+      <span class="neutral">Visa VTS + Mastercard MDES. Same capability.</span>
+    </div>
+
+    <!-- Row: Processor Connections -->
+    <div class="grid-row-label"><span class="row-icon">🔗</span>Processor Connections</div>
+    <div class="grid-cell spreedly-col">
+      <span class="badge badge-win">Winner</span>
+      <span class="win">100+ gateways/processors</span><br>
+      <span class="neutral">Paya, TRX, Stripe, Adyen, Braintree, WorldPay, and dozens more. Switching processors = configuration change, not a re-integration.</span>
+    </div>
+    <div class="grid-cell ixopay-col">
+      <span class="badge badge-lose">Narrower</span>
+      <span class="neutral">~60 processors. Covers Paya and core US processors well. Less breadth for future expansion.</span>
+    </div>
+
+    <!-- Row: PCI Scope Reduction -->
+    <div class="grid-row-label"><span class="row-icon">🛡️</span>PCI Scope Reduction</div>
+    <div class="grid-cell spreedly-col">
+      <span class="badge badge-tie">Tie</span>
+      <span class="neutral">PCI DSS Level 1 certified. Rev.io never touches raw PANs.</span>
+    </div>
+    <div class="grid-cell ixopay-col">
+      <span class="badge badge-tie">Tie</span>
+      <span class="neutral">PCI DSS Level 1 certified. Same reduction in scope for Rev.io.</span>
+    </div>
+
+    <!-- Row: White-Label / Client Product -->
+    <div class="grid-row-label"><span class="row-icon">🏷️</span>White-Label / Sell to Clients</div>
+    <div class="grid-cell spreedly-col">
+      <span class="badge badge-lose">Limited</span>
+      <span class="neutral">Spreedly is an internal infrastructure tool. Rev.io's clients don't interact with it directly. Not easily packaged as a client-facing product.</span>
+    </div>
+    <div class="grid-cell ixopay-col">
+      <span class="badge badge-win">Winner</span>
+      <span class="win">Native white-label layer.</span><br>
+      <span class="neutral">Rev.io could brand it "Rev.io Payments Vault" and offer it to MSP clients — they store their end-customers' cards inside Rev.io's platform. Deep stickiness play.</span>
+    </div>
+
+    <!-- Row: Implementation Complexity -->
+    <div class="grid-row-label"><span class="row-icon">⚙️</span>Implementation Speed</div>
+    <div class="grid-cell spreedly-col">
+      <span class="badge badge-win">Winner</span>
+      <span class="win">4–8 weeks</span><br>
+      <span class="neutral">Excellent documentation, large developer community, well-worn integration path. Matt Hills' team can move fast.</span>
+    </div>
+    <div class="grid-cell ixopay-col">
+      <span class="badge badge-lose">Slower</span>
+      <span class="neutral">8–16 weeks. Heavier API, thinner documentation, requires more custom work. More complex to stand up correctly.</span>
+    </div>
+
+    <!-- Row: Pricing -->
+    <div class="grid-row-label"><span class="row-icon">💰</span>Pricing Model</div>
+    <div class="grid-cell spreedly-col">
+      <span class="neutral">Platform fee + ~$0.01–0.03/transaction. At Rev.io's volume ($34.7M/mo, ~millions of txns), this is negotiable. Expect $5K–$15K/mo all-in.</span>
+    </div>
+    <div class="grid-cell ixopay-col">
+      <span class="badge badge-win">Likely lower</span>
+      <span class="neutral">More flexible pricing structures. Lower per-transaction rates. Could be 20–40% cheaper at scale. Requires direct negotiation.</span>
+    </div>
+
+    <!-- Row: Processor Negotiation Leverage -->
+    <div class="grid-row-label"><span class="row-icon">🤝</span>Leverage Over Paya/TRX</div>
+    <div class="grid-cell spreedly-col">
+      <span class="badge badge-win">Winner</span>
+      <span class="win">Maximum leverage.</span><br>
+      <span class="neutral">100+ alternatives means Paya knows they're replaceable in an afternoon. Rev.io can renegotiate rates from a position of real strength.</span>
+    </div>
+    <div class="grid-cell ixopay-col">
+      <span class="badge badge-tie">Good leverage</span>
+      <span class="neutral">Still meaningful — portable tokens means Paya is replaceable. Just fewer alternatives to name-drop in the conversation.</span>
+    </div>
+
+    <!-- Row: PE / Diligence Story -->
+    <div class="grid-row-label"><span class="row-icon">📊</span>PE Diligence Story</div>
+    <div class="grid-cell spreedly-col">
+      <span class="badge badge-win">Winner</span>
+      <span class="win">Well-recognized.</span><br>
+      <span class="neutral">Battery, K1, PSG teams will nod at "we use Spreedly." Reads as sophisticated infrastructure, not a new vendor bet.</span>
+    </div>
+    <div class="grid-cell ixopay-col">
+      <span class="badge badge-lose">More explanation</span>
+      <span class="neutral">Less known in US PE circles. Not a negative — just requires more context in the data room. European origin can raise questions.</span>
+    </div>
+
+    <!-- Row: Best Fit -->
+    <div class="grid-row-label"><span class="row-icon">🎯</span>Best Fit For</div>
+    <div class="grid-cell spreedly-col">
+      <span class="neutral" style="color:#93c5fd;font-weight:600;">Internal infrastructure layer.</span><br>
+      <span class="neutral">PCI reduction, processor portability, Paya leverage, PE story. Phase 1 play — get the vault live before the banker process.</span>
+    </div>
+    <div class="grid-cell ixopay-col">
+      <span class="neutral" style="color:#86efac;font-weight:600;">Client-facing product play.</span><br>
+      <span class="neutral">Post-recap, when Rev.io wants to sell a "Rev.io Payments Vault" product to MSP clients. Phase 2 stickiness and revenue play.</span>
+    </div>
+  </div>
+
+  <!-- Impact Section -->
+  <div class="impact-section">
+    <h2>📈 Expected Impact — Phase 1 (Spreedly, 60-day build)</h2>
+    <div class="impact-row">
+      <div class="impact-label">Authorization rate improvement</div>
+      <div class="impact-bar-bg"><div class="impact-bar" style="width:70%;background:linear-gradient(90deg,#3b82f6,#60a5fa);"></div></div>
+      <div class="impact-value">+3–8%</div>
+    </div>
+    <div class="impact-row">
+      <div class="impact-label">PCI audit scope reduction</div>
+      <div class="impact-bar-bg"><div class="impact-bar" style="width:85%;background:linear-gradient(90deg,#8b5cf6,#a78bfa);"></div></div>
+      <div class="impact-value">Significant</div>
+    </div>
+    <div class="impact-row">
+      <div class="impact-label">Paya negotiation leverage</div>
+      <div class="impact-bar-bg"><div class="impact-bar" style="width:90%;background:linear-gradient(90deg,#f59e0b,#fbbf24);"></div></div>
+      <div class="impact-value">High</div>
+    </div>
+    <div class="impact-row">
+      <div class="impact-label">Incremental ARR (interchange+ conversation enabled)</div>
+      <div class="impact-bar-bg"><div class="impact-bar" style="width:60%;background:linear-gradient(90deg,#22c55e,#4ade80);"></div></div>
+      <div class="impact-value">~$1.5M</div>
+    </div>
+    <div class="impact-row">
+      <div class="impact-label">PE narrative strength (payments as embedded fintech)</div>
+      <div class="impact-bar-bg"><div class="impact-bar" style="width:80%;background:linear-gradient(90deg,#ec4899,#f472b6);"></div></div>
+      <div class="impact-value">Strong</div>
+    </div>
+  </div>
+
+  <!-- Phases -->
+  <div class="phases">
+    <div class="phase-card phase1">
+      <div class="phase-tag p1">Phase 1 · Now → Q3 2026</div>
+      <h3>🔵 Spreedly — Infrastructure First</h3>
+      <div class="timeline">Target: Live before banker process (Q2–Q3 2026)</div>
+      <ul>
+        <li>Integrate Spreedly vault into Rev.io billing platform</li>
+        <li>Migrate existing card-on-file data to vault tokens</li>
+        <li>Enable Visa VTS + MC MDES network tokens automatically</li>
+        <li>Renegotiate Paya/TRX rates with portability as leverage</li>
+        <li>Initiate interchange-plus pricing conversation with Nuvei</li>
+        <li>Owner: Ray + Matt Hills (4–8 week build)</li>
+      </ul>
+    </div>
+    <div class="phase-card phase2">
+      <div class="phase-tag p2">Phase 2 · Post-Recap</div>
+      <h3>🟢 IXOPay — Client Product Play</h3>
+      <div class="timeline">Evaluate after Q4 2026 close</div>
+      <ul>
+        <li>"Rev.io Payments Vault" — branded product for MSP clients</li>
+        <li>Clients store end-customer cards inside Rev.io platform</li>
+        <li>New monthly fee: $5–15/client/mo · Deep switching cost</li>
+        <li>Replaces Spreedly or sits alongside it</li>
+        <li>Product decision: Evan + Ray + Leslie own this call</li>
+        <li>Potential: 300+ billing clients × $10/mo = $3K–$36K MRR</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Prepared by Romer · March 13, 2026 · Rev.io Confidential · Awaiting Brent's approval before any implementation
+  </div>
+
+</div>
+</body>
+</html>
