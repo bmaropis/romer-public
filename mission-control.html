@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="300">
+<title>Romer Mission Control</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f172a; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; }
+  
+  .header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 24px 32px; border-bottom: 1px solid #1e293b; display: flex; align-items: center; justify-content: space-between; }
+  .header-left { display: flex; align-items: center; gap: 16px; }
+  .logo { font-size: 32px; }
+  .header h1 { font-size: 22px; font-weight: 700; color: #f1f5f9; letter-spacing: -0.5px; }
+  .header p { font-size: 12px; color: #64748b; margin-top: 2px; }
+  .live-badge { background: #064e3b; color: #34d399; border: 1px solid #065f46; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
+  .live-dot { width: 6px; height: 6px; background: #34d399; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  .stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; padding: 20px 32px; background: #0f172a; border-bottom: 1px solid #1e293b; }
+  .stat-card { background: #1e293b; border-radius: 10px; padding: 16px; border: 1px solid #334155; }
+  .stat-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .stat-value { font-size: 26px; font-weight: 700; color: #f1f5f9; line-height: 1; }
+  .stat-sub { font-size: 11px; color: #475569; margin-top: 4px; }
+
+  .main { padding: 24px 32px; display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 1400px; margin: 0 auto; }
+
+  .card { background: #1e293b; border-radius: 12px; border: 1px solid #334155; overflow: hidden; }
+  .card-header { padding: 16px 20px; border-bottom: 1px solid #334155; display: flex; align-items: center; justify-content: space-between; }
+  .card-title { font-size: 13px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+  .card-count { font-size: 11px; background: #334155; color: #94a3b8; padding: 2px 8px; border-radius: 10px; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th { padding: 10px 16px; text-align: left; font-size: 11px; font-weight: 600; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #334155; background: #0f172a; }
+  td { padding: 10px 16px; border-bottom: 1px solid #1e293b; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  .name-cell { font-weight: 500; color: #cbd5e1; max-width: 300px; }
+
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .badge.green { background: #064e3b; color: #34d399; }
+  .badge.red { background: #450a0a; color: #f87171; }
+  .badge.yellow { background: #451a03; color: #fbbf24; }
+  .badge.gray { background: #1e293b; color: #64748b; border: 1px solid #334155; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  
+  .mission-banner { background: linear-gradient(135deg, #1e1b4b 0%, #1e293b 100%); border: 1px solid #3730a3; border-radius: 12px; padding: 20px 24px; }
+  .mission-banner p { font-size: 13px; color: #a5b4fc; line-height: 1.6; }
+  .mission-banner strong { color: #e0e7ff; font-size: 15px; }
+
+  .footer { text-align: center; padding: 20px; color: #334155; font-size: 11px; }
+
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .main { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="logo">🧠</div>
+    <div>
+      <h1>Romer Mission Control</h1>
+      <p>Last updated: March 13, 2026 02:28 PM ET &nbsp;·&nbsp; Auto-refreshes every 5 minutes</p>
+    </div>
+  </div>
+  <div class="live-badge"><div class="live-dot"></div>LIVE</div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-card">
+    <div class="stat-label">Active Crons</div>
+    <div class="stat-value">24</div>
+    <div class="stat-sub">of 24 total</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Memory Files</div>
+    <div class="stat-value">147</div>
+    <div class="stat-sub">21 MB stored</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Recent Runs</div>
+    <div class="stat-value">17</div>
+    <div class="stat-sub">logged total</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Tasks Pending</div>
+    <div class="stat-value">5</div>
+    <div class="stat-sub">implementation queue</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Instance</div>
+    <div class="stat-value" style="font-size:16px;padding-top:4px">vm-bot-romer</div>
+    <div class="stat-sub">Migrated Mar 13, 2026</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="mission-banner">
+    <p>🎯 <strong>Ultimate Mission:</strong> Create a world-class CIM for Rev.io that maximizes its enterprise value.</p>
+    <p style="margin-top:8px;font-size:12px;color:#6366f1">Everything I do serves this goal — every brief, every data point, every system I build.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">⚙️ Scheduled Crons</span>
+      <span class="card-count">24 jobs</span>
+    </div>
+    <table>
+      <thead><tr><th>State</th><th>Job Name</th><th>Last Run</th><th>Status</th><th>Next Run</th></tr></thead>
+      <tbody>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Weekly Memory Consolidation</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 15 10:00 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">GitHub Backup (every 30min)</td>
+      <td>Mar 13 02:02 PM ET</td>
+      <td><span class="badge green">✓ ok</span></td>
+      <td>Mar 13 02:32 PM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Circle Community Intelligence Report</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 14 07:00 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Churn Early Warning (Monday 5am ET)</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 16 05:00 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Pipeline Intelligence (Monday 5:05am ET)</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 16 05:05 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Deal Velocity Dashboard (Monday 5:10am ET)</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 16 05:10 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">5am Morning Brief (Consolidated)</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 16 05:00 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Daily Self-Improvement Ideas</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 14 06:00 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Rufus Du Sol Birmingham VIP Box Ticket Monitor</td>
+      <td>Mar 13 12:31 PM ET</td>
+      <td><span class="badge green">✓ ok</span></td>
+      <td>Mar 14 12:31 PM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Weekly AI Agent Research</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 16 02:00 PM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Family Goals Review Reminder</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 30 09:00 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Family Goals Review Reminder — March 30</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 30 08:00 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Evening Email Check 7:30pm ET</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 13 07:30 PM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Payments NRR reminder</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Jun 02 09:00 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Revay Intelligence Deck — Weekly Review</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 16 02:00 PM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Rufus Ticket Search — 3-Day Status Update</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 14 09:33 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Weekly Sales & PSA Onboarding Forecast</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 15 08:00 PM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Primus Weekly Page Rebuild</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 16 06:00 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Dashboard Auto-Update (5 min)</td>
+      <td>Mar 13 02:28 PM ET</td>
+      <td><span class="badge green">✓ ok</span></td>
+      <td>Mar 13 02:33 PM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Health & Longevity Weekly (Merged)</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 17 02:00 PM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Daily System Health Check</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 14 09:00 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Weekly Romer Progress Report</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 16 01:00 PM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">Daily Risk Radar & Build Ideas</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 14 09:30 AM ET</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">ON</span></td>
+      <td class="name-cell">X Intelligence Protocol — Daily</td>
+      <td><span style="color:#94a3b8">Never</span></td>
+      <td><span class="badge gray">—</span></td>
+      <td>Mar 14 09:30 AM ET</td>
+    </tr></tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">📋 Implementation Queue</span>
+        <span class="card-count">5 tasks</span>
+      </div>
+      <table>
+        <thead><tr><th>#</th><th>Task</th><th>Target</th><th>Status</th></tr></thead>
+        <tbody>
+    <tr>
+      <td style="text-align:center;font-weight:700">1</td>
+      <td class="name-cell">Build Romer Mission Control dashboard (GitHub Pages)</td>
+      <td style="color:#94a3b8;font-size:12px">This week (by Mar 14)</td>
+      <td><span class="badge red">Not Started</span></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;font-weight:700">2</td>
+      <td class="name-cell">Add Ralph loop to long sub-agent tasks</td>
+      <td style="color:#94a3b8;font-size:12px">Next qualifying task</td>
+      <td><span class="badge red">Not Started</span></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;font-weight:700">3</td>
+      <td class="name-cell">Stricter handover format enforced every session</td>
+      <td style="color:#94a3b8;font-size:12px">Immediately</td>
+      <td><span class="badge yellow">In Progress</span></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;font-weight:700">4</td>
+      <td class="name-cell">Weekly proactive intelligence tasks in heartbeat</td>
+      <td style="color:#94a3b8;font-size:12px">This weekend (Mar 15)</td>
+      <td><span class="badge red">Not Started</span></td>
+    </tr>
+    <tr>
+      <td style="text-align:center;font-weight:700">5</td>
+      <td class="name-cell">Sub-agent org chart for Rev.io functions</td>
+      <td style="color:#94a3b8;font-size:12px">Next week (by Mar 18)</td>
+      <td><span class="badge red">Not Started</span></td>
+    </tr></tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">📜 Recent Cron Runs</span>
+        <span class="card-count">last 15</span>
+      </div>
+      <table>
+        <thead><tr><th>Time</th><th>Job</th><th>Runtime</th><th>Result</th><th>Notes</th></tr></thead>
+        <tbody>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-13T09:34</td>
+      <td class="name-cell">X Intelligence</td>
+      <td>KEEP</td>
+      <td><span class="badge gray">PRODUCED 3 NOVEL IDEAS (1A MEMORY+CONTINUITY, 2B MSP+PRODUCT); NO REPEATS IN 90-DAY WINDOW; SECURITY CLEAN.</span></td>
+      <td style="font-size:11px;color:#cbd5e1"></td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-13T13:30</td>
+      <td class="name-cell">Risk Radar</td>
+      <td>KEEP</td>
+      <td><span class="badge gray">2 RISKS (LEAD ATTRIBUTION BLACKOUT HIGH, DARK PAYMENTS ACCOUNTS HIGH) + 2 BUILD IDEAS (NO-SHOW ELIMINATOR, COMPETITIVE DISPLACEMENT FEED) DELIVERED TO #GENERAL</span></td>
+      <td style="font-size:11px;color:#cbd5e1"></td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-13T11:00</td>
+      <td class="name-cell">Circle Community Intelligence</td>
+      <td>38</td>
+      <td><span class="badge green">✓ KEEP</span></td>
+      <td style="font-size:11px;color:#cbd5e1">top: Emailing Invoices Per Customer score 21, Quick Quote score 18; no competito...</td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-13T10:02</td>
+      <td class="name-cell">Self-Improvement Ideas</td>
+      <td>12</td>
+      <td><span class="badge green">✓ KEEP</span></td>
+      <td style="font-size:11px;color:#cbd5e1">longevity, mindset, relationships</td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-13T09:03</td>
+      <td class="name-cell">Morning Brief</td>
+      <td>195</td>
+      <td><span class="badge green">✓ KEEP</span></td>
+      <td style="font-size:11px;color:#cbd5e1">5 sections delivered: valuation pulse, 3 action cards, 3 morning picks, longevit...</td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-12T14:35</td>
+      <td class="name-cell">X Intelligence</td>
+      <td>KEEP</td>
+      <td><span class="badge gray">3 IDEAS SURFACED — PG COMMODITY TRANSITION TEST + NRR VALUATION DELTA + PAYA INTERCHANGE-PLUS ANALYSIS</span></td>
+      <td style="font-size:11px;color:#cbd5e1"></td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-12T11:00</td>
+      <td class="name-cell">Circle Community Intelligence</td>
+      <td>42</td>
+      <td><span class="badge green">✓ KEEP</span></td>
+      <td style="font-size:11px;color:#cbd5e1">top: Emailing Invoices per customer score 18; no competitor mentions; 2 unanswer...</td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-12T10:00</td>
+      <td class="name-cell">Self-Improvement Ideas</td>
+      <td>12</td>
+      <td><span class="badge green">✓ KEEP</span></td>
+      <td style="font-size:11px;color:#cbd5e1">longevity, mindset, relationships</td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-12T09:02</td>
+      <td class="name-cell">Morning Brief</td>
+      <td>~180</td>
+      <td><span class="badge green">✓ KEEP</span></td>
+      <td style="font-size:11px;color:#cbd5e1">5 sections delivered, 1 action card, BTC/SOL underwater, no Rev.io negative ment...</td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-11T11:00</td>
+      <td class="name-cell">Circle Community Intelligence</td>
+      <td>35</td>
+      <td><span class="badge green">✓ KEEP</span></td>
+      <td style="font-size:11px;color:#cbd5e1">top: Email Outbox score 22, churn-risk flag on invoice emailing post, no competi...</td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-11T10:01</td>
+      <td class="name-cell">Self-Improvement Ideas</td>
+      <td>18</td>
+      <td><span class="badge green">✓ KEEP</span></td>
+      <td style="font-size:11px;color:#cbd5e1">longevity, relationships, mindset</td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-11T09:02</td>
+      <td class="name-cell">Morning Brief</td>
+      <td>166s</td>
+      <td><span class="badge green">✓ KEEP</span></td>
+      <td style="font-size:11px;color:#cbd5e1">5 sections delivered: valuation pulse, 2 action cards (live r/msp TigerPaw oppty...</td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-11T09:02</td>
+      <td class="name-cell">Morning Brief</td>
+      <td></td>
+      <td><span class="badge green">✓ KEEP</span></td>
+      <td style="font-size:11px;color:#cbd5e1">5 sections delivered: valuation pulse, 2 action cards (live r/msp TigerPaw oppor...</td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-10T11:00</td>
+      <td class="name-cell">Circle Community Intelligence</td>
+      <td>45</td>
+      <td><span class="badge green">✓ KEEP</span></td>
+      <td style="font-size:11px;color:#cbd5e1">top: Email Outbox score 22, no competitor mentions, ticketing theme dominant acr...</td>
+    </tr>
+    <tr>
+      <td style="color:#94a3b8;font-size:11px">2026-03-10T10:00</td>
+      <td class="name-cell">Self-Improvement Ideas</td>
+      <td>42</td>
+      <td><span class="badge green">✓ KEEP</span></td>
+      <td style="font-size:11px;color:#cbd5e1">spirituality, physical health, learning</td>
+    </tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">🔗 Quick Links</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;padding:16px 20px;">
+      <a href="https://bmaropis.github.io/romer-public/" style="background:#334155;color:#cbd5e1;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:500">📊 Dashboard</a>
+      <a href="https://bmaropis.github.io/romer-public/primus-weekly.html" style="background:#334155;color:#cbd5e1;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:500">📈 Primus Weekly</a>
+      <a href="https://bmaropis.github.io/romer-public/payments-vault-comparison.html" style="background:#334155;color:#cbd5e1;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:500">💳 Payments Vault</a>
+      <a href="https://bmaropis.github.io/romer-public/lost-deals-by-feature.html" style="background:#334155;color:#cbd5e1;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:500">🎯 Lost Deals</a>
+      <a href="https://github.com/bmaropis/Romer-Workspace" style="background:#334155;color:#cbd5e1;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:500">💾 Workspace Backup</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">Romer · Rev.io AI Assistant · Built March 13, 2026 02:28 PM ET</div>
+
+</body>
+</html>
